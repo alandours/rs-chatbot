@@ -1,6 +1,8 @@
 import { FrameContextConsumer } from "react-frame-component";
 import { StyleSheetManager } from "styled-components";
 
+import { Chatbot } from "./components/Chatbot";
+
 import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
 
@@ -11,7 +13,7 @@ function App() {
         {({ document }) => (
           <StyleSheetManager target={document?.head}>
             <GlobalStyle />
-            <h1>Chatbot</h1>
+            <Chatbot />
           </StyleSheetManager>
         )}
       </FrameContextConsumer>

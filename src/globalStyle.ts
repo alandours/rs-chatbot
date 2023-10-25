@@ -8,7 +8,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html, body, .frame-root, .frame-content {
-    background-color: beige;
     height: 100%;
   }
 `;
