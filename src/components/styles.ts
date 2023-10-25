@@ -10,22 +10,24 @@ export const Chatbot = styled.div`
 `;
 
 export const Header = styled.div`
+  background: #111;
   display: flex;
   padding: 0.75rem;
 `;
 
 export const Title = styled.h1`
+  color: #eee;
   font-size: 1.125rem;
   margin: 0;
 `;
 
 export const Main = styled.div`
-  border-top: 1px solid #000;
-  border-bottom: 1px solid #000;
+  background: #eee;
   height: 100%;
 `;
 
 export const Footer = styled.div`
+  background: #111;
   display: flex;
   padding: 0.5rem;
 `;
