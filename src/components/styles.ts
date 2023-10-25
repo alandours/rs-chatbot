@@ -4,9 +4,10 @@ export const Chatbot = styled.div`
   border: 1px solid #000000;
   border-radius: 0.25rem;
   display: flex;
-  height: 100%;
+  height: 24rem;
   flex-direction: column;
   font-family: sans-serif;
+  width: 18rem;
 `;
 
 export const Header = styled.div`
@@ -53,13 +54,16 @@ export const Button = styled.button`
   padding: 0.5rem;
 `;
 
+export const OpenChat = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+`;
+
 export const OpenChatButton = styled.button`
   background: #111;
   border: 0;
   border-radius: 0.25rem;
   color: #eee;
-  position: absolute;
-  bottom: 0;
-  right: 0;
   padding: 1rem;
 `;

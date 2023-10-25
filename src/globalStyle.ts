@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
-  html, body, .frame-root, .frame-content {
-    height: 100%;
+  body {
+    overflow: hidden;
   }
 `;

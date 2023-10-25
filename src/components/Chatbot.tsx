@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { Ref, useEffect, useState } from "react";
 
 import * as styles from "./styles";
 
-export const Chatbot = () => {
+type ChatbotProps = {
+  setFrameSize: () => void;
+  chatbotRef: Ref<HTMLDivElement>;
+};
+
+export const Chatbot = ({ setFrameSize, chatbotRef }: ChatbotProps) => {
   const [open, setOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    setFrameSize();
+  }, [setFrameSize, open]);
+
   return open ? (
-    <styles.Chatbot>
+    <styles.Chatbot ref={chatbotRef}>
       <styles.Header>
         <styles.Title>Chatbot</styles.Title>
         <styles.CloseButton onClick={() => setOpen(false)}>
@@ -20,8 +29,10 @@ export const Chatbot = () => {
       </styles.Footer>
     </styles.Chatbot>
   ) : (
-    <styles.OpenChatButton onClick={() => setOpen(true)}>
-      Open chat
-    </styles.OpenChatButton>
+    <styles.OpenChat ref={chatbotRef}>
+      <styles.OpenChatButton onClick={() => setOpen(true)}>
+        Open chat
+      </styles.OpenChatButton>
+    </styles.OpenChat>
   );
 };
