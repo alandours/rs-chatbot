@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { FrameContextConsumer } from "react-frame-component";
 import { StyleSheetManager } from "styled-components";
 
-import { Chatbot } from "@/components/Chatbot/Chatbot";
+import { Chatbot } from "@/components/Chatbot";
 
 import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
