@@ -8,6 +8,7 @@ import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
 
 function App() {
+  const [open, setOpen] = useState<boolean>(false);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
@@ -19,12 +20,17 @@ function App() {
   };
 
   return (
-    <Frame width={width} height={height}>
+    <Frame width={width} height={height} open={open}>
       <FrameContextConsumer>
         {({ document }) => (
           <StyleSheetManager target={document?.head}>
             <GlobalStyle />
-            <Chatbot setFrameSize={setFrameSize} chatbotRef={ref} />
+            <Chatbot
+              setFrameSize={setFrameSize}
+              chatbotRef={ref}
+              open={open}
+              setOpen={setOpen}
+            />
           </StyleSheetManager>
         )}
       </FrameContextConsumer>

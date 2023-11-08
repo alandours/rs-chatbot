@@ -4,7 +4,6 @@ import { COLORS } from "@/constants/colors";
 
 export const Chatbot = styled.div`
   border-radius: 0.25rem 0.25rem 0rem 0rem;
-  box-shadow: 8px 8px 48px 0px ${COLORS.SHADOW};
   display: flex;
   flex-direction: column;
   font-family: "Poppins", sans-serif;

@@ -24,6 +24,5 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     overflow: hidden;
-    padding: 3.5rem;
   }
 `;
