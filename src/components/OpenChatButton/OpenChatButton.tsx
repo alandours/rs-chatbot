@@ -1,21 +1,19 @@
-import { Ref } from "react";
+import { useContext } from "react";
+
+import { ChatbotContext } from "@/context/ChatbotContext";
 
 import robotIcon from "@/assets/robot.webp";
 
 import * as styles from "./styles";
 
-type OpenChatButtonProps = {
-  chatbotRef: Ref<HTMLDivElement>;
-  openChat: () => void;
-};
+export const OpenChatButton = () => {
+  const { chatbotRef, openChat } = useContext(ChatbotContext);
 
-export const OpenChatButton = ({
-  chatbotRef,
-  openChat,
-}: OpenChatButtonProps) => (
-  <styles.OpenChat ref={chatbotRef}>
-    <styles.OpenChatButton onClick={openChat}>
-      <styles.ChatIcon src={robotIcon} alt="Open chat" />
-    </styles.OpenChatButton>
-  </styles.OpenChat>
-);
+  return (
+    <styles.OpenChat ref={chatbotRef}>
+      <styles.OpenChatButton onClick={openChat}>
+        <styles.ChatIcon src={robotIcon} alt="Open chat" />
+      </styles.OpenChatButton>
+    </styles.OpenChat>
+  );
+};

@@ -1,28 +1,19 @@
-import { Ref, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
+import { ChatbotContext } from "@/context/ChatbotContext";
 import { OpenChatButton } from "@/components/OpenChatButton";
 import { Chat } from "@/components/Chat";
 
 type ChatbotProps = {
-  open: boolean;
-  setOpen: (open: boolean) => void;
   setFrameSize: () => void;
-  chatbotRef: Ref<HTMLDivElement>;
 };
 
-export const Chatbot = ({
-  open,
-  setOpen,
-  setFrameSize,
-  chatbotRef,
-}: ChatbotProps) => {
+export const Chatbot = ({ setFrameSize }: ChatbotProps) => {
+  const { open } = useContext(ChatbotContext);
+
   useEffect(() => {
     setFrameSize();
   }, [setFrameSize, open]);
 
-  return open ? (
-    <Chat chatbotRef={chatbotRef} minimizeChat={() => setOpen(false)} />
-  ) : (
-    <OpenChatButton chatbotRef={chatbotRef} openChat={() => setOpen(true)} />
-  );
+  return open ? <Chat /> : <OpenChatButton />;
 };

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ReactFrame from "react-frame-component";
 
-import { COLORS } from "./constants/colors";
+import { COLORS } from "@/constants/colors";
 
 type FrameProps = {
   open: boolean;
