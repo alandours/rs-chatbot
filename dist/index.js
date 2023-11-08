@@ -119,7 +119,7 @@ Error generating stack: `+l.message+`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.75rem 1.25rem;
+  padding: 1.5rem;
 `,U0=ue.img`
   width: 1.75rem;
 `,B0=({chatbotRef:e,minimizeChat:t})=>B.jsxs(N0,{ref:e,children:[B.jsxs(O0,{children:[B.jsxs(I0,{children:[B.jsx(L0,{}),B.jsx(z0,{children:E0})]}),B.jsx(D0,{onClick:t,children:B.jsx(A0,{src:T0,alt:"Minimize chat"})})]}),B.jsx(M0,{}),B.jsxs(F0,{children:[B.jsx($0,{type:"text",placeholder:"Send a message..."}),B.jsx(j0,{children:B.jsx(U0,{src:R0,alt:"Send message"})})]})]}),H0=({setFrameSize:e,chatbotRef:t})=>{const[n,r]=ne.useState(!1);return ne.useEffect(()=>{e()},[e,n]),n?B.jsx(B0,{chatbotRef:t,minimizeChat:()=>r(!1)}):B.jsx(P0,{chatbotRef:t,openChat:()=>r(!0)})},W0=ue(mm)`
