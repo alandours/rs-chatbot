@@ -86,7 +86,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.75 1.25rem;
+  padding: 1.75rem 1.25rem;
 `;
 
 export const SendIcon = styled.img`
