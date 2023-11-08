@@ -18,7 +18,7 @@ export const Header = styled.div`
   border-radius: inherit;
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem 1.25rem;
+  padding: 1.5rem 2.25rem;
 `;
 
 export const TitleWrapper = styled.div`
@@ -58,6 +58,7 @@ export const Main = styled.div`
 `;
 
 export const Footer = styled.div`
+  background: ${COLORS.WHITE};
   border-top: 1px solid ${COLORS.GREY.LIGHT};
   display: flex;
 `;
@@ -85,7 +86,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 1.75 1.25rem;
 `;
 
 export const SendIcon = styled.img`
