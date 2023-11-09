@@ -1,7 +1,7 @@
 import { useContext } from "react";
 
 import { ChatbotContext } from "@/context/ChatbotContext";
-import { CHATBOT_NAME } from "@/constants/colors";
+import { CHATBOT_NAME } from "@/constants";
 
 import minimizeIcon from "@/assets/minimize.webp";
 import sendIcon from "@/assets/send.webp";
