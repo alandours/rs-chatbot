@@ -14,6 +14,17 @@ export const Chatbot = styled.div`
   @media (min-device-width: ${BREAKPOINTS.TABLET}px) {
     width: 37.5rem;
   }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  animation: fadeIn 250ms;
 `;
 
 export const Header = styled.div`
