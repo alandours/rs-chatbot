@@ -59,7 +59,8 @@ export const MinimizeIcon = styled.img`
 export const Main = styled.div`
   background: ${COLORS.WHITE};
   height: 37.5rem;
-  padding: 2rem;
+  overflow-y: auto;
+  padding: 2rem 2rem 5.5rem 2rem;
 `;
 
 export const Footer = styled.div`
@@ -95,6 +96,11 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
+
+  &:disabled {
+    cursor: initial;
+    opacity: 0.43;
+  }
 `;
 
 export const SendIcon = styled.img`
