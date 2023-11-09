@@ -71,7 +71,11 @@ export const Main = styled.div`
   background: ${COLORS.WHITE};
   height: 42.5rem;
   overflow-y: auto;
-  padding: 2rem 2rem 5.5rem 2rem;
+  padding: 2rem 2rem 13.5rem 2rem;
+
+  @media (min-device-height: ${BREAKPOINTS.TABLET}px) {
+    padding: 2rem 2rem 5.5rem 2rem;
+  }
 `;
 
 export const Footer = styled.div`
