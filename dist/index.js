@@ -101,7 +101,7 @@ Error generating stack: `+i.message+`
   font-size: 0.875rem;
   margin-top: 0.25rem;
   margin-left: 2.25rem;
-`,Td=({data:{content:e,role:t,createdAt:n},error:r})=>L.jsxs(M0,{$variant:t,children:[L.jsxs(F0,{$variant:t,children:[L.jsx(j0,{children:z0[t]}),L.jsx($0,{children:n})]}),L.jsxs(U0,{$variant:t,children:[r&&L.jsx(H0,{src:D0}),L.jsx(B0,{$variant:t,$error:!!r,children:e})]}),r&&L.jsx(W0,{children:r})]}),V0=()=>L.jsx(Td,{data:{content:"Typing...",role:nt.LOADER}}),Q0="data:image/webp;base64,UklGRuAAAABXRUJQVlA4TNQAAAAvR8AREC8w//M//wTZNpvBDI9y9QAfxBEC5Np220Yw7AJwjhpwwn7iPheAY73+m1H6mLiM6P8E2D9mPO0aFAddwH6z12GmwDe7fU4FpG0OUwUuC0iTFbgsIE1W4LKANFmBywLSZAUuC0iTFbgsIE1W4DpI6+Ad0jrMDi0+BeOCZ8HDgqvgH/KV+UFwW/ApGBcgeGgxWx2CDtUhIHUFLgtIkxW4LCBNVuCygDRZgcsC0mQFLgtIkxW4LCBNVuBT4/NmAWnTD9fN7sBnhC+k6Y/v3uAPDw==",G0="data:image/webp;base64,UklGRm4CAABXRUJQVlA4TGICAAAvU8AUEO+goG0byXsxHH+gOxoK2raRvBfD8Qe6U9C2jeS9GI4/0B2CSFICCTgSQAWSms0G2uAbELD3XlcVEUFEcHcAFBwB//8vMiICAAAiQngQhA/d3eLi7O4AAFiy7bZtIDEqLhRNuofM/vephkcAaX8R/Xfgtm0kNTAynns2To3uE+j/EtkdUhpsDTekuMTT1p5NXIyM8vqMMZoa+eUjEwf9Pb2PfLyV93Q+IhG09RqxOOjKCw6nvgfjanrlIo2fujy/PLDH0SnujlZdr+ngMnEI2nq9dfMeFnFU1eutn/fsw69Hoyev23Pew+F4WI1Ja094FiIAFFajU9KrI8LgNlxHr4SC1vymotcKbLmCXqvwseHSeq3Dlp9l9VqPHNdcUK8SoG49Mi8vVK9CoDs4FbYJ2iOHghrgBOhVEtShU+Hu1tTNe2RBHnUBvyuIQ5EDwx1V7j44IbAciOYY9jd8Jwiaagyw6ZiN0BUplFoD5CaYcCgioEe9Abpj5AoqAAq8AYoUtBpfgAtIFbQKhBigXEFhYC4gWlAUkAGKFhQEZoACBYVQzWUKWgXQAKUKigM1QMmCQlMeaoCiBU3rxtstCWeAOvFEX/quuxzJ7BqWN0DVdFklxAXUUoSS11iEQu99gbjTXMVvXhzj6skTZIAGEmKAqpHWCTdA5X5DDVC731ADVO83zAD1+w1zAf1+QwzQxI0RA7TQbwy3kwADNNFvvAEa6TfWAI30G2uARvptxwWMJOQvQTs33p8K7dx4yw0mRwZTIEuRWG6l3zgDtNJvW24wjUT2UmrIWLTXeGvpTx0E",Y0=H.div`
+`,V0=e=>new Date(e).toLocaleString("en-US",{hour:"numeric",minute:"numeric",hour12:!0}).toLowerCase().replace(/\s/,""),Td=({data:{content:e,role:t,createdAt:n},error:r})=>L.jsxs(M0,{$variant:t,children:[L.jsxs(F0,{$variant:t,children:[L.jsx(j0,{children:z0[t]}),n&&L.jsx($0,{children:V0(n)})]}),L.jsxs(U0,{$variant:t,children:[r&&L.jsx(H0,{src:D0}),L.jsx(B0,{$variant:t,$error:!!r,children:e})]}),r&&L.jsx(W0,{children:r})]}),Q0=()=>L.jsx(Td,{data:{content:"Typing...",role:nt.LOADER}}),G0="data:image/webp;base64,UklGRuAAAABXRUJQVlA4TNQAAAAvR8AREC8w//M//wTZNpvBDI9y9QAfxBEC5Np220Yw7AJwjhpwwn7iPheAY73+m1H6mLiM6P8E2D9mPO0aFAddwH6z12GmwDe7fU4FpG0OUwUuC0iTFbgsIE1W4LKANFmBywLSZAUuC0iTFbgsIE1W4DpI6+Ad0jrMDi0+BeOCZ8HDgqvgH/KV+UFwW/ApGBcgeGgxWx2CDtUhIHUFLgtIkxW4LCBNVuCygDRZgcsC0mQFLgtIkxW4LCBNVuBT4/NmAWnTD9fN7sBnhC+k6Y/v3uAPDw==",Y0="data:image/webp;base64,UklGRm4CAABXRUJQVlA4TGICAAAvU8AUEO+goG0byXsxHH+gOxoK2raRvBfD8Qe6U9C2jeS9GI4/0B2CSFICCTgSQAWSms0G2uAbELD3XlcVEUFEcHcAFBwB//8vMiICAAAiQngQhA/d3eLi7O4AAFiy7bZtIDEqLhRNuofM/vephkcAaX8R/Xfgtm0kNTAynns2To3uE+j/EtkdUhpsDTekuMTT1p5NXIyM8vqMMZoa+eUjEwf9Pb2PfLyV93Q+IhG09RqxOOjKCw6nvgfjanrlIo2fujy/PLDH0SnujlZdr+ngMnEI2nq9dfMeFnFU1eutn/fsw69Hoyev23Pew+F4WI1Ja094FiIAFFajU9KrI8LgNlxHr4SC1vymotcKbLmCXqvwseHSeq3Dlp9l9VqPHNdcUK8SoG49Mi8vVK9CoDs4FbYJ2iOHghrgBOhVEtShU+Hu1tTNe2RBHnUBvyuIQ5EDwx1V7j44IbAciOYY9jd8Jwiaagyw6ZiN0BUplFoD5CaYcCgioEe9Abpj5AoqAAq8AYoUtBpfgAtIFbQKhBigXEFhYC4gWlAUkAGKFhQEZoACBYVQzWUKWgXQAKUKigM1QMmCQlMeaoCiBU3rxtstCWeAOvFEX/quuxzJ7BqWN0DVdFklxAXUUoSS11iEQu99gbjTXMVvXhzj6skTZIAGEmKAqpHWCTdA5X5DDVC731ADVO83zAD1+w1zAf1+QwzQxI0RA7TQbwy3kwADNNFvvAEa6TfWAI30G2uARvptxwWMJOQvQTs33p8K7dx4yw0mRwZTIEuRWG6l3zgDtNJvW24wjUT2UmrIWLTXeGvpTx0E",K0=H.div`
   border-radius: 0.25rem 0.25rem 0rem 0rem;
   display: flex;
   flex-direction: column;
@@ -112,47 +112,47 @@ Error generating stack: `+i.message+`
   @media (min-device-width: ${Jo.TABLET}px) {
     width: 37.5rem;
   }
-`,K0=H.div`
+`,Z0=H.div`
   align-items: center;
   background: ${le.GREY.DARKER};
   border-radius: inherit;
   display: flex;
   justify-content: space-between;
   padding: 1.5rem 2.25rem;
-`,Z0=H.div`
+`,X0=H.div`
   display: flex;
   align-items: center;
-`,X0=H.div`
+`,q0=H.div`
   background: ${le.GREEN};
   border-radius: 100%;
   flex-shrink: 0;
   height: 1rem;
   width: 1rem;
-`,q0=H.h1`
+`,J0=H.h1`
   color: ${le.WHITE};
   font-size: 1.75rem;
   font-weight: 500;
   margin: 0;
   margin-left: 1rem;
-`,J0=H.button`
+`,b0=H.button`
   background: none;
   border: 0;
   cursor: pointer;
-`,b0=H.img`
+`,ev=H.img`
   width: 2.25rem;
-`,ev=H.div`
+`,tv=H.div`
   background: ${le.WHITE};
   height: 42.5rem;
   overflow-y: auto;
   padding: 2rem 2rem 5.5rem 2rem;
-`,tv=H.div`
+`,nv=H.div`
   background: ${le.WHITE};
   border-top: 1px solid ${le.GREY.LIGHT};
   display: flex;
   position: fixed;
   bottom: 0;
   width: 100%;
-`,nv=H.input`
+`,rv=H.input`
   border: 0;
   border-radius: 0;
   font-size: 1.25rem;
@@ -166,7 +166,7 @@ Error generating stack: `+i.message+`
   &:focus {
     outline: none;
   }
-`,rv=H.button`
+`,ov=H.button`
   background: none;
   border: 0;
   cursor: pointer;
@@ -179,9 +179,9 @@ Error generating stack: `+i.message+`
     cursor: initial;
     opacity: 0.43;
   }
-`,ov=H.img`
+`,iv=H.img`
   width: 1.75rem;
-`,iv=[{conversationId:1,id:1,content:"👋 Hello! I'm Rootstrap Assistant, an AI bot made by Rootstrap. How can I help you?",role:nt.ASSISTANT,createdAt:"2023-11-07T14:18:34.831Z"},{conversationId:1,id:2,content:"I have an idea for a mobile app.",role:nt.USER,createdAt:"2023-11-07T14:18:44.320Z"},{conversationId:1,id:3,content:"That's great to hear! We're here to help you bring your mobile app idea to life. Please tell me more about your app idea and how you'd like to proceed.",role:nt.ASSISTANT,createdAt:"2023-11-07T14:19:08.262Z"},{conversationId:1,id:4,content:"Sure, it's a social networking app for connecting local artists. I'd like to discuss the next steps.",role:nt.USER,createdAt:"2023-11-07T14:19:10.715Z"}],lv=()=>{const{chatbotRef:e,closeChat:t}=F.useContext(Vn);return L.jsxs(Y0,{ref:e,children:[L.jsxs(K0,{children:[L.jsxs(Z0,{children:[L.jsx(X0,{}),L.jsx(q0,{children:O0})]}),L.jsx(J0,{onClick:t,children:L.jsx(b0,{src:Q0,alt:"Minimize chat"})})]}),L.jsxs(ev,{children:[iv.map(n=>L.jsx(Td,{data:n},n.id)),L.jsx(V0,{})]}),L.jsxs(tv,{children:[L.jsx(nv,{type:"text",placeholder:"Send a message..."}),L.jsx(rv,{children:L.jsx(ov,{src:G0,alt:"Send message"})})]})]})},uv=({setFrameSize:e})=>{const{open:t}=F.useContext(Vn);return F.useEffect(()=>{e()},[e,t]),t?L.jsx(lv,{}):L.jsx(L0,{})},sv=H(Em)`
+`,lv=[{conversationId:1,id:1,content:"👋 Hello! I'm Rootstrap Assistant, an AI bot made by Rootstrap. How can I help you?",role:nt.ASSISTANT,createdAt:"2023-11-07T14:18:34.831Z"},{conversationId:1,id:2,content:"I have an idea for a mobile app.",role:nt.USER,createdAt:"2023-11-07T14:18:44.320Z"},{conversationId:1,id:3,content:"That's great to hear! We're here to help you bring your mobile app idea to life. Please tell me more about your app idea and how you'd like to proceed.",role:nt.ASSISTANT,createdAt:"2023-11-07T14:19:08.262Z"},{conversationId:1,id:4,content:"Sure, it's a social networking app for connecting local artists. I'd like to discuss the next steps.",role:nt.USER,createdAt:"2023-11-07T14:19:10.715Z"}],uv=()=>{const{chatbotRef:e,closeChat:t}=F.useContext(Vn);return L.jsxs(K0,{ref:e,children:[L.jsxs(Z0,{children:[L.jsxs(X0,{children:[L.jsx(q0,{}),L.jsx(J0,{children:O0})]}),L.jsx(b0,{onClick:t,children:L.jsx(ev,{src:G0,alt:"Minimize chat"})})]}),L.jsxs(tv,{children:[lv.map(n=>L.jsx(Td,{data:n},n.id)),L.jsx(Q0,{})]}),L.jsxs(nv,{children:[L.jsx(rv,{type:"text",placeholder:"Send a message..."}),L.jsx(ov,{children:L.jsx(iv,{src:Y0,alt:"Send message"})})]})]})},sv=({setFrameSize:e})=>{const{open:t}=F.useContext(Vn);return F.useEffect(()=>{e()},[e,t]),t?L.jsx(uv,{}):L.jsx(L0,{})},av=H(Em)`
   border: 0;
   border-radius: 100%;
   box-shadow: 8px 8px 48px 0px ${le.SHADOW};
@@ -199,16 +199,16 @@ Error generating stack: `+i.message+`
         right: 3rem;
       }
     `}
-`,av=""+new URL("assets/Poppins-Regular-707fdc5c.ttf",import.meta.url).href,cv=""+new URL("assets/Poppins-Medium-8d909883.ttf",import.meta.url).href,fv=T0`
+`,cv=""+new URL("assets/Poppins-Regular-707fdc5c.ttf",import.meta.url).href,fv=""+new URL("assets/Poppins-Medium-8d909883.ttf",import.meta.url).href,dv=T0`
   @font-face {
     font-family: 'Poppins';
-    src: url(${av}) format('truetype');
+    src: url(${cv}) format('truetype');
     font-weight: 400;
   }
 
   @font-face {
     font-family: 'Poppins';
-    src: url(${cv}) format('truetype');
+    src: url(${fv}) format('truetype');
     font-weight: 500;
   }
 
@@ -221,4 +221,4 @@ Error generating stack: `+i.message+`
   body {
     overflow: hidden;
   }
-`,dv=()=>{const{open:e,chatbotRef:t}=F.useContext(Vn),[n,r]=F.useState(0),[o,i]=F.useState(0),l=F.useCallback(()=>{var c,h;let u=((c=t==null?void 0:t.current)==null?void 0:c.offsetHeight)||0,s=((h=t==null?void 0:t.current)==null?void 0:h.offsetWidth)||0;e&&(window.innerWidth<Jo.TABLET&&(s=window.innerWidth),window.innerWidth>=Jo.TABLET&&window.innerWidth>La&&(s=La),u>window.innerHeight&&(u=window.innerHeight)),r(s),i(u)},[e,t]);return{width:n,height:o,setFrameSize:l}};function pv(){const{open:e}=F.useContext(Vn),{width:t,height:n,setFrameSize:r}=dv();return F.useEffect(()=>(window.addEventListener("resize",r),()=>window.removeEventListener("resize",r)),[r]),L.jsx(sv,{width:t,height:n,open:e,children:L.jsx(bu.FrameContextConsumer,{children:({document:o})=>L.jsxs(S0,{target:o==null?void 0:o.head,children:[L.jsx(fv,{}),L.jsx(uv,{setFrameSize:r})]})})})}const Rd=document.createElement("div");Rd.setAttribute("id","root");tl.createRoot(document.body.appendChild(Rd)).render(L.jsx(Me.StrictMode,{children:L.jsx(bh,{children:L.jsx(pv,{})})}));
+`,pv=()=>{const{open:e,chatbotRef:t}=F.useContext(Vn),[n,r]=F.useState(0),[o,i]=F.useState(0),l=F.useCallback(()=>{var c,h;let u=((c=t==null?void 0:t.current)==null?void 0:c.offsetHeight)||0,s=((h=t==null?void 0:t.current)==null?void 0:h.offsetWidth)||0;e&&(window.innerWidth<Jo.TABLET&&(s=window.innerWidth),window.innerWidth>=Jo.TABLET&&window.innerWidth>La&&(s=La),u>window.innerHeight&&(u=window.innerHeight)),r(s),i(u)},[e,t]);return{width:n,height:o,setFrameSize:l}};function hv(){const{open:e}=F.useContext(Vn),{width:t,height:n,setFrameSize:r}=pv();return F.useEffect(()=>(window.addEventListener("resize",r),()=>window.removeEventListener("resize",r)),[r]),L.jsx(av,{width:t,height:n,open:e,children:L.jsx(bu.FrameContextConsumer,{children:({document:o})=>L.jsxs(S0,{target:o==null?void 0:o.head,children:[L.jsx(dv,{}),L.jsx(sv,{setFrameSize:r})]})})})}const Rd=document.createElement("div");Rd.setAttribute("id","root");tl.createRoot(document.body.appendChild(Rd)).render(L.jsx(Me.StrictMode,{children:L.jsx(bh,{children:L.jsx(hv,{})})}));

@@ -3,6 +3,7 @@ import { MessageRoles, USERNAMES } from "@/constants";
 import errorIcon from "@/assets/error.webp";
 
 import * as styles from "./styles";
+import { formatDate } from "@/utils";
 
 type MessageProps = {
   data: {
@@ -20,7 +21,7 @@ export const Message = ({
   <styles.MessageContainer $variant={role}>
     <styles.MessageHeader $variant={role}>
       <styles.Username>{USERNAMES[role]}</styles.Username>
-      <styles.Time>{createdAt}</styles.Time>
+      {createdAt && <styles.Time>{formatDate(createdAt)}</styles.Time>}
     </styles.MessageHeader>
     <styles.MessageWrapper $variant={role}>
       {error && <styles.ErrorIcon src={errorIcon}></styles.ErrorIcon>}
