@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { CHATBOT_NAME } from "@/constants";
 import { Message } from "@/components/Message";
+import { TypingLoader } from "@/components/TypingLoader";
 import { MessageRoles } from "@/constants";
 
 import minimizeIcon from "@/assets/minimize.webp";
@@ -62,6 +63,7 @@ export const Chat = () => {
         {mockMessages.map((data) => (
           <Message data={data} key={data.id} />
         ))}
+        <TypingLoader />
       </styles.Main>
       <styles.Footer>
         <styles.Input type="text" placeholder="Send a message..." />
