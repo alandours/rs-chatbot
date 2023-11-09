@@ -58,7 +58,7 @@ export const MinimizeIcon = styled.img`
 
 export const Main = styled.div`
   background: ${COLORS.WHITE};
-  height: 37.5rem;
+  height: 42.5rem;
   overflow-y: auto;
   padding: 2rem 2rem 5.5rem 2rem;
 `;

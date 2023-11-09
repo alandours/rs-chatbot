@@ -5,6 +5,7 @@ import { MessageRoles } from "@/constants";
 
 type StyledProps = {
   $variant: MessageRoles;
+  $error?: boolean;
 };
 
 export const MessageContainer = styled.div<StyledProps>`
@@ -41,19 +42,39 @@ export const Time = styled.div`
   line-height: 1.125rem;
 `;
 
+export const MessageWrapper = styled.div<StyledProps>`
+  align-items: center;
+  display: flex;
+`;
+
 export const Message = styled.div<StyledProps>`
   border-radius: 0.25rem;
   font-size: 1.25rem;
   max-width: 29rem;
   padding: 1rem;
 
-  ${({ $variant }) => `
+  ${({ $variant, $error }) => `
     background: ${
       $variant === MessageRoles.USER ? COLORS.YELLOW : COLORS.GREY.LIGHTER
     };
+
+    ${$error && `background: ${COLORS.RED.LIGHT}`};
     
     color: ${
       $variant === MessageRoles.LOADER ? COLORS.GREY.DARK : COLORS.BLACK
     };
   `};
+`;
+
+export const ErrorIcon = styled.img`
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-right: 0.75rem;
+`;
+
+export const ErrorMessage = styled.div`
+  color: ${COLORS.RED.DARK};
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  margin-left: 2.25rem;
 `;
