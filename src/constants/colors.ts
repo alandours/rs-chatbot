@@ -1,5 +1,3 @@
-export const CHATBOT_NAME = "Rootstrap Assistant";
-
 export const COLORS = {
   BLACK: "#1B1B1B",
   GREEN: "#009E3D",

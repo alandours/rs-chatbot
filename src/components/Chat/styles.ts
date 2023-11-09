@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { BREAKPOINTS } from "@/constants";
 import { COLORS } from "@/constants/colors";
 
 export const Chatbot = styled.div`
@@ -8,7 +9,11 @@ export const Chatbot = styled.div`
   flex-direction: column;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  width: 37.5rem;
+  width: 100%;
+
+  @media (min-device-width: ${BREAKPOINTS.TABLET}px) {
+    width: 37.5rem;
+  }
 `;
 
 export const Header = styled.div`
@@ -28,6 +33,7 @@ export const TitleWrapper = styled.div`
 export const Status = styled.div`
   background: ${COLORS.GREEN};
   border-radius: 100%;
+  flex-shrink: 0;
   height: 1rem;
   width: 1rem;
 `;
@@ -60,6 +66,9 @@ export const Footer = styled.div`
   background: ${COLORS.WHITE};
   border-top: 1px solid ${COLORS.GREY.LIGHT};
   display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
 
 export const Input = styled.input`
