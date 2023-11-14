@@ -19,3 +19,6 @@ export const USERNAMES = {
   [MessageRoles.ASSISTANT]: UserNames.ASSISTANT,
   [MessageRoles.LOADER]: UserNames.ASSISTANT,
 };
+
+export const ERROR_MESSAGE =
+  "I'm sorry, I can't provide a response at the moment. Please try again later 🙏";

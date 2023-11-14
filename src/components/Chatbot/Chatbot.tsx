@@ -1,35 +1,52 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import { ChatbotContext } from "@/context/ChatbotContext";
-import { MessageRoles, WelcomeMessage } from "@/types";
-import { useGetAgent } from "@/queries";
 import { OpenChatButton } from "@/components/OpenChatButton";
 import { Chat } from "@/components/Chat";
+import { useCreateConversation, useGetAgent, useGetMessages } from "@/queries";
+import { setApiKey } from "@/services/client";
+import { Message } from "@/types";
+import { createMessage } from "@/utils";
 
 type ChatbotProps = {
   setFrameSize: () => void;
 };
 
 export const Chatbot = ({ setFrameSize }: ChatbotProps) => {
-  const [welcomeMessage, setWelcomeMessage] = useState<WelcomeMessage>();
+  const [welcomeMessage, setWelcomeMessage] = useState<Message>();
 
-  const { open } = useContext(ChatbotContext);
+  const { open, conversationId, setConversationId } =
+    useContext(ChatbotContext);
 
   const { agent } = useGetAgent();
+  const { messages } = useGetMessages(conversationId, agent?.id);
+
+  const { mutate: createConversation } = useCreateConversation({
+    onSuccess: ({ conversation }) => {
+      setConversationId(conversation.id);
+    },
+  });
+
+  const createChat = useCallback(async () => {
+    if (agent) {
+      setWelcomeMessage(createMessage(agent.welcomeMessage));
+
+      setApiKey(agent.apiKey);
+      createConversation(agent?.id);
+    }
+  }, [agent, createConversation]);
+
+  useEffect(() => {
+    createChat();
+  }, [createChat]);
 
   useEffect(() => {
     setFrameSize();
   }, [setFrameSize, open]);
 
-  useEffect(() => {
-    if (agent) {
-      setWelcomeMessage({
-        content: agent.welcomeMessage,
-        role: MessageRoles.ASSISTANT,
-        createdAt: new Date(),
-      });
-    }
-  }, [agent]);
-
-  return open ? <Chat welcomeMessage={welcomeMessage} /> : <OpenChatButton />;
+  return open ? (
+    <Chat welcomeMessage={welcomeMessage} messages={messages} />
+  ) : (
+    <OpenChatButton />
+  );
 };

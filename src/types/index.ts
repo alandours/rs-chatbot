@@ -15,14 +15,12 @@ export type Agent = {
 };
 
 export type Message = {
-  id: number;
-  conversationId: number;
+  id?: number;
+  conversationId?: number;
   content: string;
   role: MessageRoles;
   createdAt: Date;
 };
-
-export type WelcomeMessage = Pick<Message, "content" | "role" | "createdAt">;
 
 export type Conversation = {
   id: number;

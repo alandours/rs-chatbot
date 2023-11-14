@@ -1,16 +1,28 @@
-import { RefObject, ReactNode, createContext, useRef, useState } from "react";
+import {
+  RefObject,
+  ReactNode,
+  createContext,
+  useRef,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 interface ChatbotContextValues {
   open: boolean;
   openChat: () => void;
   closeChat: () => void;
   chatbotRef?: RefObject<HTMLDivElement>;
+  conversationId: number | null;
+  setConversationId: Dispatch<SetStateAction<number | null>>;
 }
 
 const initialValues: ChatbotContextValues = {
   open: false,
   openChat: () => null,
   closeChat: () => null,
+  conversationId: null,
+  setConversationId: () => null,
 };
 
 export const ChatbotContext =
@@ -18,6 +30,9 @@ export const ChatbotContext =
 
 export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState<boolean>(initialValues.open);
+  const [conversationId, setConversationId] = useState<number | null>(
+    initialValues.conversationId
+  );
 
   const chatbotRef = useRef<HTMLDivElement>(null);
 
@@ -28,6 +43,8 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
         openChat: () => setOpen(true),
         closeChat: () => setOpen(false),
         chatbotRef,
+        conversationId,
+        setConversationId,
       }}
     >
       {children}

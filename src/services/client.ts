@@ -5,6 +5,7 @@ const config: AxiosRequestConfig = {
   baseURL: import.meta.env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
+    "x-api-key": "sdfdsf",
   },
 };
 
@@ -20,6 +21,12 @@ client.interceptors.request.use((config) => {
 client.interceptors.response.use(async (response) => {
   return { ...response, data: humps.camelizeKeys(response.data) };
 });
+
+export const setApiKey = (apiKey: string) =>
+  client.interceptors.request.use((config) => {
+    config.headers.set("x-api-key", apiKey);
+    return config;
+  });
 
 type QueryParams = {
   conversation: { agentId: number };

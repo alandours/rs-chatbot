@@ -3,7 +3,7 @@ import { Conversation } from "@/types";
 
 import { client, getQueryParams } from "./client";
 
-type ConversationResponse = {
+export type ConversationResponse = {
   conversation: Conversation;
 };
 

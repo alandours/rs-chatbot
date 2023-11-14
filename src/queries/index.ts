@@ -1,10 +1,20 @@
-import { useQuery } from "react-query";
+import { useContext } from "react";
+import { useQuery, useMutation } from "react-query";
 
-import { getAgents } from "@/services/agents";
 import { CHATBOT_AGENT_ID } from "@/constants";
+import { ChatbotContext } from "@/context/ChatbotContext";
+import { getAgents } from "@/services/agents";
+import {
+  ConversationResponse,
+  createConversation,
+} from "@/services/conversations";
+import { getMessages, sendMessage } from "@/services/messages";
+
+import { queryClient } from "./queryClient";
 
 enum Queries {
   agents = "agents",
+  messages = "messages",
 }
 
 export const useGetAgent = () => {
@@ -16,4 +26,40 @@ export const useGetAgent = () => {
     agent,
     isLoading,
   };
+};
+
+export const useCreateConversation = ({
+  onSuccess,
+}: {
+  onSuccess: (data: ConversationResponse) => void;
+}) => {
+  return useMutation(createConversation, { onSuccess });
+};
+
+export const useGetMessages = (
+  conversationId: number | null,
+  agentId?: number
+) => {
+  const { data, isLoading } = useQuery(
+    [Queries.messages, conversationId],
+    () => getMessages({ conversationId, agentId }),
+    { enabled: !!(agentId && conversationId) }
+  );
+
+  return {
+    messages: data?.messages || [],
+    isLoading,
+  };
+};
+
+export const useSendMessage = () => {
+  const { conversationId } = useContext(ChatbotContext);
+
+  return useMutation(sendMessage, {
+    onSuccess: async () => {
+      await queryClient.refetchQueries({
+        queryKey: [Queries.messages, conversationId],
+      });
+    }
+  });
 };
