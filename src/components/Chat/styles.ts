@@ -14,6 +14,17 @@ export const Chatbot = styled.div`
   @media (min-device-width: ${BREAKPOINTS.TABLET}px) {
     width: 37.5rem;
   }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  animation: fadeIn 250ms;
 `;
 
 export const Header = styled.div`
@@ -58,8 +69,13 @@ export const MinimizeIcon = styled.img`
 
 export const Main = styled.div`
   background: ${COLORS.WHITE};
-  height: 37.5rem;
-  padding: 2rem;
+  height: 42.5rem;
+  overflow-y: auto;
+  padding: 2rem 2rem 13.5rem 2rem;
+
+  @media (min-device-height: ${BREAKPOINTS.TABLET}px) {
+    padding: 2rem 2rem 5.5rem 2rem;
+  }
 `;
 
 export const Footer = styled.div`
@@ -95,6 +111,11 @@ export const Button = styled.button`
   align-items: center;
   justify-content: center;
   padding: 1.5rem;
+
+  &:disabled {
+    cursor: initial;
+    opacity: 0.43;
+  }
 `;
 
 export const SendIcon = styled.img`
