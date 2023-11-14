@@ -1,4 +1,4 @@
-import { FormEvent, useContext } from "react";
+import { FormEvent, useContext, useEffect, useRef } from "react";
 
 import { Message } from "@/components/Message";
 import { TypingLoader } from "@/components/TypingLoader";
@@ -23,6 +23,8 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
 
   const { isLoading, mutate: sendMessage } = useSendMessage();
 
+  const scrollEndRef = useRef<HTMLDivElement>(null);
+
   const onSendMessage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -35,6 +37,12 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
       target.reset();
     }
   };
+
+  useEffect(() => {
+    scrollEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [isLoading, messages]);
 
   return (
     <styles.Chatbot ref={chatbotRef}>
@@ -53,6 +61,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
           <Message data={data} key={data.id} />
         ))}
         {isLoading && <TypingLoader />}
+        <div ref={scrollEndRef} />
       </styles.Main>
       <styles.Footer onSubmit={onSendMessage}>
         <styles.Input

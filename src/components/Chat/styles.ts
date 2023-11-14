@@ -34,6 +34,7 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1.5rem 2.25rem;
+  height: 5.625rem;
 `;
 
 export const TitleWrapper = styled.div`
