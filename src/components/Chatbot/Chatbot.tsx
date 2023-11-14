@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 
 import { ChatbotContext } from "@/context/ChatbotContext";
-import { MessageRoles, WelcomeMessage } from "@/types";
+import { MessageRoles, Message } from "@/types";
 import { useGetAgent } from "@/queries";
 import { OpenChatButton } from "@/components/OpenChatButton";
 import { Chat } from "@/components/Chat";
@@ -11,7 +11,7 @@ type ChatbotProps = {
 };
 
 export const Chatbot = ({ setFrameSize }: ChatbotProps) => {
-  const [welcomeMessage, setWelcomeMessage] = useState<WelcomeMessage>();
+  const [welcomeMessage, setWelcomeMessage] = useState<Message>();
 
   const { open } = useContext(ChatbotContext);
 

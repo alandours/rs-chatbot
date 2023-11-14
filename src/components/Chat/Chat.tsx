@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { CHATBOT_NAME } from "@/constants";
 import { ChatbotContext } from "@/context/ChatbotContext";
-import { WelcomeMessage } from "@/types";
+import { Message as MessageType } from "@/types";
 import { Message } from "@/components/Message";
 
 import minimizeIcon from "@/assets/minimize.webp";
@@ -11,7 +11,7 @@ import sendIcon from "@/assets/send.webp";
 import * as styles from "./styles";
 
 type ChatProps = {
-  welcomeMessage?: WelcomeMessage;
+  welcomeMessage?: MessageType;
 };
 
 export const Chat = ({ welcomeMessage }: ChatProps) => {
