@@ -22,6 +22,8 @@ export type Message = {
   createdAt: Date;
 };
 
+export type WelcomeMessage = Pick<Message, "content" | "role" | "createdAt">;
+
 export type Conversation = {
   id: number;
   token: string;

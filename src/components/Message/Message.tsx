@@ -10,7 +10,7 @@ type MessageProps = {
   data: {
     content: string;
     role: MessageRoles;
-    createdAt?: string;
+    createdAt?: Date;
   };
   error?: string;
 };
