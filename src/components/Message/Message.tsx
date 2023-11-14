@@ -1,4 +1,5 @@
-import { MessageRoles, USERNAMES } from "@/constants";
+import { USERNAMES } from "@/constants";
+import { MessageRoles } from "@/types";
 
 import errorIcon from "@/assets/error.webp";
 

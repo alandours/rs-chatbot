@@ -1,3 +1,5 @@
+import { MessageRoles } from "@/types";
+
 export const CHATBOT_NAME = import.meta.env.VITE_CHATBOT_NAME;
 
 export const BREAKPOINTS = {
@@ -5,12 +7,6 @@ export const BREAKPOINTS = {
 };
 
 export const MAX_FRAME_WIDTH = 600;
-
-export enum MessageRoles {
-  USER = "user",
-  ASSISTANT = "assistant",
-  LOADER = "loader",
-}
 
 enum UserNames {
   USER = "You",
