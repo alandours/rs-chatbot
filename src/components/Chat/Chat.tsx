@@ -39,13 +39,9 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
   };
 
   useEffect(() => {
-    const scrollTimeout = setTimeout(() => {
-      scrollEndRef.current?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }, 100);
-
-    return () => clearTimeout(scrollTimeout);
+    scrollEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
   }, [isLoading, messages]);
 
   useEffect(() => {
