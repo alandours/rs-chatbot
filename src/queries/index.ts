@@ -18,13 +18,13 @@ enum Queries {
 }
 
 export const useGetAgent = () => {
-  const { data, isLoading } = useQuery([Queries.agents], () => getAgents());
+  const { data, error } = useQuery([Queries.agents], getAgents);
 
   const agent = data?.agents.find((agent) => agent.id === CHATBOT_AGENT_ID);
 
   return {
     agent,
-    isLoading,
+    error,
   };
 };
 

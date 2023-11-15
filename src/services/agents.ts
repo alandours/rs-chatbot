@@ -1,4 +1,5 @@
 import { Paths } from "@/constants/paths";
+import { ERRORS } from "@/constants";
 import { Agent } from "@/types";
 
 import { client } from "./client";
@@ -12,6 +13,6 @@ export const getAgents = async (): Promise<AgentsResponse> => {
     const { data } = await client.get(Paths.agents);
     return data;
   } catch (error) {
-    throw new Error();
+    throw new Error(ERRORS.GET_MESSAGE);
   }
 };
