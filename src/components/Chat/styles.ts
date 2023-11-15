@@ -33,8 +33,15 @@ export const Header = styled.div`
   border-radius: inherit;
   display: flex;
   justify-content: space-between;
+  min-height: 5.625rem;
   padding: 1.5rem 2.25rem;
-  height: 5.625rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  @media (min-device-width: ${BREAKPOINTS.TABLET}px) and (min-device-height: 760px) {
+    position: relative;
+  }
 `;
 
 export const TitleWrapper = styled.div`
@@ -52,10 +59,14 @@ export const Status = styled.div`
 
 export const Title = styled.h1`
   color: ${COLORS.WHITE};
-  font-size: 1.75rem;
+  font-size: 1.375rem;
   font-weight: 500;
   margin: 0;
   margin-left: 1rem;
+
+  @media (min-device-width: ${BREAKPOINTS.MOBILE}px) {
+    font-size: 1.75rem;
+  }
 `;
 
 export const MinimizeButton = styled.button`
@@ -72,10 +83,10 @@ export const Main = styled.div`
   background: ${COLORS.WHITE};
   height: 42.5rem;
   overflow-y: auto;
-  padding: 2rem 2rem 13.5rem 2rem;
+  padding: 8rem 2rem 5.5rem 2rem;
 
-  @media (min-device-height: ${BREAKPOINTS.TABLET}px) {
-    padding: 2rem 2rem 5.5rem 2rem;
+  @media (min-device-width: ${BREAKPOINTS.TABLET}px) and (min-device-height: ${BREAKPOINTS.TABLET}px) {
+    padding: 2rem 2rem 0 2rem;
   }
 `;
 
@@ -86,6 +97,10 @@ export const Footer = styled.form`
   position: fixed;
   bottom: 0;
   width: 100%;
+
+  @media (min-device-width: ${BREAKPOINTS.TABLET}px) and (min-device-height: ${BREAKPOINTS.TABLET}px) {
+    position: relative;
+  }
 `;
 
 export const Input = styled.input`
