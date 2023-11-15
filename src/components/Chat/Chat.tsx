@@ -29,7 +29,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     const target = e.target as HTMLFormElement;
     const content = target.message.value;
 
-    if (conversationId) {
+    if (conversationId && content) {
       messages.push(createMessage(content, MessageRoles.USER));
       sendMessage({ conversationId, content });
       target.reset();
