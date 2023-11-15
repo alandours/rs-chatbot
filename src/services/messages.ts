@@ -1,9 +1,8 @@
 import { Paths } from "@/constants/paths";
+import { ERRORS, ERROR_MESSAGES } from "@/constants";
 import { Message } from "@/types";
-import { createMessage } from "@/utils";
 
 import { client, getQueryParams } from "./client";
-import { ERROR_MESSAGE } from "@/constants";
 
 type MessagesResponse = {
   messages: Message[];
@@ -20,9 +19,9 @@ export const getMessages = async ({
 }: GetMessagesParams): Promise<MessagesResponse> => {
   try {
     if (!agentId) {
-      throw new Error();
+      return ERROR_MESSAGES;
     }
-    
+
     const { data } = await client.get(
       `${Paths.messages}?conversation_id=${conversationId}`,
       {
@@ -31,9 +30,7 @@ export const getMessages = async ({
     );
     return data;
   } catch (error) {
-    return {
-      messages: [createMessage(ERROR_MESSAGE)],
-    };
+    return ERROR_MESSAGES;
   }
 };
 
@@ -57,6 +54,6 @@ export const sendMessage = async ({
     });
     return data;
   } catch (error) {
-    throw new Error();
+    throw new Error(ERRORS.SEND_MESSAGE);
   }
 };
