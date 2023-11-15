@@ -48,7 +48,7 @@ export const sendMessage = async ({
   content,
 }: SendMessageParams): Promise<MessageResponse> => {
   try {
-    const { data } = await client.post("ddf", {
+    const { data } = await client.post(Paths.messages, {
       content,
       conversationId,
     });

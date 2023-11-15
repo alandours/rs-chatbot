@@ -20,6 +20,9 @@ export const useChat = () => {
     onSuccess: ({ conversation }) => {
       storeConversationId(conversation.id);
     },
+    onError: (error: Error) => {
+      setWelcomeMessage(createMessage(error.message));
+    },
   });
 
   const createChat = useCallback(async () => {

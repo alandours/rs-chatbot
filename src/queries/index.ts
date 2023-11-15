@@ -30,10 +30,12 @@ export const useGetAgent = () => {
 
 export const useCreateConversation = ({
   onSuccess,
+  onError,
 }: {
   onSuccess: (data: ConversationResponse) => void;
+  onError: (error: Error) => void;
 }) => {
-  return useMutation(createConversation, { onSuccess });
+  return useMutation(createConversation, { onSuccess, onError });
 };
 
 export const useGetMessages = (conversationId?: number, agentId?: number) => {
