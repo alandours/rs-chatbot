@@ -11,7 +11,7 @@ export const Chatbot = styled.div`
   font-weight: 400;
   width: 100%;
 
-  @media (min-device-width: ${BREAKPOINTS.TABLET}px) {
+  @media (min-width: ${BREAKPOINTS.TABLET}px) {
     width: 37.5rem;
   }
 
@@ -35,13 +35,6 @@ export const Header = styled.div`
   justify-content: space-between;
   min-height: 5.625rem;
   padding: 1.5rem 2.25rem;
-  position: fixed;
-  top: 0;
-  width: 100%;
-
-  @media (min-device-width: ${BREAKPOINTS.TABLET}px) and (min-device-height: 760px) {
-    position: relative;
-  }
 `;
 
 export const TitleWrapper = styled.div`
@@ -64,7 +57,7 @@ export const Title = styled.h1`
   margin: 0;
   margin-left: 1rem;
 
-  @media (min-device-width: ${BREAKPOINTS.MOBILE}px) {
+  @media (min-width: ${BREAKPOINTS.MOBILE}px) {
     font-size: 1.75rem;
   }
 `;
@@ -83,24 +76,13 @@ export const Main = styled.div`
   background: ${COLORS.WHITE};
   height: 42.5rem;
   overflow-y: auto;
-  padding: 8rem 2rem 5.5rem 2rem;
-
-  @media (min-device-width: ${BREAKPOINTS.TABLET}px) and (min-device-height: ${BREAKPOINTS.TABLET}px) {
-    padding: 2rem 2rem 0 2rem;
-  }
+  padding: 2rem 2rem 0 2rem;
 `;
 
 export const Footer = styled.form`
   background: ${COLORS.WHITE};
   border-top: 1px solid ${COLORS.GREY.LIGHT};
   display: flex;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-
-  @media (min-device-width: ${BREAKPOINTS.TABLET}px) and (min-device-height: ${BREAKPOINTS.TABLET}px) {
-    position: relative;
-  }
 `;
 
 export const Input = styled.input`
