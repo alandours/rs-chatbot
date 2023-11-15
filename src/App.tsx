@@ -1,14 +1,15 @@
 import { useContext, useEffect } from "react";
 import { FrameContextConsumer } from "react-frame-component";
 import { StyleSheetManager } from "styled-components";
+import { QueryClientProvider } from "react-query";
 
 import { ChatbotContext } from "@/context/ChatbotContext";
+import { useFrameSize } from "@/hooks/useFrameSize";
+import { queryClient } from "@/queries/queryClient";
 import { Chatbot } from "@/components/Chatbot";
 
 import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
-import { useFrameSize } from "./hooks/useFrameSize";
-
 function App() {
   const { open } = useContext(ChatbotContext);
   const { width, height, setFrameSize } = useFrameSize();
@@ -24,7 +25,9 @@ function App() {
         {({ document }) => (
           <StyleSheetManager target={document?.head}>
             <GlobalStyle />
-            <Chatbot setFrameSize={setFrameSize} />
+            <QueryClientProvider client={queryClient}>
+              <Chatbot setFrameSize={setFrameSize} />
+            </QueryClientProvider>
           </StyleSheetManager>
         )}
       </FrameContextConsumer>

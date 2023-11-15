@@ -1,4 +1,5 @@
-import { MessageRoles, USERNAMES } from "@/constants";
+import { USERNAMES } from "@/constants";
+import { MessageRoles } from "@/types";
 
 import errorIcon from "@/assets/error.webp";
 
@@ -9,7 +10,7 @@ type MessageProps = {
   data: {
     content: string;
     role: MessageRoles;
-    createdAt?: string;
+    createdAt?: Date;
   };
   error?: string;
 };
