@@ -15,7 +15,7 @@ type ChatbotProps = {
 export const Chatbot = ({ setFrameSize }: ChatbotProps) => {
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
 
-  const { open, conversationId, setConversationId } =
+  const { open, conversationId, storeConversationId } =
     useContext(ChatbotContext);
 
   const { agent } = useGetAgent();
@@ -23,7 +23,7 @@ export const Chatbot = ({ setFrameSize }: ChatbotProps) => {
 
   const { mutate: createConversation } = useCreateConversation({
     onSuccess: ({ conversation }) => {
-      setConversationId(conversation.id);
+      storeConversationId(conversation.id);
     },
   });
 

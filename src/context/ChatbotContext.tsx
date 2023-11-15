@@ -1,28 +1,19 @@
-import {
-  RefObject,
-  ReactNode,
-  createContext,
-  useRef,
-  useState,
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { RefObject, ReactNode, createContext, useRef, useState } from "react";
 
 interface ChatbotContextValues {
   open: boolean;
   openChat: () => void;
   closeChat: () => void;
   chatbotRef?: RefObject<HTMLDivElement>;
-  conversationId: number | null;
-  setConversationId: Dispatch<SetStateAction<number | null>>;
+  conversationId?: number;
+  storeConversationId: (id: number) => void;
 }
 
 const initialValues: ChatbotContextValues = {
   open: false,
   openChat: () => null,
   closeChat: () => null,
-  conversationId: null,
-  setConversationId: () => null,
+  storeConversationId: () => null,
 };
 
 export const ChatbotContext =
@@ -30,11 +21,13 @@ export const ChatbotContext =
 
 export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState<boolean>(initialValues.open);
-  const [conversationId, setConversationId] = useState<number | null>(
-    initialValues.conversationId
-  );
+  const [conversationId, setConversationId] = useState<number>();
 
   const chatbotRef = useRef<HTMLDivElement>(null);
+
+  const storeConversationId = (id: number) => {
+    setConversationId(id);
+  };
 
   return (
     <ChatbotContext.Provider
@@ -44,7 +37,7 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
         closeChat: () => setOpen(false),
         chatbotRef,
         conversationId,
-        setConversationId,
+        storeConversationId,
       }}
     >
       {children}

@@ -36,10 +36,7 @@ export const useCreateConversation = ({
   return useMutation(createConversation, { onSuccess });
 };
 
-export const useGetMessages = (
-  conversationId: number | null,
-  agentId?: number
-) => {
+export const useGetMessages = (conversationId?: number, agentId?: number) => {
   const { data, isLoading } = useQuery(
     [Queries.messages, conversationId],
     () => getMessages({ conversationId, agentId }),
