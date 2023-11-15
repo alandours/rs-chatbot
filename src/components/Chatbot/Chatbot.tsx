@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 
+import { MessageRoles } from "@/constants/enums";
 import { ChatbotContext } from "@/context/ChatbotContext";
-import { MessageRoles, Message } from "@/types";
+import { Message } from "@/types";
 import { useGetAgent } from "@/queries";
 import { OpenChatButton } from "@/components/OpenChatButton";
 import { Chat } from "@/components/Chat";

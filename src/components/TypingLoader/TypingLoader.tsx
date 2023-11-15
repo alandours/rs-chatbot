@@ -1,5 +1,5 @@
 import { Message } from "@/components/Message";
-import { MessageRoles } from "@/types";
+import { MessageRoles } from "@/constants/enums";
 
 export const TypingLoader = () => (
   <Message

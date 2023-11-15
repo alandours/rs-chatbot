@@ -1,8 +1,4 @@
-export enum MessageRoles {
-  USER = "user",
-  ASSISTANT = "assistant",
-  LOADER = "loader",
-}
+import { MessageRoles } from "@/constants/enums";
 
 export type Agent = {
   id: number;
