@@ -1,8 +1,8 @@
 import { Paths } from "@/constants/paths";
+import { ERRORS, ERROR_MESSAGES } from "@/constants";
 import { Message } from "@/types";
 
 import { client, getQueryParams } from "./client";
-import { ERRORS, ERROR_MESSAGES } from "@/constants";
 
 type MessagesResponse = {
   messages: Message[];
