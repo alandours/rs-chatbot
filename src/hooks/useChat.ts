@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 
 import { SESSION } from "@/constants";
 import { ChatbotContext } from "@/context/ChatbotContext";
@@ -8,7 +8,8 @@ import { Message } from "@/types";
 import { createMessage } from "@/utils";
 
 export const useChat = () => {
-  const { conversationId, storeConversationId } = useContext(ChatbotContext);
+  const { conversationId, storeConversationId, open, setUnread } =
+    useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
 
@@ -37,6 +38,16 @@ export const useChat = () => {
       }
     }
   }, [agent, createConversation, storeConversationId]);
+
+  useEffect(() => {
+    setUnread(true);
+  }, [messages, setUnread]);
+
+  useEffect(() => {
+    if (open) {
+      setUnread(false);
+    }
+  }, [open, setUnread]);
 
   return { createChat, messages, welcomeMessage };
 };
