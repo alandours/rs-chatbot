@@ -3,9 +3,10 @@ import { FormEvent, useContext, useEffect, useRef } from "react";
 import { Message } from "@/components/Message";
 import { TypingLoader } from "@/components/TypingLoader";
 import { CHATBOT_NAME, SESSION } from "@/constants";
+import { MessageRoles } from "@/constants/enums";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { useSendMessage } from "@/queries";
-import { MessageRoles, Message as MessageType } from "@/types";
+import { Message as MessageType } from "@/types";
 import { createMessage } from "@/utils";
 
 import minimizeIcon from "@/assets/minimize.webp";

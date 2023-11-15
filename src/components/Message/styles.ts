@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import { COLORS } from "@/constants/colors";
-import { MessageRoles } from "@/types";
+import { MessageRoles } from "@/constants/enums";
 
 type StyledProps = {
   $variant: MessageRoles;
