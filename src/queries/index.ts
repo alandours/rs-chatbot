@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useQuery, useMutation } from "react-query";
 
 import { CHATBOT_AGENT_ID, REFETCH_INTERVAL, SESSION } from "@/constants";
+import { Queries } from "@/constants/enums";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { getAgents } from "@/services/agents";
 import {
@@ -11,11 +12,6 @@ import {
 import { getMessages, sendMessage } from "@/services/messages";
 
 import { queryClient } from "./queryClient";
-
-enum Queries {
-  agents = "agents",
-  messages = "messages",
-}
 
 export const useGetAgent = () => {
   const { data, error } = useQuery([Queries.agents], getAgents);
