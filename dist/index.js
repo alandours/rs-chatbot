@@ -162,9 +162,13 @@ Error generating stack: `+o.message+`
   width: 2.25rem;
 `,Pw=K.div`
   background: ${ve.WHITE};
-  height: 42.5rem;
+  height: 30rem;
   overflow-y: auto;
   padding: 2rem 2rem 0 2rem;
+
+  @media (min-device-height: 901px) {
+    height: 37.5rem;
+  }
 `,_w=K.form`
   background: ${ve.WHITE};
   border-top: 1px solid ${ve.GREY.LIGHT};
