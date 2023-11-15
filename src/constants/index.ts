@@ -1,4 +1,5 @@
 import { MessageRoles } from "@/types";
+import { createMessage } from "@/utils";
 
 export const CHATBOT_NAME = import.meta.env.VITE_CHATBOT_NAME;
 export const CHATBOT_AGENT_ID = Number(import.meta.env.VITE_AGENT_ID);
@@ -20,5 +21,12 @@ export const USERNAMES = {
   [MessageRoles.LOADER]: UserNames.ASSISTANT,
 };
 
-export const ERROR_MESSAGE =
-  "I'm sorry, I can't provide a response at the moment. Please try again later 🙏";
+export const ERRORS = {
+  GET_MESSAGE:
+    "I'm sorry, I can't provide a response at the moment. Please try again later 🙏",
+  SEND_MESSAGE: "We couldn't send your message. Please, try again.",
+};
+
+export const ERROR_MESSAGES = {
+  messages: [createMessage(ERRORS.GET_MESSAGE)],
+};

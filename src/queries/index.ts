@@ -18,22 +18,24 @@ enum Queries {
 }
 
 export const useGetAgent = () => {
-  const { data, isLoading } = useQuery([Queries.agents], () => getAgents());
+  const { data, error } = useQuery([Queries.agents], getAgents);
 
   const agent = data?.agents.find((agent) => agent.id === CHATBOT_AGENT_ID);
 
   return {
     agent,
-    isLoading,
+    error,
   };
 };
 
 export const useCreateConversation = ({
   onSuccess,
+  onError,
 }: {
   onSuccess: (data: ConversationResponse) => void;
+  onError: (error: Error) => void;
 }) => {
-  return useMutation(createConversation, { onSuccess });
+  return useMutation(createConversation, { onSuccess, onError });
 };
 
 export const useGetMessages = (conversationId?: number, agentId?: number) => {
@@ -49,7 +51,11 @@ export const useGetMessages = (conversationId?: number, agentId?: number) => {
   };
 };
 
-export const useSendMessage = () => {
+export const useSendMessage = ({
+  onError,
+}: {
+  onError: (error: Error) => void;
+}) => {
   const { conversationId } = useContext(ChatbotContext);
 
   return useMutation(sendMessage, {
@@ -57,6 +63,7 @@ export const useSendMessage = () => {
       await queryClient.refetchQueries({
         queryKey: [Queries.messages, conversationId],
       });
-    }
+    },
+    onError,
   });
 };
