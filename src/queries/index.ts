@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useQuery, useMutation } from "react-query";
 
-import { CHATBOT_AGENT_ID } from "@/constants";
+import { CHATBOT_AGENT_ID, REFETCH_INTERVAL, SESSION } from "@/constants";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { getAgents } from "@/services/agents";
 import {
@@ -36,14 +36,16 @@ export const useCreateConversation = ({
   return useMutation(createConversation, { onSuccess });
 };
 
-export const useGetMessages = (
-  conversationId: number | null,
-  agentId?: number
-) => {
+export const useGetMessages = (conversationId?: number, agentId?: number) => {
   const { data, isLoading } = useQuery(
     [Queries.messages, conversationId],
     () => getMessages({ conversationId, agentId }),
-    { enabled: !!(agentId && conversationId) }
+    {
+      enabled: !!(agentId && conversationId),
+      refetchInterval:
+        !!sessionStorage.getItem(SESSION.REFETCH_LAST_MESSAGE) &&
+        REFETCH_INTERVAL,
+    }
   );
 
   return {

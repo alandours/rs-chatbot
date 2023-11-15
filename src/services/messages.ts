@@ -10,7 +10,7 @@ type MessagesResponse = {
 };
 
 type GetMessagesParams = {
-  conversationId: number | null;
+  conversationId?: number;
   agentId?: number;
 };
 

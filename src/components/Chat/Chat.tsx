@@ -2,7 +2,7 @@ import { FormEvent, useContext, useEffect, useRef } from "react";
 
 import { Message } from "@/components/Message";
 import { TypingLoader } from "@/components/TypingLoader";
-import { CHATBOT_NAME } from "@/constants";
+import { CHATBOT_NAME, SESSION } from "@/constants";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { useSendMessage } from "@/queries";
 import { MessageRoles, Message as MessageType } from "@/types";
@@ -39,9 +39,30 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
   };
 
   useEffect(() => {
-    scrollEndRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
+    const scrollTimeout = setTimeout(() => {
+      scrollEndRef.current?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 100);
+
+    return () => clearTimeout(scrollTimeout);
+  }, [isLoading, messages]);
+
+  useEffect(() => {
+    if (isLoading) {
+      sessionStorage.setItem(
+        SESSION.REFETCH_LAST_MESSAGE,
+        JSON.stringify(isLoading)
+      );
+    }
+
+    if (
+      !isLoading &&
+      !!messages.length &&
+      messages[messages.length - 1].role === MessageRoles.ASSISTANT
+    ) {
+      sessionStorage.removeItem(SESSION.REFETCH_LAST_MESSAGE);
+    }
   }, [isLoading, messages]);
 
   return (

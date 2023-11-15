@@ -22,3 +22,10 @@ export const USERNAMES = {
 
 export const ERROR_MESSAGE =
   "I'm sorry, I can't provide a response at the moment. Please try again later 🙏";
+
+export const SESSION = {
+  REFETCH_LAST_MESSAGE: "refetchLastMessage",
+  CONVERSATION_ID: "conversationId",
+};
+
+export const REFETCH_INTERVAL = 5000;
