@@ -1,4 +1,5 @@
-import { Message, MessageRoles } from "@/types";
+import { MessageRoles } from "@/constants/enums";
+import { Message } from "@/types";
 
 export const formatDate = (date: Date) =>
   new Date(date)
