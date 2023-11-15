@@ -28,13 +28,13 @@ export const ERRORS = {
   SEND_MESSAGE: "We couldn't send your message. Please, try again.",
 };
 
+export const ERROR_MESSAGES = {
+  messages: [createMessage(ERRORS.GET_MESSAGE)],
+};
+
 export const SESSION = {
   REFETCH_LAST_MESSAGE: "refetchLastMessage",
   CONVERSATION_ID: "conversationId",
 };
 
 export const REFETCH_INTERVAL = 5000;
-
-export const ERROR_MESSAGES = {
-  messages: [createMessage(ERRORS.GET_MESSAGE)],
-};
