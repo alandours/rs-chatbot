@@ -13,6 +13,7 @@ export const OpenChatButton = () => {
     <styles.OpenChat ref={chatbotRef}>
       <styles.OpenChatButton onClick={openChat}>
         <styles.ChatIcon src={robotIcon} alt="Open chat" />
+        <styles.Notification>1</styles.Notification>
       </styles.OpenChatButton>
     </styles.OpenChat>
   );

@@ -10,18 +10,17 @@ type FrameProps = {
 
 export const Frame = styled(ReactFrame)<FrameProps>`
   border: 0;
-  border-radius: 100%;
-  box-shadow: 8px 8px 48px 0px ${COLORS.SHADOW};
   position: fixed;
-  bottom: 3rem;
-  right: 3rem;
+  bottom: 1rem;
+  right: 2rem;
   z-index: 1000;
 
   ${({ open }) =>
     open &&
     `
       border-radius: 0;
-      bottom:  0;
+      box-shadow: 8px 8px 48px 0px ${COLORS.SHADOW};
+      bottom: 0;
       right: 0;
 
       @media (min-width: ${BREAKPOINTS.TABLET}px) {
