@@ -21,7 +21,12 @@ type ChatProps = {
 export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
   const { chatbotRef, closeChat, conversationId } = useContext(ChatbotContext);
 
-  const { isLoading, mutate: sendMessage } = useSendMessage();
+  const { isLoading, mutate: sendMessage } = useSendMessage({
+    onError: (error: Error) => {
+      const lastMessage = messages.pop()!;
+      messages.push({ ...lastMessage, errorMessage: error.message });
+    },
+  });
 
   const scrollEndRef = useRef<HTMLDivElement>(null);
 

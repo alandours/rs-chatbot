@@ -54,7 +54,11 @@ export const useGetMessages = (conversationId?: number, agentId?: number) => {
   };
 };
 
-export const useSendMessage = () => {
+export const useSendMessage = ({
+  onError,
+}: {
+  onError: (error: Error) => void;
+}) => {
   const { conversationId } = useContext(ChatbotContext);
 
   return useMutation(sendMessage, {
@@ -62,6 +66,7 @@ export const useSendMessage = () => {
       await queryClient.refetchQueries({
         queryKey: [Queries.messages, conversationId],
       });
-    }
+    },
+    onError,
   });
 };

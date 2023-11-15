@@ -20,6 +20,7 @@ export type Message = {
   content: string;
   role: MessageRoles;
   createdAt: Date;
+  errorMessage?: string;
 };
 
 export type Conversation = {
