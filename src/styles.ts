@@ -24,7 +24,7 @@ export const Frame = styled(ReactFrame)<FrameProps>`
       bottom:  0;
       right: 0;
 
-      @media (min-device-width: ${BREAKPOINTS.TABLET}px) {
+      @media (min-width: ${BREAKPOINTS.TABLET}px) {
         right: 3rem;
       }
     `}

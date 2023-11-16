@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react";
+import { useContext, useState } from "react";
 
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { BREAKPOINTS, MAX_FRAME_WIDTH } from "@/constants";
@@ -9,7 +9,7 @@ export const useFrameSize = () => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
-  const setFrameSize = useCallback(() => {
+  const setFrameSize = () => {
     let frameHeight = chatbotRef?.current?.offsetHeight || 0;
     let frameWidth = chatbotRef?.current?.offsetWidth || 0;
 
@@ -32,7 +32,7 @@ export const useFrameSize = () => {
 
     setWidth(frameWidth);
     setHeight(frameHeight);
-  }, [open, chatbotRef]);
+  };
 
   return {
     width,

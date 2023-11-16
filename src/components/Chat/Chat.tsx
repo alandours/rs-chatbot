@@ -1,8 +1,8 @@
-import { FormEvent, useContext } from "react";
+import { FormEvent, useContext, useEffect, useRef } from "react";
 
 import { Message } from "@/components/Message";
 import { TypingLoader } from "@/components/TypingLoader";
-import { CHATBOT_NAME } from "@/constants";
+import { CHATBOT_NAME, SESSION } from "@/constants";
 import { MessageRoles } from "@/constants/enums";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { useSendMessage } from "@/queries";
@@ -29,6 +29,8 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     },
   });
 
+  const scrollEndRef = useRef<HTMLDivElement>(null);
+
   const onSendMessage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -41,6 +43,29 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
       target.reset();
     }
   };
+
+  useEffect(() => {
+    scrollEndRef.current?.scrollIntoView({
+      behavior: "smooth",
+    });
+  }, [isLoading, messages]);
+
+  useEffect(() => {
+    if (isLoading) {
+      sessionStorage.setItem(
+        SESSION.REFETCH_LAST_MESSAGE,
+        JSON.stringify(isLoading)
+      );
+    }
+
+    if (
+      !isLoading &&
+      !!messages.length &&
+      messages[messages.length - 1].role === MessageRoles.ASSISTANT
+    ) {
+      sessionStorage.removeItem(SESSION.REFETCH_LAST_MESSAGE);
+    }
+  }, [isLoading, messages]);
 
   return (
     <styles.Chatbot ref={chatbotRef}>
@@ -59,6 +84,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
           <Message data={data} key={data.id} />
         ))}
         {isLoading && <TypingLoader />}
+        <div ref={scrollEndRef} />
       </styles.Main>
       <styles.Footer onSubmit={onSendMessage}>
         <styles.Input
