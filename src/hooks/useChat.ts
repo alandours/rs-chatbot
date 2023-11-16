@@ -51,9 +51,7 @@ export const useChat = () => {
   }, [messages, setUnread]);
 
   useEffect(() => {
-    if (open) {
-      setUnread(false);
-    }
+    setUnread(false);
   }, [open, setUnread]);
 
   return { createChat, messages, welcomeMessage };
