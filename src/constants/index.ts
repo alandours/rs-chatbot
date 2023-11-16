@@ -1,3 +1,5 @@
+import { createMessage } from "@/utils";
+
 import { MessageRoles, UserNames } from "./enums";
 
 export const CHATBOT_NAME = import.meta.env.VITE_CHATBOT_NAME;
@@ -13,4 +15,14 @@ export const USERNAMES = {
   [MessageRoles.USER]: UserNames.USER,
   [MessageRoles.ASSISTANT]: UserNames.ASSISTANT,
   [MessageRoles.LOADER]: UserNames.ASSISTANT,
+};
+
+export const ERRORS = {
+  GET_MESSAGE:
+    "I'm sorry, I can't provide a response at the moment. Please try again later 🙏",
+  SEND_MESSAGE: "We couldn't send your message. Please, try again.",
+};
+
+export const ERROR_MESSAGES = {
+  messages: [createMessage(ERRORS.GET_MESSAGE)],
 };

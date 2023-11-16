@@ -1,36 +1,29 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 
-import { MessageRoles } from "@/constants/enums";
 import { ChatbotContext } from "@/context/ChatbotContext";
-import { Message } from "@/types";
-import { useGetAgent } from "@/queries";
 import { OpenChatButton } from "@/components/OpenChatButton";
 import { Chat } from "@/components/Chat";
+import { useChat } from "@/hooks/useChat";
 
 type ChatbotProps = {
   setFrameSize: () => void;
 };
 
 export const Chatbot = ({ setFrameSize }: ChatbotProps) => {
-  const [welcomeMessage, setWelcomeMessage] = useState<Message>();
-
   const { open } = useContext(ChatbotContext);
+  const { createChat, welcomeMessage, messages } = useChat();
 
-  const { agent } = useGetAgent();
+  useEffect(() => {
+    createChat();
+  }, [createChat]);
 
   useEffect(() => {
     setFrameSize();
   }, [setFrameSize, open]);
 
-  useEffect(() => {
-    if (agent) {
-      setWelcomeMessage({
-        content: agent.welcomeMessage,
-        role: MessageRoles.ASSISTANT,
-        createdAt: new Date(),
-      });
-    }
-  }, [agent]);
-
-  return open ? <Chat welcomeMessage={welcomeMessage} /> : <OpenChatButton />;
+  return open ? (
+    <Chat welcomeMessage={welcomeMessage} messages={messages} />
+  ) : (
+    <OpenChatButton />
+  );
 };

@@ -1,9 +1,13 @@
-import { useContext } from "react";
+import { FormEvent, useContext } from "react";
 
-import { CHATBOT_NAME } from "@/constants";
-import { ChatbotContext } from "@/context/ChatbotContext";
-import { Message as MessageType } from "@/types";
 import { Message } from "@/components/Message";
+import { TypingLoader } from "@/components/TypingLoader";
+import { CHATBOT_NAME } from "@/constants";
+import { MessageRoles } from "@/constants/enums";
+import { ChatbotContext } from "@/context/ChatbotContext";
+import { useSendMessage } from "@/queries";
+import { Message as MessageType } from "@/types";
+import { createMessage } from "@/utils";
 
 import minimizeIcon from "@/assets/minimize.webp";
 import sendIcon from "@/assets/send.webp";
@@ -12,10 +16,31 @@ import * as styles from "./styles";
 
 type ChatProps = {
   welcomeMessage?: MessageType;
+  messages: MessageType[];
 };
 
-export const Chat = ({ welcomeMessage }: ChatProps) => {
-  const { chatbotRef, closeChat } = useContext(ChatbotContext);
+export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
+  const { chatbotRef, closeChat, conversationId } = useContext(ChatbotContext);
+
+  const { isLoading, mutate: sendMessage } = useSendMessage({
+    onError: (error: Error) => {
+      const lastMessage = messages.pop()!;
+      messages.push({ ...lastMessage, errorMessage: error.message });
+    },
+  });
+
+  const onSendMessage = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const target = e.target as HTMLFormElement;
+    const content = target.message.value;
+
+    if (conversationId && content) {
+      messages.push(createMessage(content, MessageRoles.USER));
+      sendMessage({ conversationId, content });
+      target.reset();
+    }
+  };
 
   return (
     <styles.Chatbot ref={chatbotRef}>
@@ -30,10 +55,18 @@ export const Chat = ({ welcomeMessage }: ChatProps) => {
       </styles.Header>
       <styles.Main>
         {welcomeMessage && <Message data={welcomeMessage} />}
+        {messages.map((data) => (
+          <Message data={data} key={data.id} />
+        ))}
+        {isLoading && <TypingLoader />}
       </styles.Main>
-      <styles.Footer>
-        <styles.Input type="text" placeholder="Send a message..." />
-        <styles.Button>
+      <styles.Footer onSubmit={onSendMessage}>
+        <styles.Input
+          name="message"
+          type="text"
+          placeholder="Send a message..."
+        />
+        <styles.Button type="submit" disabled={isLoading}>
           <styles.SendIcon src={sendIcon} alt="Send message" />
         </styles.Button>
       </styles.Footer>

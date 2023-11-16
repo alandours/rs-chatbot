@@ -78,7 +78,7 @@ export const Main = styled.div`
   }
 `;
 
-export const Footer = styled.div`
+export const Footer = styled.form`
   background: ${COLORS.WHITE};
   border-top: 1px solid ${COLORS.GREY.LIGHT};
   display: flex;

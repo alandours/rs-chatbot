@@ -21,6 +21,12 @@ client.interceptors.response.use(async (response) => {
   return { ...response, data: humps.camelizeKeys(response.data) };
 });
 
+export const setApiKey = (apiKey: string) =>
+  client.interceptors.request.use((config) => {
+    config.headers.set("x-api-key", apiKey);
+    return config;
+  });
+
 type QueryParams = {
   conversation: { agentId: number };
 };

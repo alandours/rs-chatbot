@@ -5,12 +5,15 @@ interface ChatbotContextValues {
   openChat: () => void;
   closeChat: () => void;
   chatbotRef?: RefObject<HTMLDivElement>;
+  conversationId?: number;
+  storeConversationId: (id: number) => void;
 }
 
 const initialValues: ChatbotContextValues = {
   open: false,
   openChat: () => null,
   closeChat: () => null,
+  storeConversationId: () => null,
 };
 
 export const ChatbotContext =
@@ -18,8 +21,13 @@ export const ChatbotContext =
 
 export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState<boolean>(initialValues.open);
+  const [conversationId, setConversationId] = useState<number>();
 
   const chatbotRef = useRef<HTMLDivElement>(null);
+
+  const storeConversationId = (id: number) => {
+    setConversationId(id);
+  };
 
   return (
     <ChatbotContext.Provider
@@ -28,6 +36,8 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
         openChat: () => setOpen(true),
         closeChat: () => setOpen(false),
         chatbotRef,
+        conversationId,
+        storeConversationId,
       }}
     >
       {children}
