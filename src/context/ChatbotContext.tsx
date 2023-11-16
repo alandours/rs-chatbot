@@ -1,5 +1,7 @@
 import { RefObject, ReactNode, createContext, useRef, useState } from "react";
 
+import { SESSION } from "@/constants";
+
 interface ChatbotContextValues {
   open: boolean;
   openChat: () => void;
@@ -27,6 +29,7 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
 
   const storeConversationId = (id: number) => {
     setConversationId(id);
+    sessionStorage.setItem(SESSION.CONVERSATION_ID, JSON.stringify(id));
   };
 
   return (

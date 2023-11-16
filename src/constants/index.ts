@@ -6,6 +6,7 @@ export const CHATBOT_NAME = import.meta.env.VITE_CHATBOT_NAME;
 export const CHATBOT_AGENT_ID = Number(import.meta.env.VITE_AGENT_ID);
 
 export const BREAKPOINTS = {
+  MOBILE: 480,
   TABLET: 768,
 };
 
@@ -26,3 +27,10 @@ export const ERRORS = {
 export const ERROR_MESSAGES = {
   messages: [createMessage(ERRORS.GET_MESSAGE)],
 };
+
+export const SESSION = {
+  REFETCH_LAST_MESSAGE: "refetchLastMessage",
+  CONVERSATION_ID: "conversationId",
+};
+
+export const REFETCH_INTERVAL = 5000;

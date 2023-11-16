@@ -11,7 +11,7 @@ export const Chatbot = styled.div`
   font-weight: 400;
   width: 100%;
 
-  @media (min-device-width: ${BREAKPOINTS.TABLET}px) {
+  @media (min-width: ${BREAKPOINTS.TABLET}px) {
     width: 37.5rem;
   }
 
@@ -33,6 +33,7 @@ export const Header = styled.div`
   border-radius: inherit;
   display: flex;
   justify-content: space-between;
+  min-height: 5.625rem;
   padding: 1.5rem 2.25rem;
 `;
 
@@ -51,10 +52,14 @@ export const Status = styled.div`
 
 export const Title = styled.h1`
   color: ${COLORS.WHITE};
-  font-size: 1.75rem;
+  font-size: 1.375rem;
   font-weight: 500;
   margin: 0;
   margin-left: 1rem;
+
+  @media (min-width: ${BREAKPOINTS.MOBILE}px) {
+    font-size: 1.75rem;
+  }
 `;
 
 export const MinimizeButton = styled.button`
@@ -69,12 +74,12 @@ export const MinimizeIcon = styled.img`
 
 export const Main = styled.div`
   background: ${COLORS.WHITE};
-  height: 42.5rem;
+  height: 30rem;
   overflow-y: auto;
-  padding: 2rem 2rem 13.5rem 2rem;
+  padding: 2rem 2rem 0 2rem;
 
-  @media (min-device-height: ${BREAKPOINTS.TABLET}px) {
-    padding: 2rem 2rem 5.5rem 2rem;
+  @media (min-device-height: 901px) {
+    height: 37.5rem;
   }
 `;
 
@@ -82,9 +87,6 @@ export const Footer = styled.form`
   background: ${COLORS.WHITE};
   border-top: 1px solid ${COLORS.GREY.LIGHT};
   display: flex;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
 `;
 
 export const Input = styled.input`

@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState } from "react";
 
-import { ERRORS } from "@/constants";
+import { ERRORS, SESSION } from "@/constants";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { useCreateConversation, useGetAgent, useGetMessages } from "@/queries";
 import { setApiKey } from "@/services/client";
@@ -31,10 +31,19 @@ export const useChat = () => {
 
     if (agent) {
       setWelcomeMessage(createMessage(agent.welcomeMessage));
+
       setApiKey(agent.apiKey);
-      createConversation(agent?.id);
+
+      const sessionData = sessionStorage.getItem(SESSION.CONVERSATION_ID);
+      const sessionId = sessionData && JSON.parse(sessionData);
+
+      if (!sessionId) {
+        createConversation(agent?.id);
+      } else {
+        storeConversationId(Number(sessionId));
+      }
     }
-  }, [agent, error, createConversation]);
+  }, [agent, error, createConversation, storeConversationId]);
 
   return { createChat, messages, welcomeMessage };
 };
