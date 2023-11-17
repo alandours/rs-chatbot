@@ -45,9 +45,13 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
   };
 
   useEffect(() => {
-    scrollEndRef.current?.scrollIntoView({
-      behavior: "smooth",
-    });
+    const scrollTimeout = setTimeout(() => {
+      scrollEndRef.current?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 100);
+
+    return () => clearInterval(scrollTimeout);
   }, [isLoading, messages]);
 
   useEffect(() => {
@@ -84,7 +88,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
           <Message data={data} key={data.id} />
         ))}
         {isLoading && <TypingLoader />}
-        <div ref={scrollEndRef} />
+        {messages && <div ref={scrollEndRef} />}
       </styles.Main>
       <styles.Footer onSubmit={onSendMessage}>
         <styles.Input
