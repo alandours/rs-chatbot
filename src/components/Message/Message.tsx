@@ -11,13 +11,12 @@ type MessageProps = {
     content: string;
     role: MessageRoles;
     createdAt?: Date;
+    errorMessage?: string;
   };
-  error?: string;
 };
 
 export const Message = ({
-  data: { content, role, createdAt },
-  error,
+  data: { content, role, createdAt, errorMessage },
 }: MessageProps) => (
   <styles.MessageContainer $variant={role}>
     <styles.MessageHeader $variant={role}>
@@ -25,11 +24,11 @@ export const Message = ({
       {createdAt && <styles.Time>{formatDate(createdAt)}</styles.Time>}
     </styles.MessageHeader>
     <styles.MessageWrapper $variant={role}>
-      {error && <styles.ErrorIcon src={errorIcon}></styles.ErrorIcon>}
-      <styles.Message $variant={role} $error={!!error}>
+      {errorMessage && <styles.ErrorIcon src={errorIcon}></styles.ErrorIcon>}
+      <styles.Message $variant={role} $error={!!errorMessage}>
         {content}
       </styles.Message>
     </styles.MessageWrapper>
-    {error && <styles.ErrorMessage>{error}</styles.ErrorMessage>}
+    {errorMessage && <styles.ErrorMessage>{errorMessage}</styles.ErrorMessage>}
   </styles.MessageContainer>
 );

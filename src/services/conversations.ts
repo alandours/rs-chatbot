@@ -1,4 +1,5 @@
 import { Paths } from "@/constants/paths";
+import { ERRORS } from "@/constants";
 import { Conversation } from "@/types";
 
 import { client, getQueryParams } from "./client";
@@ -17,6 +18,6 @@ export const createConversation = async (
     );
     return data;
   } catch (error) {
-    throw new Error();
+    throw new Error(ERRORS.GET_MESSAGE);
   }
 };

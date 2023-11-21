@@ -1,4 +1,12 @@
-import { RefObject, ReactNode, createContext, useRef, useState } from "react";
+import {
+  RefObject,
+  ReactNode,
+  createContext,
+  useRef,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 import { SESSION } from "@/constants";
 
@@ -9,6 +17,8 @@ interface ChatbotContextValues {
   chatbotRef?: RefObject<HTMLDivElement>;
   conversationId?: number;
   storeConversationId: (id: number) => void;
+  unread: boolean;
+  setUnread: Dispatch<SetStateAction<boolean>>;
 }
 
 const initialValues: ChatbotContextValues = {
@@ -16,6 +26,8 @@ const initialValues: ChatbotContextValues = {
   openChat: () => null,
   closeChat: () => null,
   storeConversationId: () => null,
+  unread: false,
+  setUnread: () => null,
 };
 
 export const ChatbotContext =
@@ -24,6 +36,7 @@ export const ChatbotContext =
 export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState<boolean>(initialValues.open);
   const [conversationId, setConversationId] = useState<number>();
+  const [unread, setUnread] = useState<boolean>(initialValues.unread);
 
   const chatbotRef = useRef<HTMLDivElement>(null);
 
@@ -41,6 +54,8 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
         chatbotRef,
         conversationId,
         storeConversationId,
+        unread,
+        setUnread,
       }}
     >
       {children}
