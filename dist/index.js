@@ -99,7 +99,7 @@ Error generating stack: `+o.message+`
 `,Q0=q.div`
   border-radius: 0.25rem;
   font-size: 1rem;
-  max-width: 29rem;
+  max-width: 23rem;
   padding: 0.75rem;
 
   ${({$variant:e,$error:t})=>`

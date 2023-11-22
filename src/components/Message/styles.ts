@@ -49,7 +49,7 @@ export const MessageWrapper = styled.div<StyledProps>`
 export const Message = styled.div<StyledProps>`
   border-radius: 0.25rem;
   font-size: 1rem;
-  max-width: 29rem;
+  max-width: 23rem;
   padding: 0.75rem;
 
   ${({ $variant, $error }) => `
