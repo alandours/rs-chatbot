@@ -10,7 +10,7 @@ export const BREAKPOINTS = {
   TABLET: 768,
 };
 
-export const MAX_FRAME_WIDTH = 600;
+export const MAX_FRAME_WIDTH = 480;
 
 export const USERNAMES = {
   [MessageRoles.USER]: UserNames.USER,

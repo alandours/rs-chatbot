@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { BREAKPOINTS } from "@/constants";
 import { COLORS } from "@/constants/colors";
 
 export const Chatbot = styled.div`
@@ -10,10 +9,6 @@ export const Chatbot = styled.div`
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   width: 100%;
-
-  @media (min-width: ${BREAKPOINTS.TABLET}px) {
-    width: 37.5rem;
-  }
 
   @keyframes fadeIn {
     0% {
@@ -33,8 +28,8 @@ export const Header = styled.div`
   border-radius: inherit;
   display: flex;
   justify-content: space-between;
-  min-height: 5.625rem;
-  padding: 1.5rem 2.25rem;
+  min-height: 4.75rem;
+  padding: 1.25rem 1.875rem;
 `;
 
 export const TitleWrapper = styled.div`
@@ -46,20 +41,16 @@ export const Status = styled.div`
   background: ${COLORS.GREEN};
   border-radius: 100%;
   flex-shrink: 0;
-  height: 1rem;
-  width: 1rem;
+  height: 0.75rem;
+  width: 0.75rem;
 `;
 
 export const Title = styled.h1`
   color: ${COLORS.WHITE};
-  font-size: 1.375rem;
+  font-size: 1.5rem;
   font-weight: 500;
   margin: 0;
   margin-left: 1rem;
-
-  @media (min-width: ${BREAKPOINTS.MOBILE}px) {
-    font-size: 1.75rem;
-  }
 `;
 
 export const MinimizeButton = styled.button`
@@ -69,17 +60,17 @@ export const MinimizeButton = styled.button`
 `;
 
 export const MinimizeIcon = styled.img`
-  width: 2.25rem;
+  width: 1.875rem;
 `;
 
 export const Main = styled.div`
   background: ${COLORS.WHITE};
-  height: 30rem;
+  height: 24rem;
   overflow-y: auto;
-  padding: 2rem 2rem 0 2rem;
+  padding: 1.5rem 1.5rem 0 1.5rem;
 
   @media (min-device-height: 901px) {
-    height: 37.5rem;
+    height: 30rem;
   }
 `;
 
@@ -92,8 +83,8 @@ export const Footer = styled.form`
 export const Input = styled.input`
   border: 0;
   border-radius: 0;
-  font-size: 1.25rem;
-  padding: 1.75rem 1.5rem;
+  font-size: 1rem;
+  padding: 1.5rem 1.25rem;
   width: 100%;
 
   &::placeholder {
@@ -112,7 +103,7 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
+  padding: 1.25rem;
 
   &:disabled {
     cursor: initial;
@@ -121,5 +112,5 @@ export const Button = styled.button`
 `;
 
 export const SendIcon = styled.img`
-  width: 1.75rem;
+  width: 1.5rem;
 `;
