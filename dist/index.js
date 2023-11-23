@@ -64,7 +64,7 @@ Error generating stack: `+o.message+`
   display: flex;
   font-size: 0.875rem;
   font-weight: 700;
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
   height: 2rem;
   justify-content: center;
   position: absolute;
@@ -220,7 +220,7 @@ Error generating stack: `+o.message+`
 
   @media (min-width: ${Fo.TABLET}px) {
     bottom: 1rem;
-    right: 2rem;
+    right: 1rem;
   }
 
   ${({open:e})=>e&&`

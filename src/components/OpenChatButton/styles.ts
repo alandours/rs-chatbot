@@ -32,7 +32,7 @@ export const Notification = styled.div`
   display: flex;
   font-size: 0.875rem;
   font-weight: 700;
-  font-family: sans-serif;
+  font-family: "Poppins", sans-serif;
   height: 2rem;
   justify-content: center;
   position: absolute;
