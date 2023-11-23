@@ -5,7 +5,7 @@ import { COLORS } from "@/constants/colors";
 export const OpenChat = styled.div`
   height: fit-content;
   width: fit-content;
-  padding: 2rem;
+  padding: 1.5rem;
 `;
 
 export const OpenChatButton = styled.button`
@@ -15,12 +15,12 @@ export const OpenChatButton = styled.button`
   box-shadow: 2px 2px 24px 4px ${COLORS.SHADOW};
   cursor: pointer;
   position: relative;
-  height: 6rem;
-  width: 6rem;
+  height: 5.5rem;
+  width: 5.5rem;
 `;
 
 export const ChatIcon = styled.img`
-  width: 3.5rem;
+  width: 3rem;
 `;
 
 export const Notification = styled.div`
@@ -30,13 +30,13 @@ export const Notification = styled.div`
   border-radius: 50%;
   color: ${COLORS.WHITE};
   display: flex;
-  font-size: 1.25rem;
+  font-size: 0.875rem;
   font-weight: 700;
   font-family: sans-serif;
-  height: 2.25rem;
+  height: 2rem;
   justify-content: center;
   position: absolute;
-  right: -0.5rem;
-  top: -0.5rem;
-  width: 2.25rem;
+  right: -0.375rem;
+  top: -0.375rem;
+  width: 2rem;
 `;

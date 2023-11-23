@@ -47,7 +47,7 @@ export const Status = styled.div`
 
 export const Title = styled.h1`
   color: ${COLORS.WHITE};
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 500;
   margin: 0;
   margin-left: 1rem;
