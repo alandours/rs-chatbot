@@ -15,13 +15,12 @@ export const MessageContainer = styled.div<StyledProps>`
     `align-items: ${
       $variant === MessageRoles.USER ? "flex-end" : "flex-start"
     }`};
-  margin-bottom: 2rem;
+  margin-bottom: 1.75rem;
 `;
 
 export const MessageHeader = styled.div<StyledProps>`
   align-items: center;
   gap: 0.75rem;
-  border-radius: 0.25rem;
   display: flex;
   margin-bottom: 0.25rem;
   max-width: 29rem;
@@ -32,14 +31,14 @@ export const MessageHeader = styled.div<StyledProps>`
 `;
 
 export const Username = styled.div`
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: 500;
 `;
 
 export const Time = styled.div`
   color: ${COLORS.GREY.DARK};
-  font-size: 0.875rem;
-  line-height: 1.125rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
 `;
 
 export const MessageWrapper = styled.div<StyledProps>`
@@ -49,9 +48,9 @@ export const MessageWrapper = styled.div<StyledProps>`
 
 export const Message = styled.div<StyledProps>`
   border-radius: 0.25rem;
-  font-size: 1.25rem;
-  max-width: 29rem;
-  padding: 1rem;
+  font-size: 1rem;
+  max-width: 23rem;
+  padding: 0.75rem;
 
   ${({ $variant, $error }) => `
     background: ${
@@ -69,12 +68,12 @@ export const Message = styled.div<StyledProps>`
 export const ErrorIcon = styled.img`
   height: 1.5rem;
   width: 1.5rem;
-  margin-right: 0.75rem;
+  margin-right: 0.5rem;
 `;
 
 export const ErrorMessage = styled.div`
   color: ${COLORS.RED.DARK};
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   margin-top: 0.25rem;
   margin-left: 2.25rem;
 `;

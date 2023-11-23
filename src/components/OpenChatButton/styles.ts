@@ -15,12 +15,12 @@ export const OpenChatButton = styled.button`
   box-shadow: 2px 2px 24px 4px ${COLORS.SHADOW};
   cursor: pointer;
   position: relative;
-  height: 7.5rem;
-  width: 7.5rem;
+  height: 6rem;
+  width: 6rem;
 `;
 
 export const ChatIcon = styled.img`
-  width: 4.5rem;
+  width: 3.5rem;
 `;
 
 export const Notification = styled.div`
@@ -30,13 +30,13 @@ export const Notification = styled.div`
   border-radius: 50%;
   color: ${COLORS.WHITE};
   display: flex;
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   font-weight: 700;
   font-family: sans-serif;
-  height: 3rem;
+  height: 2.25rem;
   justify-content: center;
   position: absolute;
-  right: -0.75rem;
-  top: -0.75rem;
-  width: 3rem;
+  right: -0.5rem;
+  top: -0.5rem;
+  width: 2.25rem;
 `;
