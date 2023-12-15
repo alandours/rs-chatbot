@@ -22,6 +22,7 @@ export const ERRORS = {
   GET_MESSAGE:
     "I'm sorry, I can't provide a response at the moment. Please try again later 🙏",
   SEND_MESSAGE: "We couldn't send your message. Please, try again.",
+  RECAPTCHA_VERIFICATION: "We couldn't verify your humanity. Please, try again.",
 };
 
 export const ERROR_MESSAGES = {

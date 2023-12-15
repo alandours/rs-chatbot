@@ -2,13 +2,13 @@ import { useCallback, useContext, useEffect, useState } from "react";
 
 import { ERRORS, SESSION } from "@/constants";
 import { ChatbotContext } from "@/context/ChatbotContext";
-import { useCreateConversation, useGetAgent, useGetMessages } from "@/queries";
+import { useCreateConversation, useGetAgent, useGetMessages, useCreateRecaptcha } from "@/queries";
 import { setApiKey } from "@/services/client";
 import { Message } from "@/types";
 import { createMessage } from "@/utils";
 
 export const useChat = () => {
-  const { conversationId, storeConversationId, open, setUnread } =
+  const { conversationId, storeConversationId, open, setUnread, setValidRecaptcha, token } =
     useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
@@ -24,6 +24,21 @@ export const useChat = () => {
       setWelcomeMessage(createMessage(error.message));
     },
   });
+
+  const { mutate: verifyRecaptcha } = useCreateRecaptcha({
+    onSuccess: ({ success }) => {
+      setValidRecaptcha(success);
+    },
+    onError: (error: Error) => {
+      setWelcomeMessage(createMessage(error.message));
+    },
+  });
+
+  useEffect(() => {
+    if (conversationId) {
+      verifyRecaptcha({token: token, conversationId: conversationId});
+    }
+  }, [token, conversationId, verifyRecaptcha]);
 
   const createChat = useCallback(async () => {
     if (error) {
