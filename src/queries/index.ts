@@ -10,6 +10,7 @@ import {
   createConversation,
 } from "@/services/conversations";
 import { getMessages, sendMessage } from "@/services/messages";
+import { RecaptchaResponse, verifyRecaptcha } from "@/services/recaptchas";
 
 import { queryClient } from "./queryClient";
 
@@ -32,6 +33,16 @@ export const useCreateConversation = ({
   onError: (error: Error) => void;
 }) => {
   return useMutation(createConversation, { onSuccess, onError });
+};
+
+export const useCreateRecaptcha = ({
+  onSuccess,
+  onError,
+}: {
+  onSuccess: (data: RecaptchaResponse) => void;
+  onError: (error: Error) => void;
+}) => {
+  return useMutation(verifyRecaptcha, { onSuccess, onError });
 };
 
 export const useGetMessages = (conversationId?: number, agentId?: number) => {

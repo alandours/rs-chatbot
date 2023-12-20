@@ -114,3 +114,12 @@ export const Button = styled.button`
 export const SendIcon = styled.img`
   width: 1.5rem;
 `;
+
+export const Disclaimer = styled.span`
+  font-size: 0.60rem;
+  font-weight: 500;
+  color: ${COLORS.GREY.LIGHT};
+  background: ${COLORS.WHITE};
+  text-align: center;
+  padding: 0.5rem;
+`;

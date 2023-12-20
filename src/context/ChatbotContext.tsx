@@ -19,6 +19,10 @@ interface ChatbotContextValues {
   storeConversationId: (id: number) => void;
   unread: boolean;
   setUnread: Dispatch<SetStateAction<boolean>>;
+  validRecaptcha: boolean;
+  setValidRecaptcha: Dispatch<SetStateAction<boolean>>;
+  token: string;
+  setToken: Dispatch<SetStateAction<string>>;
 }
 
 const initialValues: ChatbotContextValues = {
@@ -28,6 +32,10 @@ const initialValues: ChatbotContextValues = {
   storeConversationId: () => null,
   unread: false,
   setUnread: () => null,
+  validRecaptcha: false,
+  setValidRecaptcha: () => null,
+  token: "",
+  setToken: () => null,
 };
 
 export const ChatbotContext =
@@ -37,6 +45,8 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState<boolean>(initialValues.open);
   const [conversationId, setConversationId] = useState<number>();
   const [unread, setUnread] = useState<boolean>(initialValues.unread);
+  const [validRecaptcha, setValidRecaptcha] = useState<boolean>(initialValues.validRecaptcha);
+  const [token, setToken] = useState<string>(initialValues.token);
 
   const chatbotRef = useRef<HTMLDivElement>(null);
 
@@ -56,6 +66,10 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
         storeConversationId,
         unread,
         setUnread,
+        validRecaptcha,
+        setValidRecaptcha,
+        token,
+        setToken
       }}
     >
       {children}
