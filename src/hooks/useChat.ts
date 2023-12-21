@@ -35,7 +35,7 @@ export const useChat = () => {
   });
 
   useEffect(() => {
-    if (conversationId) {
+    if (token != "" && conversationId) {
       verifyRecaptcha({token: token, conversationId: conversationId});
     }
   }, [token, conversationId, verifyRecaptcha]);
