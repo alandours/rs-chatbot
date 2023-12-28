@@ -1,5 +1,6 @@
 import { USERNAMES } from "@/constants";
 import { MessageRoles } from "@/constants/enums";
+import Linkify from 'react-linkify';
 
 import errorIcon from "@/assets/error.webp";
 
@@ -15,6 +16,12 @@ type MessageProps = {
   };
 };
 
+const componentDecorator = (href: any, text: any, key: any) => (
+  <a href={href} key={key} target="_blank" rel="noopener noreferrer">
+    {text}
+  </a>
+);
+
 export const Message = ({
   data: { content, role, createdAt, errorMessage },
 }: MessageProps) => (
@@ -26,7 +33,7 @@ export const Message = ({
     <styles.MessageWrapper $variant={role}>
       {errorMessage && <styles.ErrorIcon src={errorIcon}></styles.ErrorIcon>}
       <styles.Message $variant={role} $error={!!errorMessage}>
-        {content}
+        <Linkify componentDecorator={componentDecorator}>{content}</Linkify>
       </styles.Message>
     </styles.MessageWrapper>
     {errorMessage && <styles.ErrorMessage>{errorMessage}</styles.ErrorMessage>}
