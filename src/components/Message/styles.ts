@@ -51,6 +51,7 @@ export const Message = styled.div<StyledProps>`
   font-size: 1rem;
   max-width: 23rem;
   padding: 0.75rem;
+  word-break: break-word;
 
   ${({ $variant, $error }) => `
     background: ${
