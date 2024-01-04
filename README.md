@@ -26,6 +26,14 @@ Install dependencies
 npm i && npm run dev
 ```
 
+## Develop
+
+Push new changes to the `develop` branch to test it without creating a new release:
+
+```
+https://cdn.jsdelivr.net/gh/rootstrap/rs-chatbot-react@develop/dist/index.js
+```
+
 ## Build
 
 A pre-commit hook will run `build` before each commit and it will add the `dist` folder.
