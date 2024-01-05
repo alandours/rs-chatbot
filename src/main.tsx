@@ -5,10 +5,21 @@ import { ChatbotProvider } from "@/context/ChatbotContext.tsx";
 
 import App from "./App.tsx";
 
-const root = document.createElement("div");
-root.setAttribute("id", "root");
+const chatbotWrapper = document.createElement("div");
+chatbotWrapper.setAttribute("id", "rs-chatbot-wrapper");
 
-ReactDOM.createRoot(document.body.appendChild(root)!).render(
+const root = document.createElement("div");
+root.setAttribute("id", "rs-chatbot-root");
+
+const chatbotRecaptcha = document.createElement("div");
+chatbotRecaptcha.setAttribute("id", "rs-chatbot-recaptcha");
+
+chatbotWrapper.appendChild(root);
+chatbotWrapper.appendChild(chatbotRecaptcha);
+
+document.body.appendChild(chatbotWrapper);
+
+ReactDOM.createRoot(document.querySelector("#rs-chatbot-root")!).render(
   <React.StrictMode>
     <ChatbotProvider>
       <App />
