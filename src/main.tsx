@@ -13,6 +13,7 @@ root.setAttribute("id", "rs-chatbot-root");
 
 const chatbotRecaptcha = document.createElement("div");
 chatbotRecaptcha.setAttribute("id", "rs-chatbot-recaptcha");
+chatbotRecaptcha.style.display = "none";
 
 chatbotWrapper.appendChild(root);
 chatbotWrapper.appendChild(chatbotRecaptcha);
