@@ -14,6 +14,7 @@ import { Chatbot } from "@/components/Chatbot";
 
 import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
+
 function App() {
   const { open, setToken, token } = useContext(ChatbotContext);
   const { width, height, setFrameSize } = useFrameSize();
@@ -27,7 +28,7 @@ function App() {
   };
 
   const onVerify = useCallback((googleToken: string) => {
-    if (token == "") {
+    if (token === "") {
       setToken(googleToken);
     }
   }, [token, setToken]);
