@@ -14,23 +14,19 @@ import { Chatbot } from "@/components/Chatbot";
 
 import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
+
 function App() {
   const { open, setToken, token } = useContext(ChatbotContext);
   const { width, height, setFrameSize } = useFrameSize();
 
-  window.onload = function() {
-    const recaptchaBadge = document.querySelector('.grecaptcha-badge');
-    if (recaptchaBadge) {
-      const recaptchaBadge = document.querySelector('.grecaptcha-badge') as HTMLElement;
-      recaptchaBadge.style.visibility = 'hidden';
-    }
-  };
-
-  const onVerify = useCallback((googleToken: string) => {
-    if (token == "") {
-      setToken(googleToken);
-    }
-  }, [token, setToken]);
+  const onVerify = useCallback(
+    (googleToken: string) => {
+      if (token === "") {
+        setToken(googleToken);
+      }
+    },
+    [token, setToken]
+  );
 
   useEffect(() => {
     window.addEventListener("resize", setFrameSize);
@@ -44,7 +40,13 @@ function App() {
           <StyleSheetManager target={document?.head}>
             <GlobalStyle />
             <QueryClientProvider client={queryClient}>
-              <GoogleReCaptchaProvider reCaptchaKey={import.meta.env.VITE_GOOGLE_RECAPTCHA_SITE_KEY}>
+              <GoogleReCaptchaProvider
+                reCaptchaKey={import.meta.env.VITE_GOOGLE_RECAPTCHA_SITE_KEY}
+                container={{
+                  element: "rs-chatbot-recaptcha",
+                  parameters: {},
+                }}
+              >
                 <GoogleReCaptcha onVerify={onVerify} />
               </GoogleReCaptchaProvider>
               <Chatbot setFrameSize={setFrameSize} />
