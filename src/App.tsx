@@ -14,6 +14,7 @@ import { Chatbot } from "@/components/Chatbot";
 
 import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
+import { IS_MOBILE } from "./constants";
 
 function App() {
   const [insideIframe, setInsideIframe] = useState(false);
@@ -36,8 +37,9 @@ function App() {
   }, [setFrameSize]);
 
   useEffect(() => {
-    document.body.style.overflow = open && insideIframe ? "hidden" : "auto";
-  }, [open, insideIframe]);
+    document.body.style.overflow =
+      open && insideIframe && IS_MOBILE ? "hidden" : "auto";
+  }, [open, insideIframe, width]);
 
   return (
     <Frame
