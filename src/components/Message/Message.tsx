@@ -16,7 +16,7 @@ type MessageProps = {
   };
 };
 
-const componentDecorator = (href: any, text: any, key: any) => (
+const componentDecorator = (href: string, text: string, key: number) => (
   <a href={href} key={key} target="_blank" rel="noopener noreferrer">
     {text}
   </a>

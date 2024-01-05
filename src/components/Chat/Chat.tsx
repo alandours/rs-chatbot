@@ -91,7 +91,15 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
         {messages && <div ref={scrollEndRef} />}
       </styles.Main>
       <styles.Disclaimer>
-          This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+        This site is protected by reCAPTCHA and the Google{" "}
+        <a href="https://policies.google.com/privacy" target="_blank">
+          Privacy Policy
+        </a>{" "}
+        and{" "}
+        <a href="https://policies.google.com/terms" target="_blank">
+          Terms of Service
+        </a>{" "}
+        apply.
       </styles.Disclaimer>
       <styles.Footer onSubmit={onSendMessage}>
         <styles.Input
