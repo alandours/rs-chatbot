@@ -55,7 +55,7 @@ export const Title = styled.h1`
 `;
 
 export const TitleLabel = styled.div`
-  background: ${COLORS.GREY.BASE};
+  background: ${COLORS.GREY.LIGHT};
   border-radius: 0.25rem;
   color: ${COLORS.GREY.DARKER};
   font-size: 0.75rem;
@@ -133,4 +133,5 @@ export const Disclaimer = styled.span`
   background: ${COLORS.WHITE};
   text-align: center;
   padding: 0.5rem;
+  min-height: 2rem;
 `;
