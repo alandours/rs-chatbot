@@ -1,8 +1,10 @@
 import axios, { AxiosRequestConfig } from "axios";
 import humps from "humps";
 
+import { CONFIG } from "@/constants/config";
+
 const config: AxiosRequestConfig = {
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: CONFIG.API_URL,
   headers: {
     "Content-Type": "application/json",
   },

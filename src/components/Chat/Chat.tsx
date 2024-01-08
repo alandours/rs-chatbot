@@ -2,7 +2,8 @@ import { FormEvent, useContext, useEffect, useRef } from "react";
 
 import { Message } from "@/components/Message";
 import { TypingLoader } from "@/components/TypingLoader";
-import { CHATBOT_NAME, SESSION } from "@/constants";
+import { SESSION } from "@/constants";
+import { CONFIG } from "@/constants/config";
 import { MessageRoles } from "@/constants/enums";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { useSendMessage } from "@/queries";
@@ -76,7 +77,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
       <styles.Header>
         <styles.TitleWrapper>
           <styles.Status />
-          <styles.Title>{CHATBOT_NAME}</styles.Title>
+          <styles.Title>{CONFIG.CHATBOT_NAME}</styles.Title>
         </styles.TitleWrapper>
         <styles.MinimizeButton onClick={closeChat}>
           <styles.MinimizeIcon src={minimizeIcon} alt="Minimize chat" />

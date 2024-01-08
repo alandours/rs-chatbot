@@ -7,6 +7,8 @@ import {
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
 
+import { IS_MOBILE } from "@/constants";
+import { CONFIG } from "@/constants/config";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { useFrameSize } from "@/hooks/useFrameSize";
 import { queryClient } from "@/queries/queryClient";
@@ -14,7 +16,6 @@ import { Chatbot } from "@/components/Chatbot";
 
 import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
-import { IS_MOBILE } from "./constants";
 
 function App() {
   const [insideIframe, setInsideIframe] = useState(false);
@@ -59,7 +60,7 @@ function App() {
             <GlobalStyle />
             <QueryClientProvider client={queryClient}>
               <GoogleReCaptchaProvider
-                reCaptchaKey={import.meta.env.VITE_GOOGLE_RECAPTCHA_SITE_KEY}
+                reCaptchaKey={CONFIG.GOOGLE_RECAPTCHA_SITE_KEY}
                 container={{
                   element: "rs-chatbot-recaptcha",
                   parameters: {},

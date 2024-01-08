@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { useQuery, useMutation } from "react-query";
 
-import { CHATBOT_AGENT_ID, REFETCH_INTERVAL, SESSION } from "@/constants";
+import { REFETCH_INTERVAL, SESSION } from "@/constants";
+import { CONFIG } from "@/constants/config";
 import { Queries } from "@/constants/enums";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { getAgents } from "@/services/agents";
@@ -17,7 +18,7 @@ import { queryClient } from "./queryClient";
 export const useGetAgent = () => {
   const { data, error } = useQuery([Queries.agents], getAgents);
 
-  const agent = data?.agents.find((agent) => agent.id === CHATBOT_AGENT_ID);
+  const agent = data?.agents.find((agent) => agent.id === CONFIG.AGENT_ID);
 
   return {
     agent,

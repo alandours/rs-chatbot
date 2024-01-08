@@ -4,39 +4,38 @@ Rootstrap AI chatbot
 
 ## Setup
 
-Clone the repo and create an `.env.local` file
+Clone the repo and update the `config.ts` file
 
-```sh
-# API url
-VITE_API_URL="https://chatbot-api-url.com/api"
-
-# Chatbot agent id
-VITE_AGENT_ID=1234
-
-# Displayed at the top of the chat
-VITE_CHATBOT_NAME="Rootstrap Assistant"
-
-# Displayed next to each chatbot message
-VITE_CHATBOT_USERNAME="Rootbot"
+```ts
+const CONFIG = {
+  // API url
+  API_URL: "https://chatbot-api-url.com/api",
+  // Chatbot agent id
+  AGENT_ID: 1234,
+  // Displayed at the top of the chat
+  CHATBOT_NAME: "Ask AI",
+  // Displayed next to each chatbot message
+  CHATBOT_USERNAME: "Bot",
+}
 ```
 
-Install dependencies
+Install dependencies and run project
 
 ```sh
 npm i && npm run dev
 ```
 
-## Develop
-
-Push new changes to the `develop` branch to test it without creating a new release:
-
-```
-https://cdn.jsdelivr.net/gh/rootstrap/rs-chatbot-react@develop/dist/index.js
-```
-
 ## Build
 
 A pre-commit hook will run `build` before each commit and it will add the `dist` folder.
+
+## Test
+
+Push your changes and use the branch name or commit as version
+
+```
+https://cdn.jsdelivr.net/gh/rootstrap/rs-chatbot-react@{VERSION}/dist/index.js
+```
 
 ## Release
 
