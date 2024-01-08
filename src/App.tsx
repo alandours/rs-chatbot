@@ -7,7 +7,6 @@ import {
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
 
-import { BREAKPOINTS } from "@/constants";
 import { CONFIG } from "@/constants/config";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { useFrameSize } from "@/hooks/useFrameSize";
@@ -38,10 +37,8 @@ function App() {
   }, [setFrameSize]);
 
   useEffect(() => {
-    document.body.style.overflow =
-      open && insideIframe && window.innerWidth < BREAKPOINTS.TABLET
-        ? "hidden"
-        : "auto";
+    document.documentElement.style.scrollbarGutter = "stable";
+    document.body.style.overflow = open && insideIframe ? "hidden" : "auto";
   }, [open, insideIframe, width]);
 
   return (
