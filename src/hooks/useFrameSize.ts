@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 
 import { ChatbotContext } from "@/context/ChatbotContext";
-import { IS_MOBILE, MAX_FRAME_WIDTH } from "@/constants";
+import { BREAKPOINTS, MAX_FRAME_WIDTH } from "@/constants";
 
 export const useFrameSize = () => {
   const { open, chatbotRef } = useContext(ChatbotContext);
@@ -14,11 +14,14 @@ export const useFrameSize = () => {
     let frameWidth = chatbotRef?.current?.offsetWidth || 0;
 
     if (open) {
-      if (IS_MOBILE) {
+      if (window.innerWidth < BREAKPOINTS.TABLET) {
         frameWidth = window.innerWidth;
       }
 
-      if (!IS_MOBILE && window.innerWidth > MAX_FRAME_WIDTH) {
+      if (
+        window.innerWidth >= BREAKPOINTS.TABLET &&
+        window.innerWidth > MAX_FRAME_WIDTH
+      ) {
         frameWidth = MAX_FRAME_WIDTH;
       }
 
