@@ -31,7 +31,7 @@ export const MessageHeader = styled.div<StyledProps>`
 `;
 
 export const Username = styled.div`
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
 `;
 
@@ -48,8 +48,8 @@ export const MessageWrapper = styled.div<StyledProps>`
 
 export const Message = styled.div<StyledProps>`
   border-radius: 0.25rem;
-  font-size: 1rem;
-  max-width: 23rem;
+  font-size: 0.875rem;
+  max-width: 21rem;
   padding: 0.75rem;
   word-break: break-word;
 

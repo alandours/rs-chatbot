@@ -16,8 +16,8 @@ export const Frame = styled(ReactFrame)<FrameProps>`
   z-index: 1000;
 
   @media (min-width: ${BREAKPOINTS.TABLET}px) {
-    bottom: 1rem;
-    right: 1rem;
+    bottom: 0.5rem;
+    right: 0.5rem;
   }
 
   ${({ open }) =>
@@ -28,7 +28,7 @@ export const Frame = styled(ReactFrame)<FrameProps>`
 
       @media (min-width: ${BREAKPOINTS.TABLET}px) {
         bottom: 0;
-        right: 3rem;
+        right: 2rem;
       }
     `}
 `;
