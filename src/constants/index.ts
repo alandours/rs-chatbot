@@ -39,6 +39,3 @@ export const SESSION = {
 };
 
 export const REFETCH_INTERVAL = 5000;
-
-export const IS_MOBILE = window.innerWidth < BREAKPOINTS.TABLET;
-
