@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+import { BREAKPOINTS } from "@/constants";
 import { COLORS } from "@/constants/colors";
 
 export const Chatbot = styled.div`
@@ -78,7 +79,7 @@ export const Main = styled.div`
   overflow-y: auto;
   padding: 1.25rem 1.25rem 0 1.25rem;
 
-  @media (min-device-height: 901px) {
+  @media (min-width: ${BREAKPOINTS.TABLET}px) {
     height: 20rem;
   }
 `;
@@ -93,6 +94,7 @@ export const Input = styled.input`
   border: 0;
   border-radius: 0;
   font-size: 0.875rem;
+  min-height: 2.75rem;
   padding: 0.75rem 1rem;
   width: 100%;
 

@@ -20,7 +20,7 @@ export const OpenChatButton = styled.button`
 `;
 
 export const ChatIcon = styled.img`
-  width: 2rem;
+  width: 1.875rem;
 `;
 
 export const Notification = styled.div`
@@ -30,7 +30,7 @@ export const Notification = styled.div`
   border-radius: 50%;
   color: ${COLORS.WHITE};
   display: flex;
-  font-size: 0.625rem;
+  font-size: 0.6rem;
   font-weight: 700;
   font-family: "Poppins", sans-serif;
   height: 1.25rem;
