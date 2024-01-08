@@ -79,7 +79,7 @@ export const Main = styled.div`
   overflow-y: auto;
   padding: 1.25rem 1.25rem 0 1.25rem;
 
-  @media (min-width: ${BREAKPOINTS.TABLET}px) {
+  @media (min-device-width: ${BREAKPOINTS.TABLET}px) {
     height: 20rem;
   }
 `;
@@ -126,6 +126,17 @@ export const SendIcon = styled.img`
   width: 1.25rem;
 `;
 
+export const DisclaimerWrapper = styled.span`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 2.75rem;
+
+  @media (min-width: ${BREAKPOINTS.TABLET}px) {
+    min-height: 2rem;
+  }
+`;
+
 export const Disclaimer = styled.span`
   font-size: 0.6rem;
   font-weight: 500;
@@ -133,5 +144,4 @@ export const Disclaimer = styled.span`
   background: ${COLORS.WHITE};
   text-align: center;
   padding: 0.5rem;
-  min-height: 2rem;
 `;
