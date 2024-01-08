@@ -78,6 +78,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
         <styles.TitleWrapper>
           <styles.Status />
           <styles.Title>{CONFIG.CHATBOT_NAME}</styles.Title>
+          <styles.TitleLabel>Beta</styles.TitleLabel>
         </styles.TitleWrapper>
         <styles.MinimizeButton onClick={closeChat}>
           <styles.MinimizeIcon src={minimizeIcon} alt="Minimize chat" />

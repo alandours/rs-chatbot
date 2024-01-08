@@ -53,6 +53,15 @@ export const Title = styled.h1`
   margin-left: 1rem;
 `;
 
+export const TitleLabel = styled.div`
+  background: ${COLORS.GREY.BASE};
+  border-radius: 0.25rem;
+  color: ${COLORS.GREY.DARKER};
+  font-size: 0.75rem;
+  margin-left: 1rem;
+  padding: 0.125rem 0.5rem;
+`;
+
 export const MinimizeButton = styled.button`
   background: none;
   border: 0;
