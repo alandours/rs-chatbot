@@ -78,7 +78,7 @@ PERFORMANCE OF THIS SOFTWARE.
 `,V1=B.div`
   align-items: center;
   background: ${X.RED.BASE};
-  border: 2px solid ${X.WHITE};
+  border: 1px solid ${X.WHITE};
   border-radius: 50%;
   color: ${X.WHITE};
   display: flex;
@@ -242,6 +242,7 @@ PERFORMANCE OF THIS SOFTWARE.
   width: 1.25rem;
 `,jS=B.span`
   align-items: center;
+  background: ${X.WHITE};
   display: flex;
   justify-content: center;
   min-height: 2.75rem;
@@ -253,7 +254,6 @@ PERFORMANCE OF THIS SOFTWARE.
   font-size: 0.6rem;
   font-weight: 500;
   color: ${X.GREY.LIGHT};
-  background: ${X.WHITE};
   text-align: center;
   padding: 0.5rem;
 `,BS=({welcomeMessage:e,messages:t})=>{const{chatbotRef:n,closeChat:r,conversationId:i}=F.useContext(ln),{isLoading:o,mutate:s}=xS({onError:l=>{const c=t.pop();t.push({...c,errorMessage:l.message})}}),u=F.useRef(null),a=l=>{l.preventDefault();const c=l.target,p=c.message.value;i&&p&&(t.push(Hn(p,Je.USER)),s({conversationId:i,content:p}),c.reset())};return F.useEffect(()=>{const l=setTimeout(()=>{var c;(c=u.current)==null||c.scrollIntoView({behavior:"smooth"})},100);return()=>clearInterval(l)},[o,t]),F.useEffect(()=>{o&&sessionStorage.setItem(ci.REFETCH_LAST_MESSAGE,JSON.stringify(o)),!o&&t.length&&t[t.length-1].role===Je.ASSISTANT&&sessionStorage.removeItem(ci.REFETCH_LAST_MESSAGE)},[o,t]),T.jsxs(OS,{ref:n,children:[T.jsxs(PS,{children:[T.jsxs(AS,{children:[T.jsx(FS,{}),T.jsx(DS,{children:_i.CHATBOT_NAME}),T.jsx(TS,{children:"Beta"})]}),T.jsx(NS,{onClick:r,children:T.jsx(zS,{src:kS,alt:"Minimize chat"})})]}),T.jsxs(IS,{children:[e&&T.jsx($a,{data:e}),t.map(l=>T.jsx($a,{data:l},l.id)),o&&T.jsx(Ww,{}),t&&T.jsx("div",{ref:u})]}),T.jsx(jS,{children:T.jsxs(US,{children:["This site is protected by reCAPTCHA and the Google"," ",T.jsx("a",{href:"https://policies.google.com/privacy",target:"_blank",children:"Privacy Policy"})," ","and"," ",T.jsx("a",{href:"https://policies.google.com/terms",target:"_blank",children:"Terms of Service"})," ","apply."]})}),T.jsxs(bS,{onSubmit:a,children:[T.jsx(LS,{name:"message",type:"text",placeholder:"Send a message..."}),T.jsx(MS,{type:"submit",disabled:o,children:T.jsx($S,{src:RS,alt:"Send message"})})]})]})},QS=()=>{const{conversationId:e,storeConversationId:t,open:n,setUnread:r,setValidRecaptcha:i,token:o}=F.useContext(ln),[s,u]=F.useState(),{agent:a,error:l}=_S(),{messages:c}=CS(e,a==null?void 0:a.id),{mutate:p}=SS({onSuccess:({conversation:y})=>{t(y.id)},onError:y=>{u(Hn(y.message))}}),{mutate:m}=ES({onSuccess:({success:y})=>{i(y)},onError:y=>{u(Hn(y.message))}});F.useEffect(()=>{o!=""&&e&&m({token:o,conversationId:e})},[o,e,m]);const v=F.useCallback(async()=>{if(l&&u(Hn(hr.GET_MESSAGE)),a){u(Hn(a.welcomeMessage)),hS(a.apiKey);const y=sessionStorage.getItem(ci.CONVERSATION_ID),g=y&&JSON.parse(y);g?t(Number(g)):p(a==null?void 0:a.id)}},[a,l,p,t]);return F.useEffect(()=>{r(!0)},[c,r]),F.useEffect(()=>{r(!1)},[n,r]),{createChat:v,messages:c,welcomeMessage:s}},HS=({setFrameSize:e})=>{const{open:t}=F.useContext(ln),{createChat:n,welcomeMessage:r,messages:i}=QS();return F.useEffect(()=>{n()},[n]),F.useEffect(()=>{e()},[e,t]),t?T.jsx(BS,{welcomeMessage:r,messages:i}):T.jsx(W1,{})},qS=B(qg)`

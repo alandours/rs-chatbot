@@ -128,6 +128,7 @@ export const SendIcon = styled.img`
 
 export const DisclaimerWrapper = styled.span`
   align-items: center;
+  background: ${COLORS.WHITE};
   display: flex;
   justify-content: center;
   min-height: 2.75rem;
@@ -141,7 +142,6 @@ export const Disclaimer = styled.span`
   font-size: 0.6rem;
   font-weight: 500;
   color: ${COLORS.GREY.LIGHT};
-  background: ${COLORS.WHITE};
   text-align: center;
   padding: 0.5rem;
 `;

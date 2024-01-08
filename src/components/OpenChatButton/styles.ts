@@ -26,7 +26,7 @@ export const ChatIcon = styled.img`
 export const Notification = styled.div`
   align-items: center;
   background: ${COLORS.RED.BASE};
-  border: 2px solid ${COLORS.WHITE};
+  border: 1px solid ${COLORS.WHITE};
   border-radius: 50%;
   color: ${COLORS.WHITE};
   display: flex;
