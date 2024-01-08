@@ -5,10 +5,11 @@ import { ChatbotProvider } from "@/context/ChatbotContext.tsx";
 
 import App from "./App.tsx";
 
-const root = document.createElement("div");
-root.setAttribute("id", "root");
+import { createDOMElements } from "./utils/createDOMElements.ts";
 
-ReactDOM.createRoot(document.body.appendChild(root)!).render(
+createDOMElements();
+
+ReactDOM.createRoot(document.querySelector("#rs-chatbot-root")!).render(
   <React.StrictMode>
     <ChatbotProvider>
       <App />
