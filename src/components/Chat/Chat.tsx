@@ -31,6 +31,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
   });
 
   const scrollEndRef = useRef<HTMLDivElement>(null);
+  const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   const onSendMessage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -44,6 +45,36 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
       target.reset();
     }
   };
+
+  const handleScroll = (e: WheelEvent) => {
+    const scrollArea = scrollAreaRef?.current;
+
+    if (!scrollArea) return;
+
+    if (e.deltaY <= 0 && scrollArea?.scrollTop <= 0) {
+      e.preventDefault();
+    }
+
+    if (
+      e.deltaY > 0 &&
+      scrollArea?.scrollTop + scrollArea?.clientHeight >=
+        scrollArea?.scrollHeight
+    ) {
+      e.preventDefault();
+    }
+  };
+
+  useEffect(() => {
+    const scrollArea = scrollAreaRef?.current;
+
+    scrollArea?.addEventListener("wheel", handleScroll, {
+      passive: false,
+    });
+
+    return () => {
+      scrollArea?.removeEventListener("wheel", handleScroll);
+    };
+  }, [scrollAreaRef]);
 
   useEffect(() => {
     const scrollTimeout = setTimeout(() => {
@@ -72,26 +103,6 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     }
   }, [isLoading, messages]);
 
-  const handleScroll = (e: Event) => {
-    e.preventDefault();
-  };
-
-  useEffect(() => {
-    const chatbotRefValue = chatbotRef?.current;
-
-    ["wheel", "touchmove"].forEach((event) =>
-      chatbotRefValue?.addEventListener(event, handleScroll, {
-        passive: false,
-      })
-    );
-
-    return () => {
-      ["wheel", "touchmove"].forEach((event) =>
-        chatbotRefValue?.removeEventListener(event, handleScroll)
-      );
-    };
-  }, [chatbotRef]);
-
   return (
     <styles.Chatbot ref={chatbotRef}>
       <styles.Header>
@@ -104,7 +115,12 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
           <styles.MinimizeIcon src={minimizeIcon} alt="Minimize chat" />
         </styles.MinimizeButton>
       </styles.Header>
-      <styles.Main>
+      <styles.Main ref={scrollAreaRef}>
+        {welcomeMessage && <Message data={welcomeMessage} />}
+        {welcomeMessage && <Message data={welcomeMessage} />}
+        {welcomeMessage && <Message data={welcomeMessage} />}
+        {welcomeMessage && <Message data={welcomeMessage} />}
+        {welcomeMessage && <Message data={welcomeMessage} />}
         {welcomeMessage && <Message data={welcomeMessage} />}
         {messages.map((data) => (
           <Message data={data} key={data.id} />
