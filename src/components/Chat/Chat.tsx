@@ -117,11 +117,6 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
       </styles.Header>
       <styles.Main ref={scrollAreaRef}>
         {welcomeMessage && <Message data={welcomeMessage} />}
-        {welcomeMessage && <Message data={welcomeMessage} />}
-        {welcomeMessage && <Message data={welcomeMessage} />}
-        {welcomeMessage && <Message data={welcomeMessage} />}
-        {welcomeMessage && <Message data={welcomeMessage} />}
-        {welcomeMessage && <Message data={welcomeMessage} />}
         {messages.map((data) => (
           <Message data={data} key={data.id} />
         ))}
