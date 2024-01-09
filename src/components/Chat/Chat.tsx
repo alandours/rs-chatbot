@@ -80,7 +80,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     const chatbotRefValue = chatbotRef?.current;
 
     ["wheel", "touchmove"].forEach((event) =>
-      chatbotRef?.current?.addEventListener(event, handleScroll, {
+      chatbotRefValue?.addEventListener(event, handleScroll, {
         passive: false,
       })
     );
