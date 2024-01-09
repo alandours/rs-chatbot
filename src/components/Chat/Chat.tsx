@@ -72,6 +72,26 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     }
   }, [isLoading, messages]);
 
+  const handleScroll = (e: Event) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    const chatbotRefValue = chatbotRef?.current;
+
+    ["wheel", "touchmove"].forEach((event) =>
+      chatbotRef?.current?.addEventListener(event, handleScroll, {
+        passive: false,
+      })
+    );
+
+    return () => {
+      ["wheel", "touchmove"].forEach((event) =>
+        chatbotRefValue?.removeEventListener(event, handleScroll)
+      );
+    };
+  }, [chatbotRef]);
+
   return (
     <styles.Chatbot ref={chatbotRef}>
       <styles.Header>

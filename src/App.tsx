@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { FrameContextConsumer } from "react-frame-component";
 import { StyleSheetManager } from "styled-components";
 import { QueryClientProvider } from "react-query";
@@ -17,8 +17,6 @@ import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
 
 function App() {
-  const [insideIframe, setInsideIframe] = useState(false);
-
   const { open, setToken, token } = useContext(ChatbotContext);
   const { width, height, setFrameSize } = useFrameSize();
 
@@ -36,23 +34,8 @@ function App() {
     return () => window.removeEventListener("resize", setFrameSize);
   }, [setFrameSize]);
 
-  useEffect(() => {
-    document.documentElement.style.scrollbarGutter = "stable";
-    document.body.style.overflow = open && insideIframe ? "hidden" : "auto";
-  }, [open, insideIframe, width]);
-
   return (
-    <Frame
-      width={width}
-      height={height}
-      open={open}
-      onMouseEnter={() => {
-        setInsideIframe(true);
-      }}
-      onMouseLeave={() => {
-        setInsideIframe(false);
-      }}
-    >
+    <Frame width={width} height={height} open={open}>
       <FrameContextConsumer>
         {({ document }) => (
           <StyleSheetManager target={document?.head}>
