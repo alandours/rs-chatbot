@@ -7,6 +7,7 @@ import {
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
 
+import { BREAKPOINTS } from "@/constants";
 import { CONFIG } from "@/constants/config";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { useFrameSize } from "@/hooks/useFrameSize";
@@ -33,6 +34,11 @@ function App() {
     window.addEventListener("resize", setFrameSize);
     return () => window.removeEventListener("resize", setFrameSize);
   }, [setFrameSize]);
+
+  useEffect(() => {
+    document.body.style.overflow =
+      open && window.innerWidth < BREAKPOINTS.TABLET ? "hidden" : "auto";
+  }, [open, width]);
 
   return (
     <Frame width={width} height={height} open={open}>
