@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { FrameContextConsumer } from "react-frame-component";
 import { StyleSheetManager } from "styled-components";
 import { QueryClientProvider } from "react-query";
@@ -7,6 +7,7 @@ import {
   GoogleReCaptcha,
 } from "react-google-recaptcha-v3";
 
+import { BREAKPOINTS } from "@/constants";
 import { CONFIG } from "@/constants/config";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { useFrameSize } from "@/hooks/useFrameSize";
@@ -17,8 +18,6 @@ import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
 
 function App() {
-  const [insideIframe, setInsideIframe] = useState(false);
-
   const { open, setToken, token } = useContext(ChatbotContext);
   const { width, height, setFrameSize } = useFrameSize();
 
@@ -37,22 +36,12 @@ function App() {
   }, [setFrameSize]);
 
   useEffect(() => {
-    document.documentElement.style.scrollbarGutter = "stable";
-    document.body.style.overflow = open && insideIframe ? "hidden" : "auto";
-  }, [open, insideIframe, width]);
+    document.body.style.overflow =
+      open && window.innerWidth < BREAKPOINTS.TABLET ? "hidden" : "auto";
+  }, [open, width]);
 
   return (
-    <Frame
-      width={width}
-      height={height}
-      open={open}
-      onMouseEnter={() => {
-        setInsideIframe(true);
-      }}
-      onMouseLeave={() => {
-        setInsideIframe(false);
-      }}
-    >
+    <Frame width={width} height={height} open={open}>
       <FrameContextConsumer>
         {({ document }) => (
           <StyleSheetManager target={document?.head}>
