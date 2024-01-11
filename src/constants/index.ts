@@ -34,7 +34,7 @@ export const ERROR_MESSAGES = {
 };
 
 export const SESSION = {
-  REFETCH_LAST_MESSAGE: "refetchLastMessage",
+  PENDING_RESPONSE: "pendingResponse",
   CONVERSATION_ID: "conversationId",
 };
 

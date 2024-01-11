@@ -8,7 +8,7 @@ import { ChatbotContext } from "@/context/ChatbotContext";
 import { useSendMessage } from "@/queries";
 import { Message as MessageType } from "@/types";
 import { createMessage } from "@/utils";
-import { handleRefetchMessage } from "@/utils/session";
+import { handlePendingResponse, removePendingResponse } from "@/utils/session";
 
 import minimizeIcon from "@/assets/minimize.webp";
 import sendIcon from "@/assets/send.webp";
@@ -26,6 +26,8 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
 
   const { isLoading: isSendingMessage, mutate: sendMessage } = useSendMessage({
     onError: (error: Error) => {
+      removePendingResponse();
+
       const lastMessage = messages.pop()!;
       messages.push({ ...lastMessage, errorMessage: error.message });
     },
@@ -90,7 +92,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
   }, [isSendingMessage, messages]);
 
   useEffect(() => {
-    handleRefetchMessage(isSendingMessage, messages);
+    handlePendingResponse(isSendingMessage, messages);
   }, [isSendingMessage, messages]);
 
   const isDisabled = isSendingMessage || !conversationId || !validRecaptcha;
