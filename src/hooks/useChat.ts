@@ -21,6 +21,7 @@ export const useChat = () => {
     setUnread,
     setValidRecaptcha,
     token,
+    validRecaptcha,
   } = useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
@@ -63,7 +64,9 @@ export const useChat = () => {
     }
 
     if (agent) {
-      setWelcomeMessage(createMessage(agent.welcomeMessage));
+      if (validRecaptcha) {
+        setWelcomeMessage(createMessage(agent.welcomeMessage));
+      }
 
       setApiKey(agent.apiKey);
 
@@ -75,7 +78,7 @@ export const useChat = () => {
         storeConversationId(Number(sessionConversationId));
       }
     }
-  }, [agent, error, createConversation, storeConversationId]);
+  }, [agent, error, validRecaptcha, createConversation, storeConversationId]);
 
   useEffect(() => {
     setUnread(false);
