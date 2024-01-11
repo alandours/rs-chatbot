@@ -31,6 +31,7 @@ export const useChat = () => {
   const { mutate: createConversation } = useCreateConversation({
     onSuccess: ({ conversation }) => {
       storeConversationId(conversation.id);
+      setUnread(true);
     },
     onError: (error: Error) => {
       setWelcomeMessage(createMessage(error.message));
@@ -75,10 +76,6 @@ export const useChat = () => {
       }
     }
   }, [agent, error, createConversation, storeConversationId]);
-
-  useEffect(() => {
-    setUnread(true);
-  }, [messages, setUnread]);
 
   useEffect(() => {
     setUnread(false);
