@@ -21,7 +21,8 @@ type ChatProps = {
 };
 
 export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
-  const { chatbotRef, closeChat, conversationId } = useContext(ChatbotContext);
+  const { chatbotRef, closeChat, conversationId, validRecaptcha } =
+    useContext(ChatbotContext);
 
   const { isLoading, mutate: sendMessage } = useSendMessage({
     onError: (error: Error) => {
@@ -35,6 +36,8 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
 
   const onSendMessage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!validRecaptcha) return;
 
     const target = e.target as HTMLFormElement;
     const content = target.message.value;
@@ -103,6 +106,8 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     }
   }, [isLoading, messages]);
 
+  const isDisabled = isLoading || !conversationId || !validRecaptcha;
+
   return (
     <styles.Chatbot ref={chatbotRef}>
       <styles.Header>
@@ -142,7 +147,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
           type="text"
           placeholder="Send a message..."
         />
-        <styles.Button type="submit" disabled={isLoading}>
+        <styles.Button type="submit" disabled={isDisabled}>
           <styles.SendIcon src={sendIcon} alt="Send message" />
         </styles.Button>
       </styles.Footer>

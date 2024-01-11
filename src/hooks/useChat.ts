@@ -28,6 +28,10 @@ export const useChat = () => {
   const { mutate: verifyRecaptcha } = useCreateRecaptcha({
     onSuccess: ({ success }) => {
       setValidRecaptcha(success);
+
+      if (!success) {
+        setWelcomeMessage(createMessage(ERRORS.RECAPTCHA_VERIFICATION));
+      }
     },
     onError: (error: Error) => {
       setWelcomeMessage(createMessage(error.message));
@@ -35,8 +39,8 @@ export const useChat = () => {
   });
 
   useEffect(() => {
-    if (token != "" && conversationId) {
-      verifyRecaptcha({token: token, conversationId: conversationId});
+    if (token && conversationId) {
+      verifyRecaptcha({ token: token, conversationId: conversationId });
     }
   }, [token, conversationId, verifyRecaptcha]);
 
