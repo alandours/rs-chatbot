@@ -38,3 +38,9 @@ export const setSessionConversationId = (conversationId: number) =>
     SESSION.CONVERSATION_ID,
     JSON.stringify(conversationId)
   );
+
+export const showNotification = () =>
+  !sessionStorage.getItem(SESSION.MESSAGES_READ);
+
+export const setSessionReadMessages = (open: boolean) =>
+  open && sessionStorage.setItem(SESSION.MESSAGES_READ, JSON.stringify(open));

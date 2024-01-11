@@ -14,15 +14,8 @@ import { createMessage } from "@/utils";
 import { getSessionConversationId } from "@/utils/session";
 
 export const useChat = () => {
-  const {
-    conversationId,
-    storeConversationId,
-    open,
-    setUnread,
-    setValidRecaptcha,
-    token,
-    validRecaptcha,
-  } = useContext(ChatbotContext);
+  const { conversationId, storeConversationId, setValidRecaptcha, token, validRecaptcha } =
+    useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
 
@@ -32,7 +25,6 @@ export const useChat = () => {
   const { mutate: createConversation } = useCreateConversation({
     onSuccess: ({ conversation }) => {
       storeConversationId(conversation.id);
-      setUnread(true);
     },
     onError: (error: Error) => {
       setWelcomeMessage(createMessage(error.message));
@@ -79,10 +71,6 @@ export const useChat = () => {
       }
     }
   }, [agent, error, validRecaptcha, createConversation, storeConversationId]);
-
-  useEffect(() => {
-    setUnread(false);
-  }, [open, setUnread]);
 
   return { createChat, messages, welcomeMessage };
 };
