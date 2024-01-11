@@ -36,6 +36,7 @@ export const ERROR_MESSAGES = {
 export const SESSION = {
   REFETCH_LAST_MESSAGE: "refetchLastMessage",
   CONVERSATION_ID: "conversationId",
+  MESSAGES_READ: "messagesRead",
 };
 
 export const REFETCH_INTERVAL = 5000;
