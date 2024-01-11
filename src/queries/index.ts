@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useQuery, useMutation } from "react-query";
 
-import { REFETCH_INTERVAL, SESSION } from "@/constants";
+import { REFETCH_INTERVAL } from "@/constants";
 import { CONFIG } from "@/constants/config";
 import { Queries } from "@/constants/enums";
 import { ChatbotContext } from "@/context/ChatbotContext";
@@ -12,6 +12,7 @@ import {
 } from "@/services/conversations";
 import { getMessages, sendMessage } from "@/services/messages";
 import { RecaptchaResponse, verifyRecaptcha } from "@/services/recaptchas";
+import { refetchLastMessage } from "@/utils/session";
 
 import { queryClient } from "./queryClient";
 
@@ -52,9 +53,7 @@ export const useGetMessages = (conversationId?: number, agentId?: number) => {
     () => getMessages({ conversationId, agentId }),
     {
       enabled: !!(agentId && conversationId),
-      refetchInterval:
-        !!sessionStorage.getItem(SESSION.REFETCH_LAST_MESSAGE) &&
-        REFETCH_INTERVAL,
+      refetchInterval: refetchLastMessage() && REFETCH_INTERVAL,
     }
   );
 

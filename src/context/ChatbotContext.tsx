@@ -8,7 +8,7 @@ import {
   SetStateAction,
 } from "react";
 
-import { SESSION } from "@/constants";
+import { setSessionConversationId } from "@/utils/session";
 
 interface ChatbotContextValues {
   open: boolean;
@@ -45,14 +45,16 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState<boolean>(initialValues.open);
   const [conversationId, setConversationId] = useState<number>();
   const [unread, setUnread] = useState<boolean>(initialValues.unread);
-  const [validRecaptcha, setValidRecaptcha] = useState<boolean>(initialValues.validRecaptcha);
+  const [validRecaptcha, setValidRecaptcha] = useState<boolean>(
+    initialValues.validRecaptcha
+  );
   const [token, setToken] = useState<string>(initialValues.token);
 
   const chatbotRef = useRef<HTMLDivElement>(null);
 
   const storeConversationId = (id: number) => {
     setConversationId(id);
-    sessionStorage.setItem(SESSION.CONVERSATION_ID, JSON.stringify(id));
+    setSessionConversationId(id);
   };
 
   return (
@@ -69,7 +71,7 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
         validRecaptcha,
         setValidRecaptcha,
         token,
-        setToken
+        setToken,
       }}
     >
       {children}
