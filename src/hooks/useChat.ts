@@ -1,15 +1,27 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 
-import { ERRORS, SESSION } from "@/constants";
+import { ERRORS } from "@/constants";
 import { ChatbotContext } from "@/context/ChatbotContext";
-import { useCreateConversation, useGetAgent, useGetMessages, useCreateRecaptcha } from "@/queries";
+import {
+  useCreateConversation,
+  useGetAgent,
+  useGetMessages,
+  useCreateRecaptcha,
+} from "@/queries";
 import { setApiKey } from "@/services/client";
 import { Message } from "@/types";
 import { createMessage } from "@/utils";
+import { getSessionConversationId } from "@/utils/session";
 
 export const useChat = () => {
-  const { conversationId, storeConversationId, open, setUnread, setValidRecaptcha, token } =
-    useContext(ChatbotContext);
+  const {
+    conversationId,
+    storeConversationId,
+    open,
+    setUnread,
+    setValidRecaptcha,
+    token,
+  } = useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
 
@@ -54,13 +66,12 @@ export const useChat = () => {
 
       setApiKey(agent.apiKey);
 
-      const sessionData = sessionStorage.getItem(SESSION.CONVERSATION_ID);
-      const sessionId = sessionData && JSON.parse(sessionData);
+      const sessionConversationId = getSessionConversationId();
 
-      if (!sessionId) {
+      if (!sessionConversationId) {
         createConversation(agent?.id);
       } else {
-        storeConversationId(Number(sessionId));
+        storeConversationId(Number(sessionConversationId));
       }
     }
   }, [agent, error, createConversation, storeConversationId]);

@@ -2,13 +2,13 @@ import { FormEvent, useContext, useEffect, useRef } from "react";
 
 import { Message } from "@/components/Message";
 import { TypingLoader } from "@/components/TypingLoader";
-import { SESSION } from "@/constants";
 import { CONFIG } from "@/constants/config";
 import { MessageRoles } from "@/constants/enums";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import { useSendMessage } from "@/queries";
 import { Message as MessageType } from "@/types";
 import { createMessage } from "@/utils";
+import { handleRefetchMessage } from "@/utils/session";
 
 import minimizeIcon from "@/assets/minimize.webp";
 import sendIcon from "@/assets/send.webp";
@@ -90,20 +90,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
   }, [isLoading, messages]);
 
   useEffect(() => {
-    if (isLoading) {
-      sessionStorage.setItem(
-        SESSION.REFETCH_LAST_MESSAGE,
-        JSON.stringify(isLoading)
-      );
-    }
-
-    if (
-      !isLoading &&
-      !!messages.length &&
-      messages[messages.length - 1].role === MessageRoles.ASSISTANT
-    ) {
-      sessionStorage.removeItem(SESSION.REFETCH_LAST_MESSAGE);
-    }
+    handleRefetchMessage(isLoading, messages);
   }, [isLoading, messages]);
 
   const isDisabled = isLoading || !conversationId || !validRecaptcha;
