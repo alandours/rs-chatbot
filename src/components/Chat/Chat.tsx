@@ -24,7 +24,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
   const { chatbotRef, closeChat, conversationId, validRecaptcha } =
     useContext(ChatbotContext);
 
-  const { isLoading, mutate: sendMessage } = useSendMessage({
+  const { isLoading: isSendingMessage, mutate: sendMessage } = useSendMessage({
     onError: (error: Error) => {
       const lastMessage = messages.pop()!;
       messages.push({ ...lastMessage, errorMessage: error.message });
@@ -87,13 +87,13 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     }, 100);
 
     return () => clearInterval(scrollTimeout);
-  }, [isLoading, messages]);
+  }, [isSendingMessage, messages]);
 
   useEffect(() => {
-    handleRefetchMessage(isLoading, messages);
-  }, [isLoading, messages]);
+    handleRefetchMessage(isSendingMessage, messages);
+  }, [isSendingMessage, messages]);
 
-  const isDisabled = isLoading || !conversationId || !validRecaptcha;
+  const isDisabled = isSendingMessage || !conversationId || !validRecaptcha;
 
   return (
     <styles.Chatbot ref={chatbotRef}>
@@ -112,7 +112,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
         {messages.map((data) => (
           <Message data={data} key={data.id} />
         ))}
-        {isLoading && <TypingLoader />}
+        {isSendingMessage && <TypingLoader />}
         {messages && <div ref={scrollEndRef} />}
       </styles.Main>
       <styles.DisclaimerWrapper>
