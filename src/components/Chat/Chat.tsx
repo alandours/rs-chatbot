@@ -8,7 +8,7 @@ import { ChatbotContext } from "@/context/ChatbotContext";
 import { useSendMessage } from "@/queries";
 import { Message as MessageType } from "@/types";
 import { createMessage } from "@/utils";
-import { handleRefetchMessage } from "@/utils/session";
+import { handlePendingResponse, removePendingResponse } from "@/utils/session";
 
 import minimizeIcon from "@/assets/minimize.webp";
 import sendIcon from "@/assets/send.webp";
@@ -21,10 +21,13 @@ type ChatProps = {
 };
 
 export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
-  const { chatbotRef, closeChat, conversationId } = useContext(ChatbotContext);
+  const { chatbotRef, closeChat, conversationId, validRecaptcha } =
+    useContext(ChatbotContext);
 
-  const { isLoading, mutate: sendMessage } = useSendMessage({
+  const { isLoading: isSendingMessage, mutate: sendMessage } = useSendMessage({
     onError: (error: Error) => {
+      removePendingResponse();
+
       const lastMessage = messages.pop()!;
       messages.push({ ...lastMessage, errorMessage: error.message });
     },
@@ -35,6 +38,8 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
 
   const onSendMessage = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!validRecaptcha) return;
 
     const target = e.target as HTMLFormElement;
     const content = target.message.value;
@@ -84,11 +89,13 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     }, 100);
 
     return () => clearInterval(scrollTimeout);
-  }, [isLoading, messages]);
+  }, [isSendingMessage, messages]);
 
   useEffect(() => {
-    handleRefetchMessage(isLoading, messages);
-  }, [isLoading, messages]);
+    handlePendingResponse(isSendingMessage, messages);
+  }, [isSendingMessage, messages]);
+
+  const isDisabled = isSendingMessage || !conversationId || !validRecaptcha;
 
   return (
     <styles.Chatbot ref={chatbotRef}>
@@ -107,7 +114,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
         {messages.map((data) => (
           <Message data={data} key={data.id} />
         ))}
-        {isLoading && <TypingLoader />}
+        {isSendingMessage && <TypingLoader />}
         {messages && <div ref={scrollEndRef} />}
       </styles.Main>
       <styles.DisclaimerWrapper>
@@ -129,7 +136,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
           type="text"
           placeholder="Send a message..."
         />
-        <styles.Button type="submit" disabled={isLoading}>
+        <styles.Button type="submit" disabled={isDisabled}>
           <styles.SendIcon src={sendIcon} alt="Send message" />
         </styles.Button>
       </styles.Footer>

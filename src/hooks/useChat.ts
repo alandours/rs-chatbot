@@ -14,7 +14,7 @@ import { createMessage } from "@/utils";
 import { getSessionConversationId } from "@/utils/session";
 
 export const useChat = () => {
-  const { conversationId, storeConversationId, setValidRecaptcha, token } =
+  const { conversationId, storeConversationId, setValidRecaptcha, token, validRecaptcha } =
     useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
@@ -34,6 +34,10 @@ export const useChat = () => {
   const { mutate: verifyRecaptcha } = useCreateRecaptcha({
     onSuccess: ({ success }) => {
       setValidRecaptcha(success);
+
+      if (!success) {
+        setWelcomeMessage(createMessage(ERRORS.RECAPTCHA_VERIFICATION));
+      }
     },
     onError: (error: Error) => {
       setWelcomeMessage(createMessage(error.message));
@@ -41,7 +45,7 @@ export const useChat = () => {
   });
 
   useEffect(() => {
-    if (token != "" && conversationId) {
+    if (token && conversationId) {
       verifyRecaptcha({ token: token, conversationId: conversationId });
     }
   }, [token, conversationId, verifyRecaptcha]);
@@ -52,7 +56,9 @@ export const useChat = () => {
     }
 
     if (agent) {
-      setWelcomeMessage(createMessage(agent.welcomeMessage));
+      if (validRecaptcha) {
+        setWelcomeMessage(createMessage(agent.welcomeMessage));
+      }
 
       setApiKey(agent.apiKey);
 
@@ -64,7 +70,7 @@ export const useChat = () => {
         storeConversationId(Number(sessionConversationId));
       }
     }
-  }, [agent, error, createConversation, storeConversationId]);
+  }, [agent, error, validRecaptcha, createConversation, storeConversationId]);
 
   return { createChat, messages, welcomeMessage };
 };

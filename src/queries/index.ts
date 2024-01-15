@@ -12,7 +12,7 @@ import {
 } from "@/services/conversations";
 import { getMessages, sendMessage } from "@/services/messages";
 import { RecaptchaResponse, verifyRecaptcha } from "@/services/recaptchas";
-import { refetchLastMessage } from "@/utils/session";
+import { isPendingResponse } from "@/utils/session";
 
 import { queryClient } from "./queryClient";
 
@@ -53,7 +53,7 @@ export const useGetMessages = (conversationId?: number, agentId?: number) => {
     () => getMessages({ conversationId, agentId }),
     {
       enabled: !!(agentId && conversationId),
-      refetchInterval: refetchLastMessage() && REFETCH_INTERVAL,
+      refetchInterval: isPendingResponse() && REFETCH_INTERVAL,
     }
   );
 

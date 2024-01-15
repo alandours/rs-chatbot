@@ -23,7 +23,7 @@ function App() {
 
   const onVerify = useCallback(
     (googleToken: string) => {
-      if (token === "") {
+      if (!token) {
         setToken(googleToken);
       }
     },

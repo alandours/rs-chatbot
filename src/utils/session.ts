@@ -2,13 +2,13 @@ import { SESSION } from "@/constants";
 import { MessageRoles } from "@/constants/enums";
 import { Message } from "@/types";
 
-export const handleRefetchMessage = (
+export const handlePendingResponse = (
   isSendingMessage: boolean,
   messages: Message[]
 ) => {
   if (isSendingMessage) {
     sessionStorage.setItem(
-      SESSION.REFETCH_LAST_MESSAGE,
+      SESSION.PENDING_RESPONSE,
       JSON.stringify(isSendingMessage)
     );
   }
@@ -18,12 +18,15 @@ export const handleRefetchMessage = (
     !!messages.length &&
     messages[messages.length - 1].role === MessageRoles.ASSISTANT
   ) {
-    sessionStorage.removeItem(SESSION.REFETCH_LAST_MESSAGE);
+    removePendingResponse();
   }
 };
 
-export const refetchLastMessage = () =>
-  !!sessionStorage.getItem(SESSION.REFETCH_LAST_MESSAGE);
+export const removePendingResponse = () =>
+  sessionStorage.removeItem(SESSION.PENDING_RESPONSE);
+
+export const isPendingResponse = () =>
+  !!sessionStorage.getItem(SESSION.PENDING_RESPONSE);
 
 export const getSessionConversationId = (): number | null => {
   const sessionData = sessionStorage.getItem(SESSION.CONVERSATION_ID);
