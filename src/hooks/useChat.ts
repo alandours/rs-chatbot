@@ -19,10 +19,10 @@ export const useChat = () => {
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
 
-  const { agent, error } = useGetAgent();
+  const { agent, error: agentError } = useGetAgent();
   const { messages } = useGetMessages(conversationId, agent?.id);
 
-  const { mutate: createConversation } = useCreateConversation({
+  const { mutate: createConversation, isLoading } = useCreateConversation({
     onSuccess: ({ conversation }) => {
       storeConversationId(conversation.id);
     },
@@ -51,7 +51,7 @@ export const useChat = () => {
   }, [token, conversationId, verifyRecaptcha]);
 
   const createChat = useCallback(async () => {
-    if (error) {
+    if (agentError) {
       setWelcomeMessage(createMessage(ERRORS.GET_MESSAGE));
     }
 
@@ -64,13 +64,22 @@ export const useChat = () => {
 
       const sessionConversationId = getSessionConversationId();
 
-      if (!sessionConversationId) {
+      if (!sessionConversationId && !isLoading) {
         createConversation(agent?.id);
-      } else {
+      }
+
+      if (sessionConversationId) {
         storeConversationId(Number(sessionConversationId));
       }
     }
-  }, [agent, error, validRecaptcha, createConversation, storeConversationId]);
+  }, [
+    agent,
+    agentError,
+    validRecaptcha,
+    isLoading,
+    createConversation,
+    storeConversationId,
+  ]);
 
   return { createChat, messages, welcomeMessage };
 };

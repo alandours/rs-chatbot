@@ -56,6 +56,7 @@ export const useGetMessages = (conversationId?: number, agentId?: number) => {
     {
       enabled: !!(agentId && conversationId),
       refetchInterval: isPendingResponse() && REFETCH_INTERVAL,
+      refetchOnWindowFocus: false,
     }
   );
 
