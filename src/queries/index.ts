@@ -17,7 +17,9 @@ import { isPendingResponse } from "@/utils/session";
 import { queryClient } from "./queryClient";
 
 export const useGetAgent = () => {
-  const { data, error } = useQuery([Queries.agents], getAgents);
+  const { data, error } = useQuery([Queries.agents], getAgents, {
+    refetchOnWindowFocus: false,
+  });
 
   const agent = data?.agents.find((agent) => agent.id === CONFIG.AGENT_ID);
 
