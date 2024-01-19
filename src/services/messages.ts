@@ -60,7 +60,7 @@ export const sendMessage = async ({
 
     if (axios.isAxiosError(error) && error.response?.data.errors) {
       const { content } = error.response.data.errors;
-      errorMessage = content.length ? `Message ${content[0]}` : errorMessage;
+      errorMessage = content?.[0] || errorMessage;
     }
 
     throw new Error(errorMessage);
