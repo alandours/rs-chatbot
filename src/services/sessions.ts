@@ -4,13 +4,14 @@ import { Agent } from "@/types";
 
 import { client } from "./client";
 
-type AgentsResponse = {
-  agents: Agent[];
+export type SessionResponse = {
+  token: string;
+  agent: Agent;
 };
 
-export const getAgents = async (): Promise<AgentsResponse> => {
+export const createSession = async (): Promise<SessionResponse> => {
   try {
-    const { data } = await client.get(Paths.agents);
+    const { data } = await client.post(Paths.sessions, {});
     return data;
   } catch (error) {
     throw new Error(ERRORS.GET_MESSAGE);

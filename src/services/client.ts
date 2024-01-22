@@ -23,16 +23,11 @@ client.interceptors.response.use(async (response) => {
   return { ...response, data: humps.camelizeKeys(response.data) };
 });
 
-export const setApiKey = (apiKey: string) =>
+export const setSessionTokenHeader = (sessionToken: string) =>
   client.interceptors.request.use((config) => {
-    config.headers.set("x-api-key", apiKey);
+    if (sessionToken) {
+      config.headers.set("Authorization", sessionToken);
+    }
+    
     return config;
   });
-
-type QueryParams = {
-  conversation: { agentId: number };
-};
-
-export const getQueryParams = (agentId: number): QueryParams => ({
-  conversation: { agentId },
-});

@@ -8,17 +8,14 @@ export type RecaptchaResponse = {
 
 type VerifyRecaptchaParams = {
   token?: string;
-  conversationId?: number;
 };
 
 export const verifyRecaptcha = async ({
-  token,
-  conversationId,
+  token
 }: VerifyRecaptchaParams): Promise<RecaptchaResponse> => {
   try {
     const { data } = await client.post(Paths.recaptchas, {
-      token,
-      conversationId,
+      token
     });
     return data;
   } catch (error) {

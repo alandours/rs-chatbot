@@ -10,8 +10,6 @@ Clone the repo and update the `config.ts` file
 const CONFIG = {
   // API url
   API_URL: "https://chatbot-api-url.com/api",
-  // Chatbot agent id
-  AGENT_ID: 1234,
   // Displayed at the top of the chat
   CHATBOT_NAME: "Ask AI",
   // Displayed next to each chatbot message

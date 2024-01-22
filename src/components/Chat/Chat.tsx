@@ -21,7 +21,7 @@ type ChatProps = {
 };
 
 export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
-  const { chatbotRef, closeChat, conversationId, validRecaptcha } =
+  const { chatbotRef, closeChat, sessionToken, validRecaptcha } =
     useContext(ChatbotContext);
 
   const { isLoading: isSendingMessage, mutate: sendMessage } = useSendMessage({
@@ -44,9 +44,9 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     const target = e.target as HTMLFormElement;
     const content = target.message.value;
 
-    if (conversationId && content) {
+    if (sessionToken && content) {
       messages.push(createMessage(content, MessageRoles.USER));
-      sendMessage({ conversationId, content });
+      sendMessage({ content });
       target.reset();
     }
   };
@@ -95,7 +95,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     handlePendingResponse(isSendingMessage, messages);
   }, [isSendingMessage, messages]);
 
-  const isDisabled = isSendingMessage || !conversationId || !validRecaptcha;
+  const isDisabled = isSendingMessage || !sessionToken || !validRecaptcha;
 
   return (
     <styles.Chatbot ref={chatbotRef}>

@@ -18,16 +18,16 @@ import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
 
 function App() {
-  const { open, setToken, token } = useContext(ChatbotContext);
+  const { open, setCaptchaToken, captchaToken } = useContext(ChatbotContext);
   const { width, height, setFrameSize } = useFrameSize();
 
   const onVerify = useCallback(
     (googleToken: string) => {
-      if (!token) {
-        setToken(googleToken);
+      if (!captchaToken) {
+        setCaptchaToken(googleToken);
       }
     },
-    [token, setToken]
+    [captchaToken, setCaptchaToken]
   );
 
   useEffect(() => {
