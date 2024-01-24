@@ -35,8 +35,9 @@ export const ERROR_MESSAGES = {
 
 export const SESSION = {
   PENDING_RESPONSE: "pendingResponse",
-  CONVERSATION_ID: "conversationId",
+  SESSION_TOKEN: "sessionToken",
   MESSAGES_READ: "messagesRead",
+  AGENT_WELCOME_MESSAGE: "agentWelcomeMessage",
 };
 
 export const REFETCH_INTERVAL = 5000;

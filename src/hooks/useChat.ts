@@ -3,28 +3,28 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { ERRORS } from "@/constants";
 import { ChatbotContext } from "@/context/ChatbotContext";
 import {
-  useCreateConversation,
-  useGetAgent,
+  useCreateSession,
   useGetMessages,
   useCreateRecaptcha,
 } from "@/queries";
-import { setApiKey } from "@/services/client";
+import { setSessionTokenHeader } from "@/services/client";
 import { Message } from "@/types";
 import { createMessage } from "@/utils";
-import { getSessionConversationId } from "@/utils/session";
+import { getSessionSessionToken } from "@/utils/session";
 
 export const useChat = () => {
-  const { conversationId, storeConversationId, setValidRecaptcha, token, validRecaptcha } =
+  const { sessionToken, storeSessionToken, agentWelcomeMessage, storeAgentWelcomeMessage, setValidRecaptcha, captchaToken, validRecaptcha } =
     useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
 
-  const { agent, error: agentError } = useGetAgent();
-  const { messages } = useGetMessages(conversationId, agent?.id);
+  const { messages } = useGetMessages(sessionToken);
 
-  const { mutate: createConversation, isLoading } = useCreateConversation({
-    onSuccess: ({ conversation }) => {
-      storeConversationId(conversation.id);
+  const { mutate: createSession, isLoading } = useCreateSession({
+    onSuccess: ({ token, agent }) => {
+      storeSessionToken(token);
+      storeAgentWelcomeMessage(agent.welcomeMessage);
+      setSessionTokenHeader(String(token));
     },
     onError: (error: Error) => {
       setWelcomeMessage(createMessage(error.message));
@@ -45,41 +45,26 @@ export const useChat = () => {
   });
 
   useEffect(() => {
-    if (token && conversationId) {
-      verifyRecaptcha({ token: token, conversationId: conversationId });
+    if (captchaToken && sessionToken) {
+      verifyRecaptcha({ token: captchaToken });
     }
-  }, [token, conversationId, verifyRecaptcha]);
+  }, [captchaToken, verifyRecaptcha, sessionToken]);
 
   const createChat = useCallback(async () => {
-    if (agentError) {
-      setWelcomeMessage(createMessage(ERRORS.GET_MESSAGE));
-    }
+    const sessionSessionToken = getSessionSessionToken();
 
-    if (agent) {
-      if (validRecaptcha) {
-        setWelcomeMessage(createMessage(agent.welcomeMessage));
-      }
-
-      setApiKey(agent.apiKey);
-
-      const sessionConversationId = getSessionConversationId();
-
-      if (!sessionConversationId && !isLoading) {
-        createConversation(agent?.id);
-      }
-
-      if (sessionConversationId) {
-        storeConversationId(Number(sessionConversationId));
+    if (!sessionSessionToken && !sessionToken && !isLoading) {
+      createSession();
+    } else {
+      if (sessionSessionToken) {
+        setSessionTokenHeader(String(sessionSessionToken));
       }
     }
-  }, [
-    agent,
-    agentError,
-    validRecaptcha,
-    isLoading,
-    createConversation,
-    storeConversationId,
-  ]);
+
+    if (validRecaptcha) {
+      setWelcomeMessage(createMessage(String(agentWelcomeMessage)));
+    }
+  }, [sessionToken, isLoading, validRecaptcha, createSession, agentWelcomeMessage]);
 
   return { createChat, messages, welcomeMessage };
 };

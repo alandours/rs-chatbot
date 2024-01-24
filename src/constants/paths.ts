@@ -1,6 +1,5 @@
 export enum Paths {
-  agents = "/agents",
-  conversations = "/conversations",
   messages = "/messages",
-  recaptchas = "/recaptchas"
+  recaptchas = "/recaptchas",
+  sessions = "/tokens"
 }
