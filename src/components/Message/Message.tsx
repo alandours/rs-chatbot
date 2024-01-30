@@ -1,6 +1,6 @@
 import { USERNAMES } from "@/constants";
 import { MessageRoles } from "@/constants/enums";
-import Linkify from 'react-linkify';
+import linkifyHtml from "linkify-html";
 
 import errorIcon from "@/assets/error.webp";
 
@@ -16,11 +16,10 @@ type MessageProps = {
   };
 };
 
-const componentDecorator = (href: string, text: string, key: number) => (
-  <a href={href} key={key} target="_blank" rel="noopener noreferrer">
-    {text}
-  </a>
-);
+const options = {
+  target: "_blank",
+  rel: "noopener noreferrer"
+};
 
 export const Message = ({
   data: { content, role, createdAt, errorMessage },
@@ -33,7 +32,7 @@ export const Message = ({
     <styles.MessageWrapper $variant={role}>
       {errorMessage && <styles.ErrorIcon src={errorIcon}></styles.ErrorIcon>}
       <styles.Message $variant={role} $error={!!errorMessage}>
-        <Linkify componentDecorator={componentDecorator}>{content}</Linkify>
+        <div dangerouslySetInnerHTML={{ __html: linkifyHtml(content, options) }} />
       </styles.Message>
     </styles.MessageWrapper>
     {errorMessage && <styles.ErrorMessage>{errorMessage}</styles.ErrorMessage>}
