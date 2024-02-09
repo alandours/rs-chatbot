@@ -4,6 +4,7 @@ export const COLORS = {
   GREY: {
     LIGHTER: "#E2E2DE",
     LIGHT: "#C0C0C0",
+    LIGHTISH: "#9E9E9E",
     BASE: "#8D8D8D",
     DARK: "#6F6F6E",
     DARKER: "#212121",

@@ -15,7 +15,7 @@ export const MessageContainer = styled.div<StyledProps>`
     `align-items: ${
       $variant === MessageRoles.USER ? "flex-end" : "flex-start"
     }`};
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 `;
 
 export const MessageHeader = styled.div<StyledProps>`
@@ -52,6 +52,7 @@ export const Message = styled.div<StyledProps>`
   max-width: 21rem;
   padding: 0.75rem;
   word-break: break-word;
+  margin-bottom: 0.25rem;
 
   ${({ $variant, $error }) => `
     background: ${

@@ -2,6 +2,7 @@ import { createMessage } from "@/utils";
 
 import { CONFIG } from "./config";
 import { MessageRoles } from "./enums";
+import { Suggestion as SuggestionType } from "@/types";
 
 export const BREAKPOINTS = {
   MOBILE: 480,
@@ -43,3 +44,24 @@ export const SESSION = {
 export const REFETCH_INTERVAL = 5000;
 
 export const DEFAULT_AGENT_WELCOME_MESSAGE = "👋 Greetings! Glad you’re here at Rootstrap. I’m your AI assistant. What can I do for you today?";
+
+export const PICK_SUGGESTION_COPY = "🌟 Excited to assist you! Whether you’re here to learn more about us or have a specific question, I’ve got your back. Here are a few handy options to get you started:";
+
+export const SUGGESTIONS: SuggestionType[] = [
+  {
+    label: "🚀 Build a Product",
+    message: "I want to build a product. Can you help me?",
+  },
+  {
+    label: "🤖 AI / ML",
+    message: "Can you tell me about your AI/ML capabilities?",
+  },
+  {
+    label: "💻 Development",
+    message: "Tell me more about your development capabilities",
+  },
+  {
+    label: "📱 Product Design & Strategy",
+    message: "Can Rootstrap help me with product design and strategy?",
+  },
+];
