@@ -9,6 +9,7 @@ import {
 } from "react";
 
 import { setSessionSessionToken, setSessionAgentWelcomeMessage, getSessionAgentWelcomeMessage } from "@/utils/session";
+import { DEFAULT_AGENT_WELCOME_MESSAGE } from "@/constants";
 
 interface ChatbotContextValues {
   open: boolean;
@@ -70,7 +71,7 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
   const restoreSession = (sessionSessionToken: string) => {
     const sessionAgentWelcomeMessage = getSessionAgentWelcomeMessage();
     setSessionToken(sessionSessionToken);
-    setAgentWelcomeMessage(sessionAgentWelcomeMessage || "");
+    setAgentWelcomeMessage(sessionAgentWelcomeMessage || DEFAULT_AGENT_WELCOME_MESSAGE);
   }
 
   return (
