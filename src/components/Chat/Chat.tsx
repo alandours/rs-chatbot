@@ -121,6 +121,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
         {welcomeMessage && (
           <ConversationStarter
             welcomeMessage={welcomeMessage}
+            hasError={!sessionToken || !validRecaptcha}
             onPickSuggestion={onPickSuggestion}
           />
         )}
