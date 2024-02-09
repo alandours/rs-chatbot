@@ -54,7 +54,7 @@ export const setSessionAgentWelcomeMessage = (welcomeMessage: string) =>
 
 export const showNotification = () => {
   const messagesRead = sessionStorage.getItem(SESSION.MESSAGES_READ);
-  return messagesRead && !JSON.parse(messagesRead);
+  return messagesRead ? !JSON.parse(messagesRead) : true;
 }
 
 export const setSessionReadMessages = (open: boolean) =>
