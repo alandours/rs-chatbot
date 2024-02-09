@@ -13,7 +13,7 @@ import { createMessage } from "@/utils";
 import { getSessionSessionToken } from "@/utils/session";
 
 export const useChat = () => {
-  const { sessionToken, storeSessionToken, agentWelcomeMessage, storeAgentWelcomeMessage, setValidRecaptcha, captchaToken, validRecaptcha } =
+  const { sessionToken, storeSessionToken, restoreSession, agentWelcomeMessage, storeAgentWelcomeMessage, setValidRecaptcha, captchaToken, validRecaptcha } =
     useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
@@ -57,6 +57,7 @@ export const useChat = () => {
       createSession();
     } else {
       if (sessionSessionToken) {
+        restoreSession(sessionSessionToken);
         setSessionTokenHeader(String(sessionSessionToken));
       }
     }
@@ -64,7 +65,7 @@ export const useChat = () => {
     if (validRecaptcha) {
       setWelcomeMessage(createMessage(String(agentWelcomeMessage)));
     }
-  }, [sessionToken, isLoading, validRecaptcha, createSession, agentWelcomeMessage]);
+  }, [sessionToken, restoreSession, isLoading, validRecaptcha, createSession, agentWelcomeMessage]);
 
   return { createChat, messages, welcomeMessage };
 };

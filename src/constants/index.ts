@@ -41,3 +41,5 @@ export const SESSION = {
 };
 
 export const REFETCH_INTERVAL = 5000;
+
+export const DEFAULT_AGENT_WELCOME_MESSAGE = "👋 Greetings! Glad you’re here at Rootstrap. I’m your AI assistant. What can I do for you today?";

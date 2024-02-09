@@ -8,7 +8,8 @@ import {
   SetStateAction,
 } from "react";
 
-import { setSessionSessionToken, setSessionAgentWelcomeMessage } from "@/utils/session";
+import { setSessionSessionToken, setSessionAgentWelcomeMessage, getSessionAgentWelcomeMessage } from "@/utils/session";
+import { DEFAULT_AGENT_WELCOME_MESSAGE } from "@/constants";
 
 interface ChatbotContextValues {
   open: boolean;
@@ -24,6 +25,7 @@ interface ChatbotContextValues {
   setCaptchaToken: Dispatch<SetStateAction<string>>;
   agentWelcomeMessage?: string;
   storeAgentWelcomeMessage: (message: string) => void;
+  restoreSession: (sessionSessionToken: string) => void;
 }
 
 const initialValues: ChatbotContextValues = {
@@ -38,6 +40,7 @@ const initialValues: ChatbotContextValues = {
   captchaToken: "",
   setCaptchaToken: () => null,
   storeAgentWelcomeMessage: () => null,
+  restoreSession: () => null,
 };
 
 export const ChatbotContext =
@@ -65,6 +68,12 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
     setSessionAgentWelcomeMessage(message);
   }
 
+  const restoreSession = (sessionSessionToken: string) => {
+    const sessionAgentWelcomeMessage = getSessionAgentWelcomeMessage();
+    setSessionToken(sessionSessionToken);
+    setAgentWelcomeMessage(sessionAgentWelcomeMessage || DEFAULT_AGENT_WELCOME_MESSAGE);
+  }
+
   return (
     <ChatbotContext.Provider
       value={{
@@ -81,6 +90,7 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
         setCaptchaToken,
         agentWelcomeMessage,
         storeAgentWelcomeMessage,
+        restoreSession,
       }}
     >
       {children}
