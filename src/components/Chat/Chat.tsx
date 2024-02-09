@@ -1,5 +1,6 @@
 import { FormEvent, useContext, useEffect, useRef } from "react";
 
+import { ConversationStarter } from "@/components/ConversationStarter";
 import { Message } from "@/components/Message";
 import { TypingLoader } from "@/components/TypingLoader";
 import { CONFIG } from "@/constants/config";
@@ -48,6 +49,13 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
       messages.push(createMessage(content, MessageRoles.USER));
       sendMessage({ content });
       target.reset();
+    }
+  };
+
+  const onPickSuggestion = (suggestion: string) => {
+    if (sessionToken && suggestion) {
+      messages.push(createMessage(suggestion, MessageRoles.USER));
+      sendMessage({ content: suggestion });
     }
   };
 
@@ -110,7 +118,12 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
         </styles.MinimizeButton>
       </styles.Header>
       <styles.Main ref={scrollAreaRef}>
-        {welcomeMessage && <Message data={welcomeMessage} />}
+        {welcomeMessage && (
+          <ConversationStarter
+            welcomeMessage={welcomeMessage}
+            onPickSuggestion={onPickSuggestion}
+          />
+        )}
         {messages.map((data) => (
           <Message data={data} key={data.id} />
         ))}
