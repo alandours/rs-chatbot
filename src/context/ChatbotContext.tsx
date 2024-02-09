@@ -69,7 +69,6 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
 
   const restoreSession = (sessionSessionToken: string) => {
     const sessionAgentWelcomeMessage = getSessionAgentWelcomeMessage();
-    
     setSessionToken(sessionSessionToken);
     setAgentWelcomeMessage(sessionAgentWelcomeMessage || "");
   }
