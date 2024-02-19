@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as styles from "./styles";
 
 type SuggestionBubbleProps = {
@@ -8,8 +9,18 @@ type SuggestionBubbleProps = {
 export const SuggestionBubble = ({
   onClick,
   children,
-}: SuggestionBubbleProps) => (
-  <styles.SuggestionBubbleContainer onClick={onClick}>
-    {children}
-  </styles.SuggestionBubbleContainer>
-);
+}: SuggestionBubbleProps) => {
+  const [isHovering, setIsHovering] = useState(false);
+
+  return (
+    <styles.SuggestionBubbleContainer
+      $isHovering={isHovering}
+      onClick={onClick}
+      onMouseLeave={() => setIsHovering(false)}
+      onMouseEnter={() => setIsHovering(true)}
+    >
+      <styles.SuggestionBubbleLabel>{children}</styles.SuggestionBubbleLabel>
+      <styles.SuggestionBubbleHover $isHovering={isHovering} />
+    </styles.SuggestionBubbleContainer>
+  );
+};
