@@ -1,6 +1,7 @@
 import { USERNAMES } from "@/constants";
 import { MessageRoles } from "@/constants/enums";
 import linkifyHtml from "linkify-html";
+import sanitizeHtml from 'sanitize-html';
 
 import errorIcon from "@/assets/error.webp";
 
@@ -40,7 +41,7 @@ export const Message = ({
           <styles.Message $variant={role} $error={!!errorMessage}>
             <div
               dangerouslySetInnerHTML={{
-                __html: linkifyHtml(content, options),
+                __html: sanitizeHtml(linkifyHtml(content, options)),
               }}
             />
           </styles.Message>
