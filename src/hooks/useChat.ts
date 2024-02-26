@@ -13,14 +13,22 @@ import { createMessage } from "@/utils";
 import { getSessionSessionToken } from "@/utils/session";
 
 export const useChat = () => {
-  const { sessionToken, storeSessionToken, restoreSession, agentWelcomeMessage, storeAgentWelcomeMessage, setValidRecaptcha, captchaToken, validRecaptcha } =
-    useContext(ChatbotContext);
+  const {
+    sessionToken,
+    storeSessionToken,
+    restoreSession,
+    agentWelcomeMessage,
+    storeAgentWelcomeMessage,
+    setValidRecaptcha,
+    captchaToken,
+    validRecaptcha,
+  } = useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
 
   const { messages } = useGetMessages(sessionToken);
 
-  const { mutate: createSession, isLoading } = useCreateSession({
+  const { mutate: createSession, isLoading, isError: hasSessionError } = useCreateSession({
     onSuccess: ({ token, agent }) => {
       storeSessionToken(token);
       storeAgentWelcomeMessage(agent.welcomeMessage);
@@ -53,7 +61,7 @@ export const useChat = () => {
   const createChat = useCallback(async () => {
     const sessionSessionToken = getSessionSessionToken();
 
-    if (!sessionSessionToken && !sessionToken && !isLoading) {
+    if (!sessionSessionToken && !sessionToken && !isLoading && !hasSessionError) {
       createSession();
     } else {
       if (sessionSessionToken) {
@@ -65,7 +73,15 @@ export const useChat = () => {
     if (validRecaptcha) {
       setWelcomeMessage(createMessage(String(agentWelcomeMessage)));
     }
-  }, [sessionToken, restoreSession, isLoading, validRecaptcha, createSession, agentWelcomeMessage]);
+  }, [
+    sessionToken,
+    restoreSession,
+    isLoading,
+    validRecaptcha,
+    createSession,
+    agentWelcomeMessage,
+    hasSessionError,
+  ]);
 
   return { createChat, messages, welcomeMessage };
 };
