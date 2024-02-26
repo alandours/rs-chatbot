@@ -25,18 +25,16 @@ export const useChat = () => {
   } = useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
-  const [sessionError, setSessionError] = useState<Error>();
 
   const { messages } = useGetMessages(sessionToken);
 
-  const { mutate: createSession, isLoading } = useCreateSession({
+  const { mutate: createSession, isLoading, isError: hasSessionError } = useCreateSession({
     onSuccess: ({ token, agent }) => {
       storeSessionToken(token);
       storeAgentWelcomeMessage(agent.welcomeMessage);
       setSessionTokenHeader(String(token));
     },
     onError: (error: Error) => {
-      setSessionError(error);
       setWelcomeMessage(createMessage(error.message));
     },
   });
@@ -63,7 +61,7 @@ export const useChat = () => {
   const createChat = useCallback(async () => {
     const sessionSessionToken = getSessionSessionToken();
 
-    if (!sessionSessionToken && !sessionToken && !isLoading && !sessionError) {
+    if (!sessionSessionToken && !sessionToken && !isLoading && !hasSessionError) {
       createSession();
     } else {
       if (sessionSessionToken) {
@@ -82,7 +80,7 @@ export const useChat = () => {
     validRecaptcha,
     createSession,
     agentWelcomeMessage,
-    sessionError,
+    hasSessionError,
   ]);
 
   return { createChat, messages, welcomeMessage };
