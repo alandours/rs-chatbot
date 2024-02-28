@@ -23,6 +23,7 @@ function App() {
 
   const onVerify = useCallback(
     (googleToken: string) => {
+      debugger;
       if (!captchaToken) {
         setCaptchaToken(googleToken);
       }

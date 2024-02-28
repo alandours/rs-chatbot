@@ -34,17 +34,12 @@ export const getSessionSessionToken = (): string | null => {
 };
 
 export const setSessionSessionToken = (sessionToken: string) =>
-  sessionStorage.setItem(
-    SESSION.SESSION_TOKEN,
-    JSON.stringify(sessionToken)
-  );
+  sessionStorage.setItem(SESSION.SESSION_TOKEN, JSON.stringify(sessionToken));
 
 export const getSessionAgentWelcomeMessage = (): string | null => {
-  const welcomeMessage = sessionStorage.getItem(
-    SESSION.AGENT_WELCOME_MESSAGE
-  );
+  const welcomeMessage = sessionStorage.getItem(SESSION.AGENT_WELCOME_MESSAGE);
   return welcomeMessage && JSON.parse(welcomeMessage);
-}
+};
 
 export const setSessionAgentWelcomeMessage = (welcomeMessage: string) =>
   sessionStorage.setItem(
@@ -55,7 +50,12 @@ export const setSessionAgentWelcomeMessage = (welcomeMessage: string) =>
 export const showNotification = () => {
   const messagesRead = sessionStorage.getItem(SESSION.MESSAGES_READ);
   return messagesRead ? !JSON.parse(messagesRead) : true;
-}
+};
 
 export const setSessionReadMessages = (open: boolean) =>
   open && sessionStorage.setItem(SESSION.MESSAGES_READ, JSON.stringify(open));
+
+export const getGrecaptchaSessionToken = () => {
+  const token = sessionStorage.getItem(SESSION.GRECAPTCHA);
+  return token ? JSON.parse(token) : "";
+};

@@ -39,6 +39,7 @@ export const SESSION = {
   SESSION_TOKEN: "sessionToken",
   MESSAGES_READ: "messagesRead",
   AGENT_WELCOME_MESSAGE: "agentWelcomeMessage",
+  GRECAPTCHA: "_grecaptcha"
 };
 
 export const REFETCH_INTERVAL = 5000;
