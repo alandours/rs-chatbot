@@ -31,6 +31,8 @@ interface ChatbotContextValues {
   agentWelcomeMessage?: string;
   storeAgentWelcomeMessage: (message: string) => void;
   restoreSession: (sessionSessionToken: string) => void;
+  refreshReCaptcha: boolean;
+  setRefreshReCaptcha: Dispatch<SetStateAction<boolean>>;
 }
 
 const initialValues: ChatbotContextValues = {
@@ -46,6 +48,8 @@ const initialValues: ChatbotContextValues = {
   setCaptchaToken: () => null,
   storeAgentWelcomeMessage: () => null,
   restoreSession: () => null,
+  refreshReCaptcha: true,
+  setRefreshReCaptcha: () => null
 };
 
 export const ChatbotContext =
@@ -57,11 +61,12 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
   const [validRecaptcha, setValidRecaptcha] = useState<boolean>(
     initialValues.validRecaptcha
   );
+  const [refreshReCaptcha, setRefreshReCaptcha] = useState(true);
 
-  const sessionGrecaptchaToken = getGrecaptchaSessionToken();
+  const storedCaptchaToken = getGrecaptchaSessionToken();
 
   const [captchaToken, setCaptchaToken] = useState<string>(
-    sessionGrecaptchaToken || initialValues.captchaToken
+    storedCaptchaToken || initialValues.captchaToken
   );
 
   const [sessionToken, setSessionToken] = useState<string>(
@@ -105,6 +110,8 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
         agentWelcomeMessage,
         storeAgentWelcomeMessage,
         restoreSession,
+        refreshReCaptcha,
+        setRefreshReCaptcha
       }}
     >
       {children}

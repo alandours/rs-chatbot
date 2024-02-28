@@ -18,17 +18,19 @@ import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
 
 function App() {
-  const { open, setCaptchaToken, captchaToken } = useContext(ChatbotContext);
+  const { open, refreshReCaptcha, setRefreshReCaptcha, setCaptchaToken } =
+    useContext(ChatbotContext);
   const { width, height, setFrameSize } = useFrameSize();
 
   const onVerify = useCallback(
     (googleToken: string) => {
-      debugger;
-      if (!captchaToken) {
+      if (refreshReCaptcha) {
+        setRefreshReCaptcha(false);
         setCaptchaToken(googleToken);
       }
+      console.log({ googleToken });
     },
-    [captchaToken, setCaptchaToken]
+    [refreshReCaptcha, setRefreshReCaptcha, setCaptchaToken]
   );
 
   useEffect(() => {
@@ -47,21 +49,18 @@ function App() {
         {({ document }) => (
           <StyleSheetManager target={document?.head}>
             <GlobalStyle />
-            <GoogleReCaptchaProvider
-              reCaptchaKey={CONFIG.GOOGLE_RECAPTCHA_SITE_KEY}
-              container={{
-                element: "rs-chatbot-recaptcha",
-                parameters: {},
-              }}
-              scriptProps={{
-                async: true,
-              }}
-            >
-              <GoogleReCaptcha onVerify={onVerify} />
-              <QueryClientProvider client={queryClient}>
-                <Chatbot setFrameSize={setFrameSize} />
-              </QueryClientProvider>
-            </GoogleReCaptchaProvider>
+            <QueryClientProvider client={queryClient}>
+              <GoogleReCaptchaProvider
+                reCaptchaKey={CONFIG.GOOGLE_RECAPTCHA_SITE_KEY}
+                container={{
+                  element: "rs-chatbot-recaptcha",
+                  parameters: {},
+                }}
+              >
+                <GoogleReCaptcha onVerify={onVerify} />
+              </GoogleReCaptchaProvider>
+              <Chatbot setFrameSize={setFrameSize} />
+            </QueryClientProvider>
           </StyleSheetManager>
         )}
       </FrameContextConsumer>
