@@ -46,18 +46,21 @@ function App() {
         {({ document }) => (
           <StyleSheetManager target={document?.head}>
             <GlobalStyle />
-            <QueryClientProvider client={queryClient}>
-              <GoogleReCaptchaProvider
-                reCaptchaKey={CONFIG.GOOGLE_RECAPTCHA_SITE_KEY}
-                container={{
-                  element: "rs-chatbot-recaptcha",
-                  parameters: {},
-                }}
-              >
-                <GoogleReCaptcha onVerify={onVerify} />
-              </GoogleReCaptchaProvider>
-              <Chatbot setFrameSize={setFrameSize} />
-            </QueryClientProvider>
+            <GoogleReCaptchaProvider
+              reCaptchaKey={CONFIG.GOOGLE_RECAPTCHA_SITE_KEY}
+              container={{
+                element: "rs-chatbot-recaptcha",
+                parameters: {},
+              }}
+              scriptProps={{
+                async: true,
+              }}
+            >
+              <GoogleReCaptcha onVerify={onVerify} />
+              <QueryClientProvider client={queryClient}>
+                <Chatbot setFrameSize={setFrameSize} />
+              </QueryClientProvider>
+            </GoogleReCaptchaProvider>
           </StyleSheetManager>
         )}
       </FrameContextConsumer>
