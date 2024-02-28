@@ -55,7 +55,5 @@ export const showNotification = () => {
 export const setSessionReadMessages = (open: boolean) =>
   open && sessionStorage.setItem(SESSION.MESSAGES_READ, JSON.stringify(open));
 
-export const getGrecaptchaSessionToken = () => {
-  const token = sessionStorage.getItem(SESSION.GRECAPTCHA);
-  return token ? JSON.parse(token) : "";
-};
+export const getGrecaptchaSessionToken = () =>
+  localStorage.getItem(SESSION.GRECAPTCHA);
