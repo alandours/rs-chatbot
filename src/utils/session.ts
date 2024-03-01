@@ -7,7 +7,7 @@ export const handlePendingResponse = (
   messages: Message[]
 ) => {
   if (isSendingMessage) {
-    sessionStorage.setItem(
+    localStorage.setItem(
       SESSION.PENDING_RESPONSE,
       JSON.stringify(isSendingMessage)
     );
@@ -23,39 +23,39 @@ export const handlePendingResponse = (
 };
 
 export const removePendingResponse = () =>
-  sessionStorage.removeItem(SESSION.PENDING_RESPONSE);
+  localStorage.removeItem(SESSION.PENDING_RESPONSE);
 
 export const isPendingResponse = () =>
-  !!sessionStorage.getItem(SESSION.PENDING_RESPONSE);
+  !!localStorage.getItem(SESSION.PENDING_RESPONSE);
 
 export const getSessionSessionToken = (): string | null => {
-  const sessionData = sessionStorage.getItem(SESSION.SESSION_TOKEN);
+  const sessionData = localStorage.getItem(SESSION.SESSION_TOKEN);
   return sessionData && JSON.parse(sessionData);
 };
 
 export const setSessionSessionToken = (sessionToken: string) =>
-  sessionStorage.setItem(
+  localStorage.setItem(
     SESSION.SESSION_TOKEN,
     JSON.stringify(sessionToken)
   );
 
 export const getSessionAgentWelcomeMessage = (): string | null => {
-  const welcomeMessage = sessionStorage.getItem(
+  const welcomeMessage = localStorage.getItem(
     SESSION.AGENT_WELCOME_MESSAGE
   );
   return welcomeMessage && JSON.parse(welcomeMessage);
 }
 
 export const setSessionAgentWelcomeMessage = (welcomeMessage: string) =>
-  sessionStorage.setItem(
+  localStorage.setItem(
     SESSION.AGENT_WELCOME_MESSAGE,
     JSON.stringify(welcomeMessage)
   );
 
 export const showNotification = () => {
-  const messagesRead = sessionStorage.getItem(SESSION.MESSAGES_READ);
+  const messagesRead = localStorage.getItem(SESSION.MESSAGES_READ);
   return messagesRead ? !JSON.parse(messagesRead) : true;
 }
 
 export const setSessionReadMessages = (open: boolean) =>
-  open && sessionStorage.setItem(SESSION.MESSAGES_READ, JSON.stringify(open));
+  open && localStorage.setItem(SESSION.MESSAGES_READ, JSON.stringify(open));
