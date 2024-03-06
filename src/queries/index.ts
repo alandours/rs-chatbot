@@ -2,15 +2,13 @@ import { useQuery, useMutation } from "react-query";
 
 import { REFETCH_INTERVAL } from "@/constants";
 import { Queries } from "@/constants/enums";
-import {
-  SessionResponse,
-  createSession,
-} from "@/services/sessions";
+import { SessionResponse, createSession } from "@/services/sessions";
 import { getMessages, sendMessage } from "@/services/messages";
 import { RecaptchaResponse, verifyRecaptcha } from "@/services/recaptchas";
 import { isPendingResponse } from "@/utils/session";
 
 import { queryClient } from "./queryClient";
+import { AxiosError } from "axios";
 
 export const useCreateSession = ({
   onSuccess,
@@ -32,12 +30,20 @@ export const useCreateRecaptcha = ({
   return useMutation(verifyRecaptcha, { onSuccess, onError });
 };
 
-export const useGetMessages = (sessionToken?: string) => {
+interface GetMessageOptions {
+  sessionToken?: string;
+  onUnauthorizedError: (error: AxiosError) => void;
+}
+
+export const useGetMessages = ({
+  sessionToken,
+  onUnauthorizedError,
+}: GetMessageOptions) => {
   const { data, isLoading } = useQuery(
     [Queries.messages],
-    () => getMessages(),
+    () => getMessages(onUnauthorizedError),
     {
-      enabled: !!(sessionToken),
+      enabled: !!sessionToken,
       refetchInterval: isPendingResponse() && REFETCH_INTERVAL,
       refetchOnWindowFocus: false,
     }
@@ -54,7 +60,6 @@ export const useSendMessage = ({
 }: {
   onError: (error: Error) => void;
 }) => {
-
   return useMutation(sendMessage, {
     onSuccess: async () => {
       await queryClient.refetchQueries({

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 import { Paths } from "@/constants/paths";
 import { ERRORS, ERROR_MESSAGES } from "@/constants";
@@ -10,14 +10,20 @@ type MessagesResponse = {
   messages: Message[];
 };
 
-export const getMessages = async (): Promise<MessagesResponse> => {
+export const getMessages = async (
+  onUnauthorizedError: (error: AxiosError) => void
+): Promise<MessagesResponse | null> => {
   try {
-    const { data } = await client.get(
-      `${Paths.messages}`
-    );
+    const { data } = await client.get(`${Paths.messages}`);
     return data;
   } catch (error) {
-    return ERROR_MESSAGES;
+    const axiosError = error as AxiosError;
+    if (axiosError.response && axiosError.response.status === 401) {
+      onUnauthorizedError(axiosError);
+      return null;
+    } else {
+      return ERROR_MESSAGES;
+    }
   }
 };
 
@@ -30,7 +36,7 @@ type SendMessageParams = {
 };
 
 export const sendMessage = async ({
-  content,
+  content
 }: SendMessageParams): Promise<MessageResponse> => {
   try {
     const { data } = await client.post(Paths.messages, {
