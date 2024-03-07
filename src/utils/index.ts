@@ -6,7 +6,7 @@ export const formatDate = (date: Date) =>
     .toLocaleString("en-US", {
       hour: "numeric",
       minute: "numeric",
-      hour12: true,
+      hour12: true
     })
     .toLowerCase()
     .replace(/\s/, "");
@@ -17,5 +17,5 @@ export const createMessage = (
 ): Message => ({
   content,
   role,
-  createdAt: new Date(),
+  createdAt: new Date()
 });

@@ -2,28 +2,22 @@
 
 #### JIRA board reference:
 
-* [JIRA Card #]()
+- [JIRA Card #]()
 
 ---
 
 #### Description:
 
-*
-
----
+- ***
 
 #### Notes:
 
-*
-
----
+- ***
 
 #### Risk:
 
-*
-
----
+- ***
 
 #### Preview:
 
-* N/A
+- N/A

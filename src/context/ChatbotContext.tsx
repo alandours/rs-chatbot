@@ -5,10 +5,14 @@ import {
   useRef,
   useState,
   Dispatch,
-  SetStateAction,
+  SetStateAction
 } from "react";
 
-import { setSessionSessionToken, setSessionAgentWelcomeMessage, getSessionAgentWelcomeMessage } from "@/utils/session";
+import {
+  setSessionSessionToken,
+  setSessionAgentWelcomeMessage,
+  getSessionAgentWelcomeMessage
+} from "@/utils/session";
 import { DEFAULT_AGENT_WELCOME_MESSAGE } from "@/constants";
 
 interface ChatbotContextValues {
@@ -40,7 +44,7 @@ const initialValues: ChatbotContextValues = {
   captchaToken: "",
   setCaptchaToken: () => null,
   storeAgentWelcomeMessage: () => null,
-  restoreSession: () => null,
+  restoreSession: () => null
 };
 
 export const ChatbotContext =
@@ -52,9 +56,13 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
   const [validRecaptcha, setValidRecaptcha] = useState<boolean>(
     initialValues.validRecaptcha
   );
-  const [captchaToken, setCaptchaToken] = useState<string>(initialValues.captchaToken);
+  const [captchaToken, setCaptchaToken] = useState<string>(
+    initialValues.captchaToken
+  );
 
-  const [sessionToken, setSessionToken] = useState<string>(initialValues.sessionToken);
+  const [sessionToken, setSessionToken] = useState<string>(
+    initialValues.sessionToken
+  );
 
   const chatbotRef = useRef<HTMLDivElement>(null);
 
@@ -66,13 +74,15 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
   const storeAgentWelcomeMessage = (message: string) => {
     setAgentWelcomeMessage(message);
     setSessionAgentWelcomeMessage(message);
-  }
+  };
 
   const restoreSession = (sessionSessionToken: string) => {
     const sessionAgentWelcomeMessage = getSessionAgentWelcomeMessage();
     setSessionToken(sessionSessionToken);
-    setAgentWelcomeMessage(sessionAgentWelcomeMessage || DEFAULT_AGENT_WELCOME_MESSAGE);
-  }
+    setAgentWelcomeMessage(
+      sessionAgentWelcomeMessage || DEFAULT_AGENT_WELCOME_MESSAGE
+    );
+  };
 
   return (
     <ChatbotContext.Provider
@@ -90,7 +100,7 @@ export const ChatbotProvider = ({ children }: { children: ReactNode }) => {
         setCaptchaToken,
         agentWelcomeMessage,
         storeAgentWelcomeMessage,
-        restoreSession,
+        restoreSession
       }}
     >
       {children}

@@ -1,7 +1,7 @@
 import { USERNAMES } from "@/constants";
 import { MessageRoles } from "@/constants/enums";
 import linkifyHtml from "linkify-html";
-import sanitizeHtml from 'sanitize-html';
+import sanitizeHtml from "sanitize-html";
 
 import errorIcon from "@/assets/error.webp";
 
@@ -23,7 +23,7 @@ const options = {
 };
 
 export const Message = ({
-  data: { content, role, createdAt, errorMessage },
+  data: { content, role, createdAt, errorMessage }
 }: MessageProps) => {
   const contentArray = Array.isArray(content) ? content : [content];
 
@@ -41,7 +41,7 @@ export const Message = ({
           <styles.Message $variant={role} $error={!!errorMessage}>
             <div
               dangerouslySetInnerHTML={{
-                __html: sanitizeHtml(linkifyHtml(content, options)),
+                __html: sanitizeHtml(linkifyHtml(content, options))
               }}
             />
           </styles.Message>

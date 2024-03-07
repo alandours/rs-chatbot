@@ -5,7 +5,7 @@ export const TypingLoader = () => (
   <Message
     data={{
       content: "Typing...",
-      role: MessageRoles.LOADER,
+      role: MessageRoles.LOADER
     }}
   />
 );

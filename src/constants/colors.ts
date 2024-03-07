@@ -7,14 +7,14 @@ export const COLORS = {
     LIGHTISH: "#9E9E9E",
     BASE: "#8D8D8D",
     DARK: "#6F6F6E",
-    DARKER: "#212121",
+    DARKER: "#212121"
   },
   RED: {
     LIGHT: "#FDD8D8",
     BASE: "#CB0B0B",
-    DARK: "#7E0707",
+    DARK: "#7E0707"
   },
   SHADOW: "rgba(0, 0, 0, 0.16)",
   YELLOW: "#FFC83F",
-  WHITE: "#FFFFFF",
+  WHITE: "#FFFFFF"
 };

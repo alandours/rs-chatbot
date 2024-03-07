@@ -37,6 +37,6 @@ export const useFrameSize = () => {
   return {
     width,
     height,
-    setFrameSize,
+    setFrameSize
   };
 };

@@ -18,7 +18,7 @@ export type Message = {
 export type Session = {
   token: string;
   agent: Agent;
-}
+};
 
 export type Suggestion = {
   label: string;
