@@ -4,7 +4,7 @@ import { StyleSheetManager } from "styled-components";
 import { QueryClientProvider } from "react-query";
 import {
   GoogleReCaptchaProvider,
-  GoogleReCaptcha,
+  GoogleReCaptcha
 } from "react-google-recaptcha-v3";
 
 import { BREAKPOINTS } from "@/constants";
@@ -18,16 +18,14 @@ import { Frame } from "./styles";
 import { GlobalStyle } from "./globalStyle";
 
 function App() {
-  const { open, setCaptchaToken, captchaToken } = useContext(ChatbotContext);
+  const { open, setCaptchaToken } = useContext(ChatbotContext);
   const { width, height, setFrameSize } = useFrameSize();
 
   const onVerify = useCallback(
     (googleToken: string) => {
-      if (!captchaToken) {
-        setCaptchaToken(googleToken);
-      }
+      setCaptchaToken(googleToken);
     },
-    [captchaToken, setCaptchaToken]
+    [setCaptchaToken]
   );
 
   useEffect(() => {
@@ -51,7 +49,7 @@ function App() {
                 reCaptchaKey={CONFIG.GOOGLE_RECAPTCHA_SITE_KEY}
                 container={{
                   element: "rs-chatbot-recaptcha",
-                  parameters: {},
+                  parameters: {}
                 }}
               >
                 <GoogleReCaptcha onVerify={onVerify} />

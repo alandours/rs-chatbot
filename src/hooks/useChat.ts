@@ -5,7 +5,7 @@ import { ChatbotContext } from "@/context/ChatbotContext";
 import {
   useCreateSession,
   useGetMessages,
-  useCreateRecaptcha,
+  useCreateRecaptcha
 } from "@/queries";
 import { setSessionTokenHeader } from "@/services/client";
 import { Message } from "@/types";
@@ -21,22 +21,31 @@ export const useChat = () => {
     storeAgentWelcomeMessage,
     setValidRecaptcha,
     captchaToken,
-    validRecaptcha,
+    validRecaptcha
   } = useContext(ChatbotContext);
 
   const [welcomeMessage, setWelcomeMessage] = useState<Message>();
 
-  const { messages } = useGetMessages(sessionToken);
+  const { messages } = useGetMessages({
+    sessionToken,
+    onUnauthorizedError: () => {
+      createSession();
+    }
+  });
 
-  const { mutate: createSession, isLoading, isError: hasSessionError } = useCreateSession({
-    onSuccess: ({ token, agent }) => {
+  const {
+    mutate: createSession,
+    isLoading,
+    isError: hasSessionError
+  } = useCreateSession({
+    onSuccess: async ({ token, agent }) => {
       storeSessionToken(token);
       storeAgentWelcomeMessage(agent.welcomeMessage);
       setSessionTokenHeader(String(token));
     },
     onError: (error: Error) => {
       setWelcomeMessage(createMessage(error.message));
-    },
+    }
   });
 
   const { mutate: verifyRecaptcha } = useCreateRecaptcha({
@@ -49,7 +58,7 @@ export const useChat = () => {
     },
     onError: (error: Error) => {
       setWelcomeMessage(createMessage(error.message));
-    },
+    }
   });
 
   useEffect(() => {
@@ -61,7 +70,12 @@ export const useChat = () => {
   const createChat = useCallback(async () => {
     const sessionSessionToken = getSessionSessionToken();
 
-    if (!sessionSessionToken && !sessionToken && !isLoading && !hasSessionError) {
+    if (
+      !sessionSessionToken &&
+      !sessionToken &&
+      !isLoading &&
+      !hasSessionError
+    ) {
       createSession();
     } else {
       if (sessionSessionToken) {
@@ -80,7 +94,7 @@ export const useChat = () => {
     validRecaptcha,
     createSession,
     agentWelcomeMessage,
-    hasSessionError,
+    hasSessionError
   ]);
 
   return { createChat, messages, welcomeMessage };
