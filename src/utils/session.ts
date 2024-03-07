@@ -34,17 +34,12 @@ export const getSessionSessionToken = (): string | null => {
 };
 
 export const setSessionSessionToken = (sessionToken: string) =>
-  localStorage.setItem(
-    SESSION.SESSION_TOKEN,
-    JSON.stringify(sessionToken)
-  );
+  localStorage.setItem(SESSION.SESSION_TOKEN, JSON.stringify(sessionToken));
 
 export const getSessionAgentWelcomeMessage = (): string | null => {
-  const welcomeMessage = localStorage.getItem(
-    SESSION.AGENT_WELCOME_MESSAGE
-  );
+  const welcomeMessage = localStorage.getItem(SESSION.AGENT_WELCOME_MESSAGE);
   return welcomeMessage && JSON.parse(welcomeMessage);
-}
+};
 
 export const setSessionAgentWelcomeMessage = (welcomeMessage: string) =>
   localStorage.setItem(
@@ -55,7 +50,7 @@ export const setSessionAgentWelcomeMessage = (welcomeMessage: string) =>
 export const showNotification = () => {
   const messagesRead = localStorage.getItem(SESSION.MESSAGES_READ);
   return messagesRead ? !JSON.parse(messagesRead) : true;
-}
+};
 
 export const setSessionReadMessages = (open: boolean) =>
   open && localStorage.setItem(SESSION.MESSAGES_READ, JSON.stringify(open));

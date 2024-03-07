@@ -8,7 +8,10 @@ type SuggestionsProps = {
   onPickSuggestion: (suggestion: string) => void;
 };
 
-export const Suggestions = ({ suggestions, onPickSuggestion }: SuggestionsProps) => {
+export const Suggestions = ({
+  suggestions,
+  onPickSuggestion
+}: SuggestionsProps) => {
   return (
     <styles.SuggestionsContainer>
       {suggestions.map((suggestion, index) => (

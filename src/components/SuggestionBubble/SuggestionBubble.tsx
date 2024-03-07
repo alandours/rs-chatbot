@@ -8,7 +8,7 @@ type SuggestionBubbleProps = {
 
 export const SuggestionBubble = ({
   onClick,
-  children,
+  children
 }: SuggestionBubbleProps) => {
   const [isHovering, setIsHovering] = useState(false);
 

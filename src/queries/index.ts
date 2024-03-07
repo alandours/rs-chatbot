@@ -12,7 +12,7 @@ import { AxiosError } from "axios";
 
 export const useCreateSession = ({
   onSuccess,
-  onError,
+  onError
 }: {
   onSuccess: (data: SessionResponse) => void;
   onError: (error: Error) => void;
@@ -22,7 +22,7 @@ export const useCreateSession = ({
 
 export const useCreateRecaptcha = ({
   onSuccess,
-  onError,
+  onError
 }: {
   onSuccess: (data: RecaptchaResponse) => void;
   onError: (error: Error) => void;
@@ -37,7 +37,7 @@ interface GetMessageOptions {
 
 export const useGetMessages = ({
   sessionToken,
-  onUnauthorizedError,
+  onUnauthorizedError
 }: GetMessageOptions) => {
   const { data, isLoading } = useQuery(
     [Queries.messages],
@@ -45,27 +45,27 @@ export const useGetMessages = ({
     {
       enabled: !!sessionToken,
       refetchInterval: isPendingResponse() && REFETCH_INTERVAL,
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: false
     }
   );
 
   return {
     messages: data?.messages || [],
-    isLoading,
+    isLoading
   };
 };
 
 export const useSendMessage = ({
-  onError,
+  onError
 }: {
   onError: (error: Error) => void;
 }) => {
   return useMutation(sendMessage, {
     onSuccess: async () => {
       await queryClient.refetchQueries({
-        queryKey: [Queries.messages],
+        queryKey: [Queries.messages]
       });
     },
-    onError,
+    onError
   });
 };

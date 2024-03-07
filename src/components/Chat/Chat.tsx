@@ -31,7 +31,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
 
       const lastMessage = messages.pop()!;
       messages.push({ ...lastMessage, errorMessage: error.message });
-    },
+    }
   });
 
   const scrollEndRef = useRef<HTMLDivElement>(null);
@@ -81,7 +81,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
     const scrollArea = scrollAreaRef?.current;
 
     scrollArea?.addEventListener("wheel", handleScroll, {
-      passive: false,
+      passive: false
     });
 
     return () => {
@@ -92,7 +92,7 @@ export const Chat = ({ welcomeMessage, messages }: ChatProps) => {
   useEffect(() => {
     const scrollTimeout = setTimeout(() => {
       scrollEndRef.current?.scrollIntoView({
-        behavior: "smooth",
+        behavior: "smooth"
       });
     }, 100);
 
