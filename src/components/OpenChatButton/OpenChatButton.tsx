@@ -12,10 +12,15 @@ export const OpenChatButton = () => {
 
   return (
     <styles.OpenChat ref={chatbotRef}>
-      <styles.OpenChatButton onClick={openChat}>
-        <styles.ChatIcon src={robotIcon} alt="Open chat" />
-        {showNotification() && <styles.Notification>1</styles.Notification>}
-      </styles.OpenChatButton>
+      <styles.OpenChatButtonGradientBorder>
+        <styles.OpenChatButton
+          aria-label="Chat With Us - Rootstrap"
+          onClick={openChat}
+        >
+          <styles.ChatIcon src={robotIcon} alt="Open chat" />
+          {showNotification() && <styles.Notification>1</styles.Notification>}
+        </styles.OpenChatButton>
+      </styles.OpenChatButtonGradientBorder>
     </styles.OpenChat>
   );
 };
