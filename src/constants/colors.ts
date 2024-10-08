@@ -1,6 +1,9 @@
 export const COLORS = {
   BLACK: "#1B1B1B",
   GREEN: "#009E3D",
+  SHADOW: "rgba(0, 0, 0, 0.16)",
+  YELLOW: "#FFC83F",
+  WHITE: "#FFFFFF",
   GREY: {
     LIGHTER: "#E2E2DE",
     LIGHT: "#C0C0C0",
@@ -14,7 +17,7 @@ export const COLORS = {
     BASE: "#CB0B0B",
     DARK: "#7E0707"
   },
-  SHADOW: "rgba(0, 0, 0, 0.16)",
-  YELLOW: "#FFC83F",
-  WHITE: "#FFFFFF"
+  PRIMARY: {
+    500: "#F6FF7A"
+  }
 };
